@@ -1,0 +1,6 @@
+D:\Marcos\PracticaMaD\Model\bin\Debug\Model.exe.config
+D:\Marcos\PracticaMaD\Model\bin\Debug\Model.exe
+D:\Marcos\PracticaMaD\Model\bin\Debug\Model.pdb
+D:\Marcos\PracticaMaD\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\Marcos\PracticaMaD\Model\obj\Debug\Model.exe
+D:\Marcos\PracticaMaD\Model\obj\Debug\Model.pdb
