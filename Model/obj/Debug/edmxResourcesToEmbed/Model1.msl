@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="madDatabaseModelStoreContainer" CdmEntityContainer="madDatabaseEntities">
+    <EntitySetMapping Name="Cards">
+      <EntityTypeMapping TypeName="madDatabaseModel.Card">
+        <MappingFragment StoreEntitySet="Card">
+          <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
+          <ScalarProperty Name="usrId" ColumnName="usrId" />
+          <ScalarProperty Name="verificationCode" ColumnName="verificationCode" />
+          <ScalarProperty Name="expirationDate" ColumnName="expirationDate" />
+          <ScalarProperty Name="cardType" ColumnName="cardType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="madDatabaseModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderLines">
+      <EntityTypeMapping TypeName="madDatabaseModel.OrderLine">
+        <MappingFragment StoreEntitySet="OrderLine">
+          <ScalarProperty Name="numberId" ColumnName="numberId" />
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="numberOfUnits" ColumnName="numberOfUnits" />
+          <ScalarProperty Name="unitPrize" ColumnName="unitPrize" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="madDatabaseModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+          <ScalarProperty Name="usrId" ColumnName="usrId" />
+          <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
+          <ScalarProperty Name="postalAddress" ColumnName="postalAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.Product)">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="prize" ColumnName="prize" />
+          <ScalarProperty Name="numberOfUnits" ColumnName="numberOfUnits" />
+          <ScalarProperty Name="registerDate" ColumnName="registerDate" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.Movie)">
+        <MappingFragment StoreEntitySet="Movie">
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="topic" ColumnName="topic" />
+          <ScalarProperty Name="summary" ColumnName="summary" />
+          <ScalarProperty Name="director" ColumnName="director" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="movieId" ColumnName="movieId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.CD)">
+        <MappingFragment StoreEntitySet="CD">
+          <ScalarProperty Name="songs" ColumnName="songs" />
+          <ScalarProperty Name="topic" ColumnName="topic" />
+          <ScalarProperty Name="artist" ColumnName="artist" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="cdId" ColumnName="cdId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.Book)">
+        <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="pages" ColumnName="pages" />
+          <ScalarProperty Name="topic" ColumnName="topic" />
+          <ScalarProperty Name="summary" ColumnName="summary" />
+          <ScalarProperty Name="author" ColumnName="author" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="bookId" ColumnName="bookId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserProfiles">
+      <EntityTypeMapping TypeName="madDatabaseModel.UserProfile">
+        <MappingFragment StoreEntitySet="UserProfile">
+          <ScalarProperty Name="usrId" ColumnName="usrId" />
+          <ScalarProperty Name="loginName" ColumnName="loginName" />
+          <ScalarProperty Name="enPassword" ColumnName="enPassword" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="language" ColumnName="language" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="postalAddress" ColumnName="postalAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

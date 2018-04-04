@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="madDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="bookId" />
+    </Key>
+    <Property Name="bookId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="author" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="summary" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="topic" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="pages" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Card">
+    <Key>
+      <PropertyRef Name="cardNumber" />
+    </Key>
+    <Property Name="cardNumber" Type="int" Nullable="false" />
+    <Property Name="usrId" Type="bigint" Nullable="false" />
+    <Property Name="verificationCode" Type="int" Nullable="false" />
+    <Property Name="expirationDate" Type="date" Nullable="false" />
+    <Property Name="cardType" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="categoryId" />
+    </Key>
+    <Property Name="categoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CD">
+    <Key>
+      <PropertyRef Name="cdId" />
+    </Key>
+    <Property Name="cdId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="artist" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="topic" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="songs" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Movie">
+    <Key>
+      <PropertyRef Name="movieId" />
+    </Key>
+    <Property Name="movieId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="director" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="summary" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="topic" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="duration" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderLine">
+    <Key>
+      <PropertyRef Name="numberId" />
+    </Key>
+    <Property Name="numberId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderId" Type="bigint" Nullable="false" />
+    <Property Name="productId" Type="bigint" Nullable="false" />
+    <Property Name="numberOfUnits" Type="int" Nullable="false" />
+    <Property Name="unitPrize" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="orderId" />
+    </Key>
+    <Property Name="orderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="usrId" Type="bigint" Nullable="false" />
+    <Property Name="cardNumber" Type="int" Nullable="false" />
+    <Property Name="postalAddress" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="productId" />
+    </Key>
+    <Property Name="productId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="categoryId" Type="bigint" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="registerDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="numberOfUnits" Type="int" Nullable="false" />
+    <Property Name="prize" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="usrId" />
+    </Key>
+    <Property Name="usrId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="loginName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="enPassword" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="firstName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="lastName" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="language" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="country" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="postalAddress" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_BookproductId">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="productId" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CardusrId">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Card" Type="Self.Card" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="usrId" />
+      </Principal>
+      <Dependent Role="Card">
+        <PropertyRef Name="usrId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CDproductId">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="CD" Type="Self.CD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="productId" />
+      </Principal>
+      <Dependent Role="CD">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MovieproductId">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="productId" />
+      </Principal>
+      <Dependent Role="Movie">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrdercardNumber">
+    <End Role="Card" Type="Self.Card" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Card">
+        <PropertyRef Name="cardNumber" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="cardNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderLineorderId">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+    <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="orderId" />
+      </Principal>
+      <Dependent Role="OrderLine">
+        <PropertyRef Name="orderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderLineproductId">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="productId" />
+      </Principal>
+      <Dependent Role="OrderLine">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderuserdId">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="usrId" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="usrId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductcategoryId">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="categoryId" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="categoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="madDatabaseModelStoreContainer">
+    <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Card" EntityType="Self.Card" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CD" EntityType="Self.CD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderLine" EntityType="Self.OrderLine" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BookproductId" Association="Self.FK_BookproductId">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CardusrId" Association="Self.FK_CardusrId">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="Card" EntitySet="Card" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CDproductId" Association="Self.FK_CDproductId">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="CD" EntitySet="CD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MovieproductId" Association="Self.FK_MovieproductId">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Movie" EntitySet="Movie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrdercardNumber" Association="Self.FK_OrdercardNumber">
+      <End Role="Card" EntitySet="Card" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderLineorderId" Association="Self.FK_OrderLineorderId">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrderLine" EntitySet="OrderLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderLineproductId" Association="Self.FK_OrderLineproductId">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderLine" EntitySet="OrderLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderuserdId" Association="Self.FK_OrderuserdId">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductcategoryId" Association="Self.FK_ProductcategoryId">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
