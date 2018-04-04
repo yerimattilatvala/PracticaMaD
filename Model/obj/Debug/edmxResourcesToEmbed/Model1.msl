@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="madDatabaseModelStoreContainer" CdmEntityContainer="madDatabaseEntities">
+  <EntityContainerMapping StorageEntityContainer="madDatabaseModelStoreContainer" CdmEntityContainer="madDatabaseEntities1">
     <EntitySetMapping Name="Cards">
       <EntityTypeMapping TypeName="madDatabaseModel.Card">
         <MappingFragment StoreEntitySet="Card">
@@ -61,7 +61,6 @@
           <ScalarProperty Name="director" ColumnName="director" />
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="productId" ColumnName="productId" />
-          <ScalarProperty Name="movieId" ColumnName="movieId" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.CD)">
@@ -71,7 +70,6 @@
           <ScalarProperty Name="artist" ColumnName="artist" />
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="productId" ColumnName="productId" />
-          <ScalarProperty Name="cdId" ColumnName="cdId" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.Book)">
@@ -82,7 +80,6 @@
           <ScalarProperty Name="author" ColumnName="author" />
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="productId" ColumnName="productId" />
-          <ScalarProperty Name="bookId" ColumnName="bookId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

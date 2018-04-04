@@ -143,7 +143,6 @@ CREATE TABLE OrderLine
 PRINT N'CREA orderline'
 CREATE TABLE Book
 (
-	bookId bigint IDENTITY(1,1) NOT NULL,
 	productId bigint NOT NULL,
 	title varchar(20) NOT NULL,
 	author varchar(20) NOT NULL,
@@ -151,27 +150,26 @@ CREATE TABLE Book
 	topic varchar(20) NOT NULL,
 	pages int NOT NULL,
 
-	CONSTRAINT [PK_Book] PRIMARY KEY (bookId),
+	CONSTRAINT [PK_BookproductId] PRIMARY KEY (productId),
 	CONSTRAINT [FK_BookproductId] FOREIGN KEY (productId)
 		REFERENCES Product (productId)
 )
 PRINT N'CREA book'
 CREATE TABLE CD
 (
-	cdId bigint IDENTITY(1,1) NOT NULL,
 	productId bigint NOT NULL,
 	title varchar(20) NOT NULL,
 	artist varchar(20) NOT NULL,
 	topic varchar (10) NOT NULL,
-	songs int  NOT NULL
-	CONSTRAINT [PK_CD] PRIMARY KEY (cdId),
+	songs int  NOT NULL,
+
+	CONSTRAINT [PK_CDproductId] PRIMARY KEY (productId),
 	CONSTRAINT [FK_CDproductId] FOREIGN KEY (productId)
 		REFERENCES Product (productId)
 )
 
 CREATE TABLE Movie
 (
-	movieId bigint IDENTITY(1,1) NOT NULL,
 	productId bigint NOT NULL,
 	title varchar(20) NOT NULL,
 	director varchar(20) NOT NULL,
@@ -179,7 +177,7 @@ CREATE TABLE Movie
 	topic varchar(20) NOT NULL,
 	duration int NOT NULL,
 
-	CONSTRAINT [PK_Movie] PRIMARY KEY (movieId),
+	CONSTRAINT [PK_MovieproductId] PRIMARY KEY (productId),
 	CONSTRAINT [FK_MovieproductId] FOREIGN KEY (productId)
 		REFERENCES Product (productId)
 )

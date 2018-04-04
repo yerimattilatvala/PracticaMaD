@@ -14,7 +14,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     
     public partial class CD : Product
     {
-        public long cdId { get; set; }
         public string title { get; set; }
         public string artist { get; set; }
         public string topic { get; set; }

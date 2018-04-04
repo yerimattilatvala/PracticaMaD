@@ -14,7 +14,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     
     public partial class Movie : Product
     {
-        public long movieId { get; set; }
         public string title { get; set; }
         public string director { get; set; }
         public string summary { get; set; }

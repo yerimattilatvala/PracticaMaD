@@ -14,7 +14,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     
     public partial class Book : Product
     {
-        public long bookId { get; set; }
         public string title { get; set; }
         public string author { get; set; }
         public string summary { get; set; }
