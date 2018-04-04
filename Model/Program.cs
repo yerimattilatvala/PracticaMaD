@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model;
+
 namespace Model
 {
     public class Program
@@ -22,7 +25,7 @@ namespace Model
 
 
                 Console.WriteLine("/*  ************ Table per Type ************* */");
-                UserProfileDaoEntityFramework p = new UserProfileDaoEntityFramework();
+                /*UserProfileDaoEntityFramework p = new UserProfileDaoEntityFramework();
 
                 p.Context = dbContext;
 
@@ -31,7 +34,20 @@ namespace Model
                 if (user != null)
                     Console.WriteLine(user.loginName);
                 else
+                    Console.WriteLine("ERROR");*/
+
+                Product p = null;
+
+                ProductDaoEntityFramework product = new ProductDaoEntityFramework();
+                product.Context = dbContext;
+
+                p = product.FindByName("ACDC");
+
+                if (p != null)
+                    Console.WriteLine(p.name);
+                else
                     Console.WriteLine("ERROR");
+
                 transaction.Complete();
 
             }

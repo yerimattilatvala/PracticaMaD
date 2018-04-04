@@ -9,7 +9,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 {
     interface IProductDao : IGenericDao<Product, Int64>
     {
-        Product searchProductByName(string name);
+        Product FindByName(string name);
         
     }
 }
