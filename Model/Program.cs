@@ -41,7 +41,9 @@ namespace Model
                 ProductDaoEntityFramework product = new ProductDaoEntityFramework();
                 product.Context = dbContext;
 
-                p = product.FindByName("ACDC");
+                //p = product.FindByName("ACDC");
+
+                p = product.FindByNameAndCategory("ACDC","CD");
 
                 if (p != null)
                     Console.WriteLine(p.name);

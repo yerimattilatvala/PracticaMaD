@@ -30,5 +30,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
             return product;
         }
+
+        public Product FindByNameAndCategory(string name, string category)
+        {
+            Product product = null;
+
+            DbSet<Product> products = Context.Set<Product>();
+            string sqlQuery = "Select * FROM Product INNER JOIN Category ON Product.categoryId = Category.categoryId  where Product.name=@name AND Category.name=@category";
+            DbParameter productNameParameter =
+                new System.Data.SqlClient.SqlParameter("name", name);
+            DbParameter categoryNameParameter =
+                new System.Data.SqlClient.SqlParameter("category", category);
+
+            product = Context.Database.SqlQuery<Product>(sqlQuery, productNameParameter,categoryNameParameter).FirstOrDefault<Product>();
+
+            if (product == null)
+                throw new InstanceNotFoundException(name,
+                    typeof(UserProfile).FullName);
+
+            return product;
+        }
     }
 }
