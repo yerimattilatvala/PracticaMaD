@@ -24,33 +24,61 @@ namespace Model
             {
 
 
+                UserProfile user2 = new UserProfile();
+                user2.loginName = "adrian";
+                user2.lastName = "a";
+                user2.firstName = "b";
+                user2.enPassword = "1234";
+                user2.email = "asdas";
+                user2.country = "es";
+                user2.language = "as";
+                user2.postalAddress = 35555;
+
+
+
                 Console.WriteLine("/*  ************ Table per Type ************* */");
-                /*UserProfileDaoEntityFramework p = new UserProfileDaoEntityFramework();
+                UserProfileDaoEntityFramework p = new UserProfileDaoEntityFramework();
 
                 p.Context = dbContext;
 
-                Es.Udc.DotNet.PracticaMaD.Model.UserProfile user = p.FindByLoginName("adrian");
+                p.Create(user2);
+
+                UserProfile user = p.Find(2);
+
+
 
                 if (user != null)
                     Console.WriteLine(user.loginName);
                 else
-                    Console.WriteLine("ERROR");*/
+                    Console.WriteLine("ERROR");
 
-                Product p = null;
+                /*Product p = null;
 
                 ProductDaoEntityFramework product = new ProductDaoEntityFramework();
                 product.Context = dbContext;
 
-                //p = product.FindByName("ACDC");
+                p = product.FindByName("acdc");
 
-                p = product.FindByNameAndCategory("ACDC","CD");
+                //p = product.FindByNameAndCategory("acdc","CD");
 
                 if (p != null)
                     Console.WriteLine(p.name);
                 else
                     Console.WriteLine("ERROR");
+                List<Order> orders = null;
 
-                transaction.Complete();
+                OrderDaoEntityFramework query = new OrderDaoEntityFramework();
+                query.Context = dbContext;
+                orders = query.FindByUserId(1);
+                if (orders != null)
+                      for (int i = 1; i <= orders.Count; i++)
+                      {
+                          Console.WriteLine(orders.ElementAt(i).orderId);
+                      }
+                    Console.WriteLine(orders.Count);
+                else
+                    Console.WriteLine("ERROR"); */
+                 transaction.Complete();
 
             }
 

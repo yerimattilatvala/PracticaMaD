@@ -10,7 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
     interface IUserProfileDao : IGenericDao<UserProfile, Int64>
     {
 
-        UserProfile FindByLoginName(String loginName);
+        Order FindByLoginName(String loginName);
 
 
     }

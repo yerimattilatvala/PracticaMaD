@@ -25,6 +25,7 @@
           <Property Name="verificationCode" Type="int" Nullable="false" />
           <Property Name="expirationDate" Type="date" Nullable="false" />
           <Property Name="cardType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="defaultCard" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -260,6 +261,13 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="madDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Book" BaseType="madDatabaseModel.Product">
+          <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="author" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="summary" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="topic" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pages" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="Card">
           <Key>
             <PropertyRef Name="cardNumber" />
@@ -271,6 +279,7 @@
           <Property Name="cardType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="UserProfile" Relationship="Self.FK_CardusrId" FromRole="Card" ToRole="UserProfile" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_OrdercardNumber" FromRole="Card" ToRole="Orders" />
+          <Property Name="defaultCard" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -279,6 +288,19 @@
           <Property Name="categoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Products" Relationship="Self.FK_ProductcategoryId" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="CD" BaseType="madDatabaseModel.Product">
+          <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="artist" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="topic" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="songs" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movie" BaseType="madDatabaseModel.Product">
+          <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="director" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="summary" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="topic" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="duration" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderLine">
           <Key>
@@ -333,26 +355,6 @@
           <Property Name="postalAddress" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cards" Relationship="Self.FK_CardusrId" FromRole="UserProfile" ToRole="Card" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_OrderuserdId" FromRole="UserProfile" ToRole="Orders" />
-        </EntityType>
-        <EntityType Name="Book" BaseType="madDatabaseModel.Product">
-          <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="author" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="summary" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="topic" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="pages" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CD" BaseType="madDatabaseModel.Product">
-          <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="artist" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="topic" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="songs" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Movie" BaseType="madDatabaseModel.Product">
-          <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="director" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="summary" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="topic" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="duration" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_CardusrId">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1">
@@ -428,7 +430,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="madDatabaseEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="madDatabaseEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cards" EntityType="Self.Card" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="OrderLines" EntityType="Self.OrderLine" />
@@ -465,10 +467,11 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="madDatabaseModelStoreContainer" CdmEntityContainer="madDatabaseEntities1">
+        <EntityContainerMapping StorageEntityContainer="madDatabaseModelStoreContainer" CdmEntityContainer="madDatabaseEntities2">
           <EntitySetMapping Name="Cards">
             <EntityTypeMapping TypeName="madDatabaseModel.Card">
               <MappingFragment StoreEntitySet="Card">
+                <ScalarProperty Name="defaultCard" ColumnName="defaultCard" />
                 <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
                 <ScalarProperty Name="usrId" ColumnName="usrId" />
                 <ScalarProperty Name="verificationCode" ColumnName="verificationCode" />
@@ -518,16 +521,6 @@
                 <ScalarProperty Name="categoryId" ColumnName="categoryId" />
               </MappingFragment>
             </EntityTypeMapping>
-            <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.Movie)">
-              <MappingFragment StoreEntitySet="Movie">
-                <ScalarProperty Name="duration" ColumnName="duration" />
-                <ScalarProperty Name="topic" ColumnName="topic" />
-                <ScalarProperty Name="summary" ColumnName="summary" />
-                <ScalarProperty Name="director" ColumnName="director" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="productId" ColumnName="productId" />
-              </MappingFragment>
-            </EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.CD)">
               <MappingFragment StoreEntitySet="CD">
                 <ScalarProperty Name="songs" ColumnName="songs" />
@@ -543,6 +536,16 @@
                 <ScalarProperty Name="topic" ColumnName="topic" />
                 <ScalarProperty Name="summary" ColumnName="summary" />
                 <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.Movie)">
+              <MappingFragment StoreEntitySet="Movie">
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="topic" ColumnName="topic" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+                <ScalarProperty Name="director" ColumnName="director" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="productId" ColumnName="productId" />
               </MappingFragment>

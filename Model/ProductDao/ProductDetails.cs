@@ -10,8 +10,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
     {
         private string name;
         private string category;
-        private int numberOfUnits;
+        private DateTime registerDate;
         private double prize;
+
+        ProductDetails(string name, string category, DateTime registerDate, double prize)
+        {
+            this.name = name;
+            this.category = category;
+            this.registerDate = registerDate;
+            this.prize = prize;
+
+        }
+
 
     }
 }

@@ -25,6 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public int verificationCode { get; set; }
         public System.DateTime expirationDate { get; set; }
         public string cardType { get; set; }
+        public bool defaultCard { get; set; }
     
         public virtual UserProfile UserProfile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

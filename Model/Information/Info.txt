@@ -1,0 +1,28 @@
+use madDatabase;
+ select * from UserProfile;
+
+ /*insert into UserProfile values('yeray','asdad','asda','asda','asdasd','as','e',36645);*/
+ /*insert into Card values (11212,1,123,'2008-11-11','asa');*/
+ /*insert into Orders values (DEFAULT,1,11212,36645);*/
+ /*select * from Orders where usrId=1;*/
+ 
+
+
+ CASOS DE USO :
+
+ USUARIO:
+ 	- Registrar,....os que estan en MiniPortal/MiniBank.
+ 	- Autenticacion.
+ 	- Modificar datos.
+
+TARJETA:
+	- Añadir tarjeta.
+	- Seleccionar tarjeta por defecto.
+
+ PRODUCTOS:
+ 	- Buscar:
+ 		-Nombre y categoria(opcional).
+
+ PEDIDOS:
+ 	- Generar pedido.
+ 	- Mostrar pedidos usuario.

@@ -26,7 +26,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
             if (product == null)
                 throw new InstanceNotFoundException(name,
-                    typeof(UserProfile).FullName);
+                    typeof(Order).FullName);
 
             return product;
         }
@@ -46,7 +46,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
             if (product == null)
                 throw new InstanceNotFoundException(name,
-                    typeof(UserProfile).FullName);
+                    typeof(Order).FullName);
 
             return product;
         }

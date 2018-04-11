@@ -80,6 +80,7 @@ CREATE TABLE Card
     verificationCode int NOT NULL,
 	expirationDate date NOT NULL,
 	cardType varchar(10) NOT NULL,
+	defaultCard bit NOT NULL,
 
 	CONSTRAINT [PK_Card] PRIMARY KEY (cardNumber),
 	CONSTRAINT [FK_CardusrId] FOREIGN KEY (usrId)
