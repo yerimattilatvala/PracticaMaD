@@ -9,6 +9,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 {
     interface IOrderDao : IGenericDao<Order,Int64>
     {
-        List<Order> FindByUserId(long userId);
     }
 }

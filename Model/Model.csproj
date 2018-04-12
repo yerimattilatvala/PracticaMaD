@@ -89,6 +89,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ModelService\Exceptions\NumberOfUnitsException.cs" />
+    <Compile Include="ModelService\IModelService.cs" />
+    <Compile Include="ModelService\ModelService.cs" />
     <Compile Include="Movie.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -96,10 +99,11 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderDao\IOrderDao.cs" />
-    <Compile Include="OrderDao\OrderDaoEntityFramework.cs" />
+    <Compile Include="OrderDao\OrderDetails.cs" />
     <Compile Include="OrderLine.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="OrderLineDao\IOrderLineDao.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

@@ -18,6 +18,7 @@
     <Property Name="cardType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="UserProfile" Relationship="Self.FK_CardusrId" FromRole="Card" ToRole="UserProfile" />
     <NavigationProperty Name="Orders" Relationship="Self.FK_OrdercardNumber" FromRole="Card" ToRole="Orders" />
+    <Property Name="defaultCard" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Category">
     <Key>

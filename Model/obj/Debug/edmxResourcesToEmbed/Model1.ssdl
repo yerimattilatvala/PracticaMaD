@@ -20,6 +20,7 @@
     <Property Name="verificationCode" Type="int" Nullable="false" />
     <Property Name="expirationDate" Type="date" Nullable="false" />
     <Property Name="cardType" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="defaultCard" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Category">
     <Key>

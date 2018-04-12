@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Cards">
       <EntityTypeMapping TypeName="madDatabaseModel.Card">
         <MappingFragment StoreEntitySet="Card">
+          <ScalarProperty Name="defaultCard" ColumnName="defaultCard" />
           <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
           <ScalarProperty Name="usrId" ColumnName="usrId" />
           <ScalarProperty Name="verificationCode" ColumnName="verificationCode" />
