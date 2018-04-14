@@ -14,15 +14,16 @@ use madDatabase;
  	- Registrar,....os que estan en MiniPortal/MiniBank.
  	- Autenticacion.
  	- Modificar datos.
-
+	(listos todos) (no probados)
 TARJETA:
 	- Añadir tarjeta.
 	- Seleccionar tarjeta por defecto.
 
  PRODUCTOS:
  	- Buscar:
- 		-Nombre y categoria(opcional).
+ 		-Nombre y categoria(opcional). (listo sin tokenizar) (no probado)
+	- Visualizar productos ???
 
  PEDIDOS:
  	- Generar pedido. (listo) (no probado)
- 	- Mostrar pedidos usuario.
+ 	- Mostrar pedidos usuario. (listo) (no probado)

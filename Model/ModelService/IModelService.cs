@@ -1,4 +1,6 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
     interface IModelService
     {
 
-        long GenerateOrder(long usrId, int cardNumber,int postalAddress,List<ProductDetails> productList);
+        OrderDetails GenerateOrder(long usrId, int cardNumber,int postalAddress,List<ProductDetails> productList);
 
+        List<OrderDetails> ViewOrdersByUser(long usrId);
+
+        List<ProductDetails> FindByKeywords(string keywords);
+
+        long RegisterUser(String loginName, String clearPassword,
+            UserProfileDetails userProfileDetails);
+        
+        LoginResult Login(String loginName, String password,
+            Boolean passwordIsEncrypted);
+        
+        UserProfileDetails FindUserProfileDetails(long userProfileId);
+        
+        void UpdateUserProfileDetails(long userProfileId,
+            UserProfileDetails userProfileDetails);
+
+        void ChangePassword(long userProfileId, String oldClearPassword,
+            String newClearPassword);
     }
 }

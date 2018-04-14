@@ -78,7 +78,7 @@ CREATE TABLE Card
     cardNumber int NOT NULL,
 	usrId bigint NOT NULL,
     verificationCode int NOT NULL,
-	expirationDate date NOT NULL,
+	expirationDate datetime2 NOT NULL,
 	cardType varchar(10) NOT NULL,
 	defaultCard bit NOT NULL,
 
@@ -102,7 +102,7 @@ CREATE TABLE Product
     productId bigint IDENTITY(1,1) NOT NULL,
 	categoryId bigint NOT NULL,
     name varchar(10) NOT NULL,
-	registerDate Timestamp NOT NULL,
+	registerDate datetime2 NOT NULL,
 	numberOfUnits int NOT NULL,
 	prize float NOT NULL,
 
@@ -115,7 +115,7 @@ PRINT N'CREA PRODUCT'
 CREATE TABLE Orders
 (
 	orderId bigint IDENTITY(1,1) NOT NULL,
-	orderDate Timestamp NOT NULL,
+	orderDate datetime2 NOT NULL,
 	usrId bigint NOT NULL,
 	cardNumber int NOT NULL,
 	postalAddress int NOT NULL,

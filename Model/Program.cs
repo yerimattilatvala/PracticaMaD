@@ -43,7 +43,7 @@ namespace Model
 
                 p.Create(user2);
 
-                UserProfile user = p.Find(2);
+                UserProfile user = p.Find(1);
 
 
 

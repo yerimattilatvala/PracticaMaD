@@ -13,13 +13,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
     public class UserProfileDaoEntityFramework :
         GenericDaoEntityFramework<UserProfile, Int64>, IUserProfileDao
     {
-        public Order FindByLoginName(string loginName)
+        public UserProfile FindByLoginName(string loginName)
         {
-            Order userProfile = null;
+            UserProfile userProfile = null;
 
             #region Option 1: Using Linq.
 
-            DbSet<Order> userProfiles = Context.Set<Order>();
+            DbSet<UserProfile> userProfiles = Context.Set<UserProfile>();
 
             //var result =
             //    (from u in userProfiles
@@ -36,7 +36,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
             DbParameter loginNameParameter =
                 new System.Data.SqlClient.SqlParameter("loginName", loginName);
 
-            userProfile = Context.Database.SqlQuery<Order>(sqlQuery, loginNameParameter).FirstOrDefault<Order>();
+            userProfile = Context.Database.SqlQuery<UserProfile>(sqlQuery, loginNameParameter).FirstOrDefault<UserProfile>();
 
             #endregion
 
@@ -66,7 +66,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
 
             if (userProfile == null)
                 throw new InstanceNotFoundException(loginName,
-                    typeof(Order).FullName);
+                    typeof(UserProfile).FullName);
 
             return userProfile;
         }

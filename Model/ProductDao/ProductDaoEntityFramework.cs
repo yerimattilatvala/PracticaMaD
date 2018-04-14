@@ -13,42 +13,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
     class ProductDaoEntityFramework :
         GenericDaoEntityFramework<Product, Int64>, IProductDao
     {
-        public Product FindByName(string name)
+        public List<Product> FindByKeywords(string name, string category)
         {
-            Product product = null;
+            List<Product> productList= new List<Product>();
 
             DbSet<Product> products = Context.Set<Product>();
-            string sqlQuery = "Select * FROM Product where name=@name";
-            DbParameter productNameParameter =
-                new System.Data.SqlClient.SqlParameter("name", name);
+            if (category.Equals(""))
+            {
+                string sqlQuery = "Select * FROM Product where name=@name";
+                DbParameter productNameParameter =
+                    new System.Data.SqlClient.SqlParameter("name", name);
+                productList = Context.Database.SqlQuery<Product>(sqlQuery, productNameParameter).ToList<Product>();
+            } else
+            {
+                string sqlQuery = "Select * FROM Product INNER JOIN Category ON Product.categoryId = Category.categoryId  where Product.name=@name AND Category.name LIKE @category";
+                DbParameter productNameParameter =
+                    new System.Data.SqlClient.SqlParameter("name", name);
+                DbParameter categoryNameParameter =
+                    new System.Data.SqlClient.SqlParameter("category", category);
+                productList = Context.Database.SqlQuery<Product>(sqlQuery, productNameParameter, categoryNameParameter).ToList<Product>();
+            }
 
-            product = Context.Database.SqlQuery<Product>(sqlQuery, productNameParameter).FirstOrDefault<Product>();
 
-            if (product == null)
+            if (!productList.Any())
                 throw new InstanceNotFoundException(name,
                     typeof(Order).FullName);
 
-            return product;
-        }
-
-        public Product FindByNameAndCategory(string name, string category)
-        {
-            Product product = null;
-
-            DbSet<Product> products = Context.Set<Product>();
-            string sqlQuery = "Select * FROM Product INNER JOIN Category ON Product.categoryId = Category.categoryId  where Product.name=@name AND Category.name=@category";
-            DbParameter productNameParameter =
-                new System.Data.SqlClient.SqlParameter("name", name);
-            DbParameter categoryNameParameter =
-                new System.Data.SqlClient.SqlParameter("category", category);
-
-            product = Context.Database.SqlQuery<Product>(sqlQuery, productNameParameter,categoryNameParameter).FirstOrDefault<Product>();
-
-            if (product == null)
-                throw new InstanceNotFoundException(name,
-                    typeof(Order).FullName);
-
-            return product;
+            return productList;
         }
     }
 }

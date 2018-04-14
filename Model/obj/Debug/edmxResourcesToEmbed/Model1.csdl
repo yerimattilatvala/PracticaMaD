@@ -14,11 +14,11 @@
     <Property Name="cardNumber" Type="Int32" Nullable="false" />
     <Property Name="usrId" Type="Int64" Nullable="false" />
     <Property Name="verificationCode" Type="Int32" Nullable="false" />
-    <Property Name="expirationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="expirationDate" Type="DateTime" Nullable="false" Precision="7" />
     <Property Name="cardType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="defaultCard" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="UserProfile" Relationship="Self.FK_CardusrId" FromRole="Card" ToRole="UserProfile" />
     <NavigationProperty Name="Orders" Relationship="Self.FK_OrdercardNumber" FromRole="Card" ToRole="Orders" />
-    <Property Name="defaultCard" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -58,7 +58,7 @@
       <PropertyRef Name="orderId" />
     </Key>
     <Property Name="orderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="orderDate" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="orderDate" Type="DateTime" Nullable="false" Precision="7" />
     <Property Name="usrId" Type="Int64" Nullable="false" />
     <Property Name="cardNumber" Type="Int32" Nullable="false" />
     <Property Name="postalAddress" Type="Int32" Nullable="false" />
@@ -73,7 +73,7 @@
     <Property Name="productId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="categoryId" Type="Int64" Nullable="false" />
     <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="registerDate" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="registerDate" Type="DateTime" Nullable="false" Precision="7" />
     <Property Name="numberOfUnits" Type="Int32" Nullable="false" />
     <Property Name="prize" Type="Double" Nullable="false" />
     <NavigationProperty Name="Category" Relationship="Self.FK_ProductcategoryId" FromRole="Product" ToRole="Category" />
@@ -169,7 +169,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="madDatabaseEntities2" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="madDatabaseEntities4" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Cards" EntityType="Self.Card" />
     <EntitySet Name="Categories" EntityType="Self.Category" />
     <EntitySet Name="OrderLines" EntityType="Self.OrderLine" />

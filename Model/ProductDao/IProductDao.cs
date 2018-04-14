@@ -9,8 +9,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 {
     interface IProductDao : IGenericDao<Product, Int64>
     {
-        Product FindByName(string name);
-
-        Product FindByNameAndCategory(string name, string category);
+        List<Product> FindByKeywords(string name, string category);
     }
 }

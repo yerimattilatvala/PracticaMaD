@@ -23,7 +23,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public long productId { get; set; }
         public long categoryId { get; set; }
         public string name { get; set; }
-        public byte[] registerDate { get; set; }
+        public System.DateTime registerDate { get; set; }
         public int numberOfUnits { get; set; }
         public double prize { get; set; }
     

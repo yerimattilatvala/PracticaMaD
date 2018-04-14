@@ -15,7 +15,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         public long productId { get; }
         public int numberOfUnits { get; }
 
-        ProductDetails(string name, string category, DateTime registerDate, double prize)
+        public ProductDetails(string name, string category, DateTime registerDate, double prize)
         {
             this.name = name;
             this.category = category;
@@ -24,7 +24,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
         }
 
-        ProductDetails(long productId, int numberOfUnits)
+        public ProductDetails(long productId, int numberOfUnits)
         {
             this.productId = productId;
             this.numberOfUnits = numberOfUnits;

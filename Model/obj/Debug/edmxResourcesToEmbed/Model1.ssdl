@@ -18,7 +18,7 @@
     <Property Name="cardNumber" Type="int" Nullable="false" />
     <Property Name="usrId" Type="bigint" Nullable="false" />
     <Property Name="verificationCode" Type="int" Nullable="false" />
-    <Property Name="expirationDate" Type="date" Nullable="false" />
+    <Property Name="expirationDate" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="cardType" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="defaultCard" Type="bit" Nullable="false" />
   </EntityType>
@@ -65,7 +65,7 @@
       <PropertyRef Name="orderId" />
     </Key>
     <Property Name="orderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="orderDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="orderDate" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="usrId" Type="bigint" Nullable="false" />
     <Property Name="cardNumber" Type="int" Nullable="false" />
     <Property Name="postalAddress" Type="int" Nullable="false" />
@@ -77,7 +77,7 @@
     <Property Name="productId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="categoryId" Type="bigint" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="registerDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="registerDate" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="numberOfUnits" Type="int" Nullable="false" />
     <Property Name="prize" Type="float" Nullable="false" />
   </EntityType>

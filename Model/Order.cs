@@ -21,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
     
         public long orderId { get; set; }
-        public byte[] orderDate { get; set; }
+        public System.DateTime orderDate { get; set; }
         public long usrId { get; set; }
         public int cardNumber { get; set; }
         public int postalAddress { get; set; }

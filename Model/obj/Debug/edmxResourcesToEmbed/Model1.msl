@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="madDatabaseModelStoreContainer" CdmEntityContainer="madDatabaseEntities2">
+  <EntityContainerMapping StorageEntityContainer="madDatabaseModelStoreContainer" CdmEntityContainer="madDatabaseEntities4">
     <EntitySetMapping Name="Cards">
       <EntityTypeMapping TypeName="madDatabaseModel.Card">
         <MappingFragment StoreEntitySet="Card">
-          <ScalarProperty Name="defaultCard" ColumnName="defaultCard" />
           <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
           <ScalarProperty Name="usrId" ColumnName="usrId" />
           <ScalarProperty Name="verificationCode" ColumnName="verificationCode" />
           <ScalarProperty Name="expirationDate" ColumnName="expirationDate" />
           <ScalarProperty Name="cardType" ColumnName="cardType" />
+          <ScalarProperty Name="defaultCard" ColumnName="defaultCard" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -54,21 +54,21 @@
           <ScalarProperty Name="categoryId" ColumnName="categoryId" />
         </MappingFragment>
       </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.CD)">
-        <MappingFragment StoreEntitySet="CD">
-          <ScalarProperty Name="songs" ColumnName="songs" />
-          <ScalarProperty Name="topic" ColumnName="topic" />
-          <ScalarProperty Name="artist" ColumnName="artist" />
-          <ScalarProperty Name="title" ColumnName="title" />
-          <ScalarProperty Name="productId" ColumnName="productId" />
-        </MappingFragment>
-      </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.Book)">
         <MappingFragment StoreEntitySet="Book">
           <ScalarProperty Name="pages" ColumnName="pages" />
           <ScalarProperty Name="topic" ColumnName="topic" />
           <ScalarProperty Name="summary" ColumnName="summary" />
           <ScalarProperty Name="author" ColumnName="author" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.CD)">
+        <MappingFragment StoreEntitySet="CD">
+          <ScalarProperty Name="songs" ColumnName="songs" />
+          <ScalarProperty Name="topic" ColumnName="topic" />
+          <ScalarProperty Name="artist" ColumnName="artist" />
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="productId" ColumnName="productId" />
         </MappingFragment>

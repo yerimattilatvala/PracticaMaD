@@ -1,1 +1,11 @@
+D:\Marcos\PracticaMaD\Model\bin\Debug\PracticaMaD.Model.exe.config
+D:\Marcos\PracticaMaD\Model\bin\Debug\PracticaMaD.Model.exe
+D:\Marcos\PracticaMaD\Model\bin\Debug\PracticaMaD.Model.pdb
+D:\Marcos\PracticaMaD\Model\bin\Debug\EntityFramework.dll
+D:\Marcos\PracticaMaD\Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\Marcos\PracticaMaD\Model\bin\Debug\ModelUtil.dll
+D:\Marcos\PracticaMaD\Model\bin\Debug\EntityFramework.xml
+D:\Marcos\PracticaMaD\Model\bin\Debug\EntityFramework.SqlServer.xml
 D:\Marcos\PracticaMaD\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\Marcos\PracticaMaD\Model\obj\Debug\PracticaMaD.Model.exe
+D:\Marcos\PracticaMaD\Model\obj\Debug\PracticaMaD.Model.pdb

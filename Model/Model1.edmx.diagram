@@ -4,24 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7fedb9a647c54a3fbfbd069ddcf5e2db" Name="Diagram1" ZoomLevel="63">
-        <EntityTypeShape EntityType="madDatabaseModel.Book" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="madDatabaseModel.Card" Width="1.5" PointX="3.75" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="madDatabaseModel.Category" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="madDatabaseModel.CD" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="madDatabaseModel.Movie" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="madDatabaseModel.OrderLine" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="madDatabaseModel.Order" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="madDatabaseModel.Product" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="madDatabaseModel.UserProfile" Width="1.5" PointX="1.5" PointY="14.125" IsExpanded="true" />
+      <Diagram DiagramId="6cc1d30af132444eafa15410948d00a1" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="madDatabaseModel.Book" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="madDatabaseModel.Card" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="madDatabaseModel.Category" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="madDatabaseModel.CD" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="madDatabaseModel.Movie" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="madDatabaseModel.OrderLine" Width="1.5" PointX="8.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="madDatabaseModel.Order" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="madDatabaseModel.Product" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="madDatabaseModel.UserProfile" Width="1.5" PointX="1.5" PointY="2.875" IsExpanded="true" />
         <AssociationConnector Association="madDatabaseModel.FK_CardusrId" ManuallyRouted="false" />
         <AssociationConnector Association="madDatabaseModel.FK_OrdercardNumber" ManuallyRouted="false" />
         <AssociationConnector Association="madDatabaseModel.FK_ProductcategoryId" ManuallyRouted="false" />
         <AssociationConnector Association="madDatabaseModel.FK_OrderLineorderId" ManuallyRouted="false" />
         <AssociationConnector Association="madDatabaseModel.FK_OrderLineproductId" ManuallyRouted="false" />
         <AssociationConnector Association="madDatabaseModel.FK_OrderuserdId" ManuallyRouted="false" />
-        <InheritanceConnector EntityType="madDatabaseModel.CD" />
         <InheritanceConnector EntityType="madDatabaseModel.Book" />
+        <InheritanceConnector EntityType="madDatabaseModel.CD" />
         <InheritanceConnector EntityType="madDatabaseModel.Movie" />
       </Diagram>
     </edmx:Diagrams>
