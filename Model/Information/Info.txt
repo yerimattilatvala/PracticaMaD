@@ -16,13 +16,15 @@ use madDatabase;
  	- Modificar datos.
 	(listos todos) (no probados)
 TARJETA:
-	- Añadir tarjeta.
-	- Seleccionar tarjeta por defecto.
+	- Añadir tarjeta. (listo) (no probado)
+	- Seleccionar tarjeta por defecto.(listo) (no probado)
+	- Ver tarjetas. (listo) (no probado)
 
  PRODUCTOS:
  	- Buscar:
  		-Nombre y categoria(opcional). (listo sin tokenizar) (no probado)
-	- Visualizar productos ???
+	- Visualizar todos los productos ???
+	- Visualizar productos por caegorias ??
 
  PEDIDOS:
  	- Generar pedido. (listo) (no probado)

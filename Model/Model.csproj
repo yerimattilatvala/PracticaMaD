@@ -68,6 +68,8 @@
     <Compile Include="Card.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="CardDao\CardDetails.cs" />
+    <Compile Include="CardDao\ICardDao.cs" />
     <Compile Include="Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

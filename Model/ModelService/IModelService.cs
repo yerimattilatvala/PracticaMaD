@@ -1,4 +1,5 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.CardDao;
+using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using System;
@@ -12,7 +13,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
     interface IModelService
     {
 
-        OrderDetails GenerateOrder(long usrId, int cardNumber,int postalAddress,List<ProductDetails> productList);
+        OrderDetails GenerateOrder(long userProfileId, int cardNumber,int postalAddress,List<ProductDetails> productList);
 
         List<OrderDetails> ViewOrdersByUser(long usrId);
 
@@ -31,5 +32,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
 
         void ChangePassword(long userProfileId, String oldClearPassword,
             String newClearPassword);
+
+        void AddCreditCard(long userProfileId, CardDetails newCard);
+
+        List<CardDetails> ViewCardsByUser(long userProfileId);
+
+        void ChangeDefaultCard(long userProfileId, int cardNumber);
+
     }
 }

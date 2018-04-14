@@ -10,6 +10,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.PracticaMaD.Model.Util;
+using Es.Udc.DotNet.PracticaMaD.Model.CardDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
 {
@@ -20,6 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
         private IOrderLineDao OrderLineDao;
         private IOrderDao OrderDao;
         private IUserProfileDao UserProfileDao;
+        private ICardDao CardDao;
 
         public OrderDetails GenerateOrder(long usrId, int cardNumber, int postalAddress, List<ProductDetails> productList)
         {
@@ -208,6 +210,62 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
                 PasswordEncrypter.Crypt(newClearPassword);
 
             UserProfileDao.Update(userProfile);
+        }
+
+        public void AddCreditCard(long userProfileId, CardDetails newCard)
+        {
+            UserProfile UserProfile = UserProfileDao.Find(userProfileId);
+
+            Card creditCard = new Card();
+            creditCard.usrId = UserProfile.usrId;
+            creditCard.cardNumber = newCard.CardNumber;
+            creditCard.verificationCode = newCard.VerficationCode;
+            creditCard.expirationDate = newCard.ExpirateTime;
+            creditCard.cardType = newCard.CardType;
+
+            if (!UserProfile.Cards.Any())
+                creditCard.defaultCard = true;
+            else
+                creditCard.defaultCard = false;
+
+            CardDao.Create(creditCard);
+        }
+
+        public List<CardDetails> ViewCardsByUser(long userProfileId)
+        {
+            List<CardDetails> userCards = new List<CardDetails>();
+
+            List<Card> cards = UserProfileDao.Find(userProfileId).Cards.ToList<Card>();
+
+            for(int i = 0; i< cards.Count; i++)
+            {
+                int cardNumber = cards.ElementAt(i).cardNumber;
+                int cv = cards.ElementAt(i).verificationCode;
+                DateTime expirationDate = cards.ElementAt(i).expirationDate;
+                string type = cards.ElementAt(i).cardType;
+                userCards.Add(new CardDetails(cardNumber,cv,expirationDate,type));
+            }
+            return userCards;
+        }
+
+        public void ChangeDefaultCard(long userProfileId, int cardNumber)
+        {
+            UserProfile userProfile = UserProfileDao.Find(userProfileId);
+
+            List<Card> userCards = userProfile.Cards.ToList<Card>();
+
+            for(int i = 0; i< userCards.Count; i++)
+            {
+                if(userCards.ElementAt(i).defaultCard == true)
+                {
+                    userCards.ElementAt(i).defaultCard = false;
+                    CardDao.Update(userCards.ElementAt(i));
+                }
+            }
+
+            Card card = CardDao.Find(cardNumber);
+            card.defaultCard = true;
+            CardDao.Update(card);
         }
     }
 }
