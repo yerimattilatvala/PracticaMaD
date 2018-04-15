@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CardDao
 {
+    [Serializable()]
     public class CardDetails
     {
         #region Properties region

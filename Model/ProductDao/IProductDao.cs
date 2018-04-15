@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 {
-    interface IProductDao : IGenericDao<Product, Int64>
+    public interface IProductDao : IGenericDao<Product, Int64>
     {
-        List<Product> FindByKeywords(string name, string category);
+        List<Product> FindByKeywords(String name, String category);
     }
 }

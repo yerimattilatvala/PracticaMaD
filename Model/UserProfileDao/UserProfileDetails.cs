@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
 {
+    [Serializable()]
     public class UserProfileDetails
     {
         #region Properties region

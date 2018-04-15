@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<module name="nInjectConfiguration">
+
+  <bind service="Es.Udc.DotNet.PracticaMaD.Model.ModelService.IModelService, PracticaMaD.Model"
+      to="Es.Udc.DotNet.PracticaMaD.Model.ModelService.ModelService, PracticaMaD.Model" />
+
+  <bind service="Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao.IUserProfileDao, PracticaMaD.Model"
+      to="Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao.UserProfileDaoEntityFramework, PracticaMaD.Model" />
+
+  <bind service="Es.Udc.DotNet.PracticaMaD.Model.ProductDao.IProductDao, PracticaMaD.Model"
+      to="Es.Udc.DotNet.PracticaMaD.Model.ProductDao.ProductDaoEntityFramework, PracticaMaD.Model" />
+
+  <bind service="Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao.IOrderLineDao, PracticaMaD.Model"
+      to="Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao.OrderLineDaoEntityFramework, PracticaMaD.Model" />
+
+  <bind service="Es.Udc.DotNet.PracticaMaD.Model.OrderDao.IOrderDao, PracticaMaD.Model"
+      to="Es.Udc.DotNet.PracticaMaD.Model.OrderDao.OrderDaoEntityFramework, PracticaMaD.Model" />
+
+  <bind service="Es.Udc.DotNet.PracticaMaD.Model.CardDao.ICardDao, PracticaMaD.Model"
+      to="Es.Udc.DotNet.PracticaMaD.Model.CardDao.CardDaoEntityFramework, PracticaMaD.Model" />
+
+  <bind service="System.Data.Entity.DbContext, EntityFramework"
+      to="System.Data.Entity.DbContext, EntityFramework"
+>
+    <metadata key="nameOrConnectionString" value="metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=localhost\SQLExpress;Initial Catalog=madDatabase_test;Integrated Security=True;MultipleActiveResultSets=True&quot;" providerName="System.Data.EntityClient"    />
+  </bind>
+
+</module>

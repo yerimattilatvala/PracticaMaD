@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.Exceptions;
@@ -11,18 +9,28 @@ using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.PracticaMaD.Model.Util;
 using Es.Udc.DotNet.PracticaMaD.Model.CardDao;
+using Ninject;
+using Es.Udc.DotNet.ModelUtil.Transactions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
 {
-    class ModelService : IModelService
+    public class ModelService : IModelService
     {
+        [Inject]
+        public IUserProfileDao UserProfileDao { private get; set; }
+        [Inject]
+        public IProductDao ProductDao { private get; set; }
 
-        private IProductDao ProductDao;
-        private IOrderLineDao OrderLineDao;
-        private IOrderDao OrderDao;
-        private IUserProfileDao UserProfileDao;
-        private ICardDao CardDao;
+        [Inject]
+        public IOrderLineDao OrderLineDao { private get; set; }
 
+        [Inject]
+        public IOrderDao OrderDao { private get; set; }
+
+        [Inject]
+        public ICardDao CardDao { private get; set; }
+
+        [Transactional]
         public OrderDetails GenerateOrder(long usrId, int cardNumber, int postalAddress, List<ProductDetails> productList)
         {
             Order order = new Order();
@@ -52,6 +60,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
             return new OrderDetails(orderId,usrId,cardNumber,order.postalAddress,order.orderDate);
         }
 
+        [Transactional]
         public List<OrderDetails> ViewOrdersByUser(long usrId)
         {
             UserProfile User = UserProfileDao.Find(usrId);
@@ -83,6 +92,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
         }
 
 
+        [Transactional]
         public List<ProductDetails> FindByKeywords(string keywords)
         {
             List<ProductDetails> products = new List<ProductDetails>();
@@ -102,6 +112,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
             return products;
         }
 
+        [Transactional]
         public long RegisterUser(string loginName, string clearPassword,
             UserProfileDetails userProfileDetails)
         {
@@ -127,6 +138,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
                 userProfile.email = userProfileDetails.Email;
                 userProfile.language = userProfileDetails.Language;
                 userProfile.country = userProfileDetails.Country;
+                userProfile.postalAddress = userProfileDetails.PostalAddress;
 
                 UserProfileDao.Create(userProfile);
 
@@ -136,6 +148,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
 
         }
 
+        [Transactional]
         /// <exception cref="InstanceNotFoundException"/>
         /// <exception cref="IncorrectPasswordException"/>        
         public LoginResult Login(string loginName, string password, bool passwordIsEncrypted)
@@ -164,6 +177,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
                 storedPassword, userProfile.language, userProfile.country);
         }
 
+        [Transactional]
         /// <exception cref="InstanceNotFoundException"/>
         public UserProfileDetails FindUserProfileDetails(long userProfileId)
         {
@@ -177,6 +191,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
             return userProfileDetails;
         }
 
+        [Transactional]
         /// <exception cref="InstanceNotFoundException"/>
         public void UpdateUserProfileDetails(long userProfileId,
             UserProfileDetails userProfileDetails)
@@ -192,6 +207,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
             UserProfileDao.Update(userProfile);
         }
 
+        [Transactional]
         /// <exception cref="IncorrectPasswordException"/>
         /// <exception cref="InstanceNotFoundException"/>
         public void ChangePassword(long userProfileId, string oldClearPassword,
@@ -212,6 +228,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
             UserProfileDao.Update(userProfile);
         }
 
+        [Transactional]
         public void AddCreditCard(long userProfileId, CardDetails newCard)
         {
             UserProfile UserProfile = UserProfileDao.Find(userProfileId);
@@ -231,6 +248,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
             CardDao.Create(creditCard);
         }
 
+        [Transactional]
         public List<CardDetails> ViewCardsByUser(long userProfileId)
         {
             List<CardDetails> userCards = new List<CardDetails>();
@@ -248,6 +266,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
             return userCards;
         }
 
+        [Transactional]
         public void ChangeDefaultCard(long userProfileId, int cardNumber)
         {
             UserProfile userProfile = UserProfileDao.Find(userProfileId);

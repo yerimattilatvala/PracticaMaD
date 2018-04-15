@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 {
+    [Serializable()]
     public class OrderDetails
     {
         #region Properties region

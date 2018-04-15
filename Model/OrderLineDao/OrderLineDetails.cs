@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao
 {
-
+    [Serializable()]
     public class OrderLineDetails
     {
         #region Properties region

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 {
+    [Serializable()]
     public class ProductDetails
     {
         private string name;
@@ -21,7 +22,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             this.category = category;
             this.registerDate = registerDate;
             this.prize = prize;
-
         }
 
         public ProductDetails(long productId, int numberOfUnits)

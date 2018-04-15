@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 {
-    interface IOrderDao : IGenericDao<Order,Int64>
+    public interface IOrderDao : IGenericDao<Order,Int64>
     {
     }
 }

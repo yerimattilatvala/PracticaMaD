@@ -10,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 {
-    class ProductDaoEntityFramework :
+    public class ProductDaoEntityFramework :
         GenericDaoEntityFramework<Product, Int64>, IProductDao
     {
-        public List<Product> FindByKeywords(string name, string category)
+        public List<Product> FindByKeywords(String name, String category)
         {
             List<Product> productList= new List<Product>();
 
             DbSet<Product> products = Context.Set<Product>();
-            if (category.Equals(""))
+            if (category == null)
             {
                 string sqlQuery = "Select * FROM Product where name=@name";
                 DbParameter productNameParameter =

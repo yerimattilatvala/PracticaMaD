@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CardDao
 {
-    interface ICardDao : IGenericDao<Card, int>
+    public interface ICardDao : IGenericDao<Card, int>
     {
     }
 }
