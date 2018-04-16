@@ -1,4 +1,5 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.CardDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
@@ -36,6 +37,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             kernel.Bind<IOrderDao>().
                 To<OrderDaoEntityFramework>();
+
+            kernel.Bind<ICategoryDao>().
+               To<CategoryDaoEntityFramework>();
 
             kernel.Bind<IModelService>().
                 To<ModelService>();

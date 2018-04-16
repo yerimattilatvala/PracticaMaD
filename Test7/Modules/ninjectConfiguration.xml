@@ -19,6 +19,9 @@
 
   <bind service="Es.Udc.DotNet.PracticaMaD.Model.CardDao.ICardDao, PracticaMaD.Model"
       to="Es.Udc.DotNet.PracticaMaD.Model.CardDao.CardDaoEntityFramework, PracticaMaD.Model" />
+  
+  <bind service="Es.Udc.DotNet.PracticaMaD.Model.CategoryDao.ICategoryDao, PracticaMaD.Model"
+      to="Es.Udc.DotNet.PracticaMaD.Model.CategoryDao.CategoryDaoEntityFramework, PracticaMaD.Model" />
 
   <bind service="System.Data.Entity.DbContext, EntityFramework"
       to="System.Data.Entity.DbContext, EntityFramework"

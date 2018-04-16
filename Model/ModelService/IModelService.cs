@@ -59,7 +59,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
             String newClearPassword);
 
         [Transactional]
-        void AddCreditCard(long userProfileId, CardDetails newCard);
+        void AddCard(long userProfileId, CardDetails newCard);
 
         [Transactional]
         List<CardDetails> ViewCardsByUser(long userProfileId);

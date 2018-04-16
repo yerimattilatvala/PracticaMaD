@@ -8,6 +8,9 @@ using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using System.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.Util;
 using Es.Udc.DotNet.PracticaMaD.Model;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CardDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
@@ -20,6 +23,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         private static IKernel kernel;
         private static IModelService modelService;
         private static IUserProfileDao userProfileDao;
+        private static IProductDao productDao;
+        private static ICategoryDao categoryDao;
+        private static ICardDao cardDao;
 
         // Variables used in several tests are initialized here
         private const String loginName = "loginNameTest";
@@ -54,12 +60,38 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
         #region Additional test attributes
 
+        private long CreateCategory(string categoryName)
+        {
+            Category category = new Category();
+            category.name = categoryName;
+            categoryDao.Create(category);
+
+            return category.categoryId;
+        }
+
+        private long CreateProduct(long categoryId, string name, DateTime registerDate, int numberOfUnits, float prize)
+        {
+            Product product = new Product();
+            product.categoryId = categoryId;
+            product.name = name;
+            product.registerDate = registerDate;
+            product.numberOfUnits = numberOfUnits;
+            product.prize = prize;
+
+            productDao.Create(product);
+
+            return product.productId;
+        }
+
         //Use ClassInitialize to run code before running the first test in the class
         [ClassInitialize()]
         public static void MyClassInitialize(TestContext testContext)
         {
             kernel = TestManager.ConfigureNInjectKernel();
 
+            cardDao = kernel.Get<ICardDao>();
+            productDao = kernel.Get<IProductDao>();
+            categoryDao = kernel.Get<ICategoryDao>();
             userProfileDao = kernel.Get<IUserProfileDao>();
             modelService = kernel.Get<IModelService>();
 
@@ -88,6 +120,218 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         #endregion
 
         /// <summary>
+        ///A test for FindByKeyWords
+        ///</summary>
+        [TestMethod()]
+        public void FindByKeyWordsTest()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                // Create a categories
+
+                long categoryId1 = CreateCategory("Music");
+                long categoryId2 = CreateCategory("Books");
+
+                // Create a products
+                string name1 = "ACDC";
+                DateTime registerDate1 = DateTime.Now;
+                int capacity1 = 5;
+                float prize1 = 13;
+                long productId1 = CreateProduct(categoryId1,name1,registerDate1,capacity1,prize1);
+                
+               /* string name2 = "DaVinciCode";
+                DateTime registerDate2 = DateTime.Now;
+                int capacity2 = 7;
+                float prize2 = 7;
+                long productId2 = CreateProduct(categoryId2, name2, registerDate2, capacity2, prize2);
+    */
+                // Fin product by object
+                modelService.FindByKeywords(name1);
+                //modelService.FindByKeywords(name2);
+
+                // Find the products
+                Product p1 = productDao.Find(productId1);
+                //Product p2 = productDao.Find(productId2);
+
+                // Check the data
+                Assert.AreEqual(productId1, p1.productId);
+                Assert.AreEqual(name1, p1.name);
+                Assert.AreEqual(registerDate1, p1.registerDate);
+                Assert.AreEqual(capacity1, p1.numberOfUnits);
+                Assert.AreEqual(prize1, p1.prize);
+                Assert.AreEqual(categoryId1, p1.categoryId);
+
+               /* Assert.AreEqual(productId2, p2.productId);
+                Assert.AreEqual(name2, p2.name);
+                Assert.AreEqual(registerDate2, p2.registerDate);
+                Assert.AreEqual(capacity2, p2.numberOfUnits);
+                Assert.AreEqual(prize2, p1.prize);
+                Assert.AreEqual(categoryId2, p2.categoryId);*/
+
+                //transaction.Complete() is not called, so Rollback is executed.
+            }
+        }
+
+        /// <summary>
+        ///A test for AddCard
+        ///</summary>
+        [TestMethod()]
+        public void AddCardTest()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                // Register user and find profile
+                long userId =
+                    modelService.RegisterUser(loginName, clearPassword,
+                    new UserProfileDetails(firstName, lastName, email, language, country, address));
+
+                UserProfile userProfile = userProfileDao.Find(userId);
+
+                // Add a card and find
+                int cardNumber = 11111;
+                int verficationCode = 222;
+                DateTime expirationDate = DateTime.Now;
+                string type = "Credit";
+                CardDetails cardDetails = new CardDetails(cardNumber,verficationCode,expirationDate,type);
+                modelService.AddCard(userId, cardDetails);
+
+                Card card = cardDao.Find(cardNumber);
+                // Check data
+                Assert.AreEqual(cardNumber, card.cardNumber);
+                Assert.AreEqual(userId, card.usrId);
+                Assert.AreEqual(verficationCode, card.verificationCode);
+                Assert.AreEqual(expirationDate, card.expirationDate);
+                Assert.AreEqual(type, card.cardType);
+                Assert.AreEqual(true, card.defaultCard);
+
+                cardNumber = 22222;
+                verficationCode = 333;
+                expirationDate = DateTime.Now;
+                type = "Debit";
+                CardDetails cardDetails2 = new CardDetails(cardNumber, verficationCode, expirationDate, type);
+                modelService.AddCard(userId, cardDetails2);
+
+                Card card2 = cardDao.Find(cardNumber);
+                // Check data
+                Assert.AreEqual(cardNumber, card2.cardNumber);
+                Assert.AreEqual(userId, card2.usrId);
+                Assert.AreEqual(verficationCode, card2.verificationCode);
+                Assert.AreEqual(expirationDate, card2.expirationDate);
+                Assert.AreEqual(type, card2.cardType);
+                Assert.AreEqual(false, card2.defaultCard);
+
+                userProfileDao.Remove(userId);
+                //transaction.Complete() is not called, so Rollback is executed.
+            }
+        }
+
+        /// <summary>
+        ///A test for ViewCardByUser
+        ///</summary>
+        [TestMethod()]
+        public void ViewCardByUserTest()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                // Register user and find profile
+                long userId =
+                    modelService.RegisterUser(loginName, clearPassword,
+                    new UserProfileDetails(firstName, lastName, email, language, country, address));
+
+                UserProfile userProfile = userProfileDao.Find(userId);
+
+                // Add a cards
+                int cardNumber = 11111;
+                int verficationCode = 222;
+                DateTime expirationDate = DateTime.Now;
+                string type = "Credit";
+                CardDetails cardDetails = new CardDetails(cardNumber, verficationCode, expirationDate, type);
+                modelService.AddCard(userId, cardDetails);
+
+                int cardNumber1 = 22222;
+                int verficationCode1 = 333;
+                DateTime expirationDate1 = DateTime.Now;
+                string type1 = "Debit";
+                CardDetails cardDetails2 = new CardDetails(cardNumber1, verficationCode1, expirationDate1, type1);
+                modelService.AddCard(userId, cardDetails2);
+
+
+                // Extract all cards
+                List<CardDetails> cards = modelService.ViewCardsByUser(userId);
+                // Check data
+                Assert.AreEqual(cardNumber, cards[0].CardNumber);
+                Assert.AreEqual(verficationCode, cards[0].VerificationCode);
+                Assert.AreEqual(expirationDate, cards[0].ExpirateTime);
+                Assert.AreEqual(type, cards[0].CardType);
+
+                // Check data
+                Assert.AreEqual(cardNumber1, cards[1].CardNumber);
+                Assert.AreEqual(verficationCode1, cards[1].VerificationCode);
+                Assert.AreEqual(expirationDate1, cards[1].ExpirateTime);
+                Assert.AreEqual(type1, cards[1].CardType);
+
+                userProfileDao.Remove(userId);
+                //transaction.Complete() is not called, so Rollback is executed.
+            }
+        }
+
+        /// <summary>
+        ///A test for ChangeDefaulCard
+        ///</summary>
+        [TestMethod()]
+        public void ChangeDefaultCardTest()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                // Register user and find profile
+                long userId =
+                    modelService.RegisterUser(loginName, clearPassword,
+                    new UserProfileDetails(firstName, lastName, email, language, country, address));
+
+                UserProfile userProfile = userProfileDao.Find(userId);
+
+                // Add a cards
+                int cardNumber = 11111;
+                int verficationCode = 222;
+                DateTime expirationDate = DateTime.Now;
+                string type = "Credit";
+                CardDetails cardDetails = new CardDetails(cardNumber, verficationCode, expirationDate, type);
+                modelService.AddCard(userId, cardDetails);
+                
+                int cardNumber1 = 22222;
+                int verficationCode1 = 333;
+                DateTime expirationDate1 = DateTime.Now;
+                string type1 = "Debit";
+                CardDetails cardDetails2 = new CardDetails(cardNumber1, verficationCode1, expirationDate1, type1);
+                modelService.AddCard(userId, cardDetails2);
+
+                // Change the default card
+                modelService.ChangeDefaultCard(userId, cardNumber1);
+                Card card2 = cardDao.Find(cardNumber1);
+                Card card = cardDao.Find(cardNumber);
+
+                // Check data
+                Assert.AreEqual(cardNumber, card.cardNumber);
+                Assert.AreEqual(userId, card.usrId);
+                Assert.AreEqual(verficationCode, card.verificationCode);
+                Assert.AreEqual(expirationDate, card.expirationDate);
+                Assert.AreEqual(type, card.cardType);
+                Assert.AreEqual(false, card.defaultCard);
+
+                // Check data
+                Assert.AreEqual(cardNumber1, card2.cardNumber);
+                Assert.AreEqual(userId, card2.usrId);
+                Assert.AreEqual(verficationCode1, card2.verificationCode);
+                Assert.AreEqual(expirationDate1, card2.expirationDate);
+                Assert.AreEqual(type1, card2.cardType);
+                Assert.AreEqual(true, card2.defaultCard);
+
+                userProfileDao.Remove(userId);
+                //transaction.Complete() is not called, so Rollback is executed.
+            }
+        }
+
+        /// <summary>
         ///A test for RegisterUser
         ///</summary>
         [TestMethod()]
@@ -112,6 +356,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 Assert.AreEqual(country, userProfile.country);
                 Assert.AreEqual(address, userProfile.postalAddress);
 
+                userProfileDao.Remove(userId);
                 //transaction.Complete() is not called, so Rollback is executed.
             }
         }

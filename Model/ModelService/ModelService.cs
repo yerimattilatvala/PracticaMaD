@@ -229,14 +229,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
         }
 
         [Transactional]
-        public void AddCreditCard(long userProfileId, CardDetails newCard)
+        public void AddCard(long userProfileId, CardDetails newCard)
         {
             UserProfile UserProfile = UserProfileDao.Find(userProfileId);
 
             Card creditCard = new Card();
             creditCard.usrId = UserProfile.usrId;
             creditCard.cardNumber = newCard.CardNumber;
-            creditCard.verificationCode = newCard.VerficationCode;
+            creditCard.verificationCode = newCard.VerificationCode;
             creditCard.expirationDate = newCard.ExpirateTime;
             creditCard.cardType = newCard.CardType;
 

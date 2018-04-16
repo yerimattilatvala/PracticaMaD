@@ -12,7 +12,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CardDao
         #region Properties region
         public int CardNumber { get; }
 
-        public int VerficationCode { get; }
+        public int VerificationCode { get; }
 
         public DateTime ExpirateTime { get; }
 
@@ -23,7 +23,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CardDao
         public CardDetails(int cardNumber, int verificationCode, DateTime expirateTime, string cardType)
         {
             this.CardNumber = cardNumber;
-            this.VerficationCode = verificationCode;
+            this.VerificationCode = verificationCode;
             this.ExpirateTime = expirateTime;
             this.CardType = cardType;
         }

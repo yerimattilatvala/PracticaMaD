@@ -20,13 +20,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             DbSet<Product> products = Context.Set<Product>();
             if (category == null)
             {
-                string sqlQuery = "Select * FROM Product where name=@name";
+                string sqlQuery = "Select * FROM Product where name LIKE @name";
                 DbParameter productNameParameter =
                     new System.Data.SqlClient.SqlParameter("name", name);
                 productList = Context.Database.SqlQuery<Product>(sqlQuery, productNameParameter).ToList<Product>();
             } else
             {
-                string sqlQuery = "Select * FROM Product INNER JOIN Category ON Product.categoryId = Category.categoryId  where Product.name=@name AND Category.name LIKE @category";
+                string sqlQuery = "Select * FROM Product INNER JOIN Category ON Product.categoryId = Category.categoryId  where Product.name LIKE @name AND Category.name=@category";
                 DbParameter productNameParameter =
                     new System.Data.SqlClient.SqlParameter("name", name);
                 DbParameter categoryNameParameter =
