@@ -37,7 +37,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
             if (!productList.Any())
                 throw new InstanceNotFoundException(name,
-                    typeof(Order).FullName);
+                    typeof(Product).FullName);
 
             return productList;
         }

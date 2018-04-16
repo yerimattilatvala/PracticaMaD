@@ -99,12 +99,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
             /*HAY QUE TOKENIZAR PERO PARA IR PROBANDO SIRVE*/
             string productName = keywords;
 
-            List<Product> productList = ProductDao.FindByKeywords(keywords,"");
+            List<Product> productList = ProductDao.FindByKeywords(keywords,null);
 
             for(int i = 0; i<productList.Count; i++)
             {
                 string name = productList.ElementAt(i).name;
-                string category = productList.ElementAt(i).Category.name;
+                long category = productList.ElementAt(i).categoryId;
                 DateTime registerDate = productList.ElementAt(i).registerDate;
                 double prize = productList.ElementAt(i).prize;
                 products.Add(new ProductDetails(name,category,registerDate,prize));

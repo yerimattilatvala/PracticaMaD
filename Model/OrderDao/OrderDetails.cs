@@ -11,17 +11,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
     public class OrderDetails
     {
         #region Properties region
-        private long OrderId;
+        public long OrderId { get; }
 
-        private long UsrId;
+        public long UsrId { get; }
 
-        private int CardNumber;
+        public int CardNumber { get; }
 
-        private int PostalAddress;
+        public int PostalAddress { get; }
 
-        private DateTime OrderDate;
+        public DateTime OrderDate { get; }
 
-        private List<OrderLineDetails> OrderLines;
+        public List<OrderLineDetails> OrderLines;
         #endregion
         public OrderDetails(long orderId,long usrId,int cardNumber, int postalAddress,DateTime orderDate,List<OrderLineDetails> orderLines)
         {

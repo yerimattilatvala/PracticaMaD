@@ -9,14 +9,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
     [Serializable()]
     public class ProductDetails
     {
-        private string name;
-        private string category;
-        private DateTime registerDate;
-        private double prize;
+        public string name;
+        public long category;
+        public DateTime registerDate;
+        public double prize;
         public long productId { get; }
         public int numberOfUnits { get; }
 
-        public ProductDetails(string name, string category, DateTime registerDate, double prize)
+        public ProductDetails(string name, long category, DateTime registerDate, double prize)
         {
             this.name = name;
             this.category = category;

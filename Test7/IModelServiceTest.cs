@@ -11,6 +11,7 @@ using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CardDao;
+using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
@@ -26,6 +27,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         private static IProductDao productDao;
         private static ICategoryDao categoryDao;
         private static ICardDao cardDao;
+        private static IOrderDao orderDao;
 
         // Variables used in several tests are initialized here
         private const String loginName = "loginNameTest";
@@ -120,6 +122,65 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         #endregion
 
         /// <summary>
+        ///A test for GenerateOrder
+        ///</summary>
+        [TestMethod()]
+        public void GenerateOrderTest()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                // Create a categories
+
+                long categoryId1 = CreateCategory("Music");
+                long categoryId2 = CreateCategory("Books");
+
+                // Create a product
+                string name1 = "ACDC";
+                DateTime registerDate1 = DateTime.Now;
+                int capacity1 = 5;
+                float prize1 = 13;
+                long productId1 = CreateProduct(categoryId1, name1, registerDate1, capacity1, prize1);
+
+                /*string name2 = "Codigo da Vinci";
+                DateTime registerDate2 = DateTime.Now;
+                int capacity2 = 5;
+                float prize2 = 7;
+                long productId2 = CreateProduct(categoryId2, name2, registerDate2, capacity2, prize2);
+                */
+                ProductDetails p1 = new ProductDetails(productId1, 2);
+                //ProductDetails p2 = new ProductDetails(productId2, 1);
+
+                List<ProductDetails> carrito = new List<ProductDetails>();
+                carrito.Add(p1);
+                //carrito.Add(p2);
+                // Register user and find profile
+                long userId =
+                    modelService.RegisterUser(loginName, clearPassword,
+                    new UserProfileDetails(firstName, lastName, email, language, country, address));
+
+                // Add a card
+                int cardNumber = 11111;
+                int verficationCode = 222;
+                DateTime expirationDate = DateTime.Now;
+                string type = "Credit";
+                CardDetails cardDetails = new CardDetails(cardNumber, verficationCode, expirationDate, type);
+                modelService.AddCard(userId, cardDetails);
+
+                // Generate a order
+                OrderDetails order = modelService.GenerateOrder(userId, cardNumber,address, carrito);
+
+                Order orderM = orderDao.Find(order.OrderId);
+                // Check the data
+                Assert.AreEqual(order.OrderId, orderM.orderId);
+                Assert.AreEqual(order.OrderDate, orderM.orderDate);
+                Assert.AreEqual(order.UsrId, orderM.usrId);
+                Assert.AreEqual(order.CardNumber, orderM.cardNumber);
+                Assert.AreEqual(order.PostalAddress,orderM.postalAddress);
+                //transaction.Complete() is not called, so Rollback is executed.
+            }
+        }
+
+        /// <summary>
         ///A test for FindByKeyWords
         ///</summary>
         [TestMethod()]
@@ -130,44 +191,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 // Create a categories
 
                 long categoryId1 = CreateCategory("Music");
-                long categoryId2 = CreateCategory("Books");
 
-                // Create a products
+                // Create a product
                 string name1 = "ACDC";
                 DateTime registerDate1 = DateTime.Now;
                 int capacity1 = 5;
                 float prize1 = 13;
                 long productId1 = CreateProduct(categoryId1,name1,registerDate1,capacity1,prize1);
                 
-               /* string name2 = "DaVinciCode";
-                DateTime registerDate2 = DateTime.Now;
-                int capacity2 = 7;
-                float prize2 = 7;
-                long productId2 = CreateProduct(categoryId2, name2, registerDate2, capacity2, prize2);
-    */
-                // Fin product by object
-                modelService.FindByKeywords(name1);
-                //modelService.FindByKeywords(name2);
-
-                // Find the products
-                Product p1 = productDao.Find(productId1);
-                //Product p2 = productDao.Find(productId2);
+                // Fin product by keywords
+                List<ProductDetails> products = modelService.FindByKeywords(name1);
 
                 // Check the data
-                Assert.AreEqual(productId1, p1.productId);
-                Assert.AreEqual(name1, p1.name);
-                Assert.AreEqual(registerDate1, p1.registerDate);
-                Assert.AreEqual(capacity1, p1.numberOfUnits);
-                Assert.AreEqual(prize1, p1.prize);
-                Assert.AreEqual(categoryId1, p1.categoryId);
-
-               /* Assert.AreEqual(productId2, p2.productId);
-                Assert.AreEqual(name2, p2.name);
-                Assert.AreEqual(registerDate2, p2.registerDate);
-                Assert.AreEqual(capacity2, p2.numberOfUnits);
-                Assert.AreEqual(prize2, p1.prize);
-                Assert.AreEqual(categoryId2, p2.categoryId);*/
-
+                Assert.AreEqual(name1, products[0].name);
+                Assert.AreEqual(registerDate1, products[0].registerDate);
+                Assert.AreEqual(prize1, products[0].prize);
+                Assert.AreEqual(categoryId1, products[0].category);
                 //transaction.Complete() is not called, so Rollback is executed.
             }
         }

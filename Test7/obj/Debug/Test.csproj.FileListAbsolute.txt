@@ -11,7 +11,7 @@ D:\Marcos\PracticaMaD\Test7\bin\Debug\Ninject.dll
 D:\Marcos\PracticaMaD\Test7\bin\Debug\Ninject.Extensions.Interception.dll
 D:\Marcos\PracticaMaD\Test7\bin\Debug\Ninject.Extensions.Interception.DynamicProxy.dll
 D:\Marcos\PracticaMaD\Test7\bin\Debug\Ninject.Extensions.Xml.dll
-D:\Marcos\PracticaMaD\Test7\bin\Debug\PracticaMaD.Model.dll
+D:\Marcos\PracticaMaD\Test7\bin\Debug\PracticaMaD.Model.exe
 D:\Marcos\PracticaMaD\Test7\bin\Debug\PracticaMaD.Model.pdb
 D:\Marcos\PracticaMaD\Test7\bin\Debug\Castle.Core.xml
 D:\Marcos\PracticaMaD\Test7\bin\Debug\EntityFramework.xml

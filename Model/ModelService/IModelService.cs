@@ -37,7 +37,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService
         List<OrderDetails> ViewOrdersByUser(long usrId);
 
         [Transactional]
-        List<ProductDetails> FindByKeywords(string keywords);
+        List<ProductDetails> FindByKeywords(String keywords);
 
         [Transactional]
         long RegisterUser(String loginName, String clearPassword,
