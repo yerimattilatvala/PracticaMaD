@@ -13,7 +13,7 @@
         <EntityTypeShape EntityType="madDatabaseModel.OrderLine" Width="1.5" PointX="8.25" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="madDatabaseModel.Order" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="madDatabaseModel.Product" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="madDatabaseModel.UserProfile" Width="1.5" PointX="1.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="madDatabaseModel.UserProfile" Width="1.5" PointX="1.625" PointY="2.875" IsExpanded="true" />
         <AssociationConnector Association="madDatabaseModel.FK_CardusrId" ManuallyRouted="false" />
         <AssociationConnector Association="madDatabaseModel.FK_OrdercardNumber" ManuallyRouted="false" />
         <AssociationConnector Association="madDatabaseModel.FK_ProductcategoryId" ManuallyRouted="false" />

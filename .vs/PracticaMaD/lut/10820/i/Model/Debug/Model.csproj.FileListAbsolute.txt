@@ -1,0 +1,7 @@
+C:\Users\abnav\Desktop\PracticaMaD\.vs\PracticaMaD\lut\0\b\Model\bin\Debug\PracticaMaD.Model.exe.config
+C:\Users\abnav\Desktop\PracticaMaD\.vs\PracticaMaD\lut\0\b\Model\bin\Debug\PracticaMaD.Model.exe
+C:\Users\abnav\Desktop\PracticaMaD\.vs\PracticaMaD\lut\0\b\Model\bin\Debug\PracticaMaD.Model.pdb
+C:\Users\abnav\Desktop\PracticaMaD\.vs\PracticaMaD\lut\0\i\Model\Debug\Model.csprojResolveAssemblyReference.cache
+C:\Users\abnav\Desktop\PracticaMaD\.vs\PracticaMaD\lut\0\i\Model\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\abnav\Desktop\PracticaMaD\.vs\PracticaMaD\lut\0\i\Model\Debug\PracticaMaD.Model.exe
+C:\Users\abnav\Desktop\PracticaMaD\.vs\PracticaMaD\lut\0\i\Model\Debug\PracticaMaD.Model.pdb

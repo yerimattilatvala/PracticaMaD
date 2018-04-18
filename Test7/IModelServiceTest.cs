@@ -352,7 +352,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 // Create a categories
 
                 long categoryId1 = CreateCategory("Music");
-                //long categoryId2 = CreateCategory("Books");
+                long categoryId2 = CreateCategory("Books");
 
                 // Create a product
                 string name1 = "ACDC";
@@ -361,18 +361,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 float prize1 = 13;
                 long productId1 = CreateProduct(categoryId1, name1, registerDate1, capacity1, prize1);
 
-                string name2 = "Codigo da Vinci";
+                string name2 = "cipito";
                 DateTime registerDate2 = DateTime.Now;
                 int capacity2 = 5;
                 float prize2 = 7;
-                //long productId2 = CreateProduct(categoryId2, name2, registerDate2, capacity2, prize2);
+                long productId2 = CreateProduct(categoryId2, name2, registerDate2, capacity2, prize2);
                 
                 ProductDetails p1 = new ProductDetails(productId1, 2);
-                //ProductDetails p2 = new ProductDetails(productId2, 1);
+                ProductDetails p2 = new ProductDetails(productId2, 1);
 
                 List<ProductDetails> carrito = new List<ProductDetails>();
                 carrito.Add(p1);
-                //carrito.Add(p2);
+                carrito.Add(p2);
                 // Register user and find profile
                 long userId =
                     modelService.RegisterUser(loginName, clearPassword,
@@ -400,5 +400,60 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 //transaction.Complete() is not called, so Rollback is executed.
             }
         }
+
+        /// <summary>
+        ///A test for ViewOrdersByUser
+        ///</summary>
+        [TestMethod]
+        public void ViewOrdersByUserTest()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                long categoryId1 = CreateCategory("Music");
+
+                // Create a product
+                string name1 = "ACDC";
+                DateTime registerDate1 = DateTime.Now;
+                int capacity1 = 5;
+                float prize1 = 13;
+                long productId1 = CreateProduct(categoryId1, name1, registerDate1, capacity1, prize1);
+
+                ProductDetails p1 = new ProductDetails(productId1, 2);
+
+                List<ProductDetails> carrito = new List<ProductDetails>();
+                carrito.Add(p1);
+                // Register user and find profile
+                long userId =
+                    modelService.RegisterUser(loginName, clearPassword,
+                    new UserProfileDetails(firstName, lastName, email, language, country, address));
+
+                // Add a card
+                int cardNumber = 11111;
+                int verficationCode = 222;
+                DateTime expirationDate = DateTime.Now;
+                string type = "Credit";
+                CardDetails cardDetails = new CardDetails(cardNumber, verficationCode, expirationDate, type);
+                modelService.AddCard(userId, cardDetails);
+
+                // Generate a order
+                OrderDetails order = modelService.GenerateOrder(userId, cardNumber, address, carrito);
+
+                //Search by user
+                List<OrderDetails> orderList = modelService.ViewOrdersByUser(userId);
+
+                //Se podría añadir varios usuarios con  orders e iterar sobre la lista
+                OrderDetails orderM = orderList[0];
+
+                // Check the data
+                Assert.AreEqual(order.OrderId, orderM.OrderId);
+                Assert.AreEqual(order.OrderDate, orderM.OrderDate);
+                Assert.AreEqual(order.UsrId, orderM.UsrId);
+                Assert.AreEqual(order.CardNumber, orderM.CardNumber);
+                Assert.AreEqual(order.PostalAddress, orderM.PostalAddress);
+
+            }
+
+        }
+
     }
 }

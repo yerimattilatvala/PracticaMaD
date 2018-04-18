@@ -1,0 +1,7 @@
+C:\Users\abnav\Desktop\PracticaMaD\.vs\PracticaMaD\lut\0\b\Test7\bin\Debug\PracticaMaD.Test.dll.config
+C:\Users\abnav\Desktop\PracticaMaD\.vs\PracticaMaD\lut\0\b\Test7\bin\Debug\PracticaMaD.Test.dll
+C:\Users\abnav\Desktop\PracticaMaD\.vs\PracticaMaD\lut\0\b\Test7\bin\Debug\PracticaMaD.Test.pdb
+C:\Users\abnav\Desktop\PracticaMaD\.vs\PracticaMaD\lut\0\i\Test\Debug\Test.csproj.CoreCompileInputs.cache
+C:\Users\abnav\Desktop\PracticaMaD\.vs\PracticaMaD\lut\0\i\Test\Debug\PracticaMaD.Test.dll
+C:\Users\abnav\Desktop\PracticaMaD\.vs\PracticaMaD\lut\0\i\Test\Debug\PracticaMaD.Test.pdb
+C:\Users\abnav\Desktop\PracticaMaD\.vs\PracticaMaD\lut\0\i\Test\Debug\Test.csprojResolveAssemblyReference.cache
