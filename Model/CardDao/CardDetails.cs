@@ -10,7 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CardDao
     public class CardDetails
     {
         #region Properties region
-        public int CardNumber { get; }
+        public string CardNumber { get; }
 
         public int VerificationCode { get; }
 
@@ -20,7 +20,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CardDao
         
         #endregion
 
-        public CardDetails(int cardNumber, int verificationCode, DateTime expirateTime, string cardType)
+        public CardDetails(string cardNumber, int verificationCode, DateTime expirateTime, string cardType)
         {
             this.CardNumber = cardNumber;
             this.VerificationCode = verificationCode;

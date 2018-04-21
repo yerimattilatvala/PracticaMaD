@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="madDatabaseModelStoreContainer" CdmEntityContainer="madDatabaseEntities4">
+  <EntityContainerMapping StorageEntityContainer="madDatabaseModelStoreContainer" CdmEntityContainer="madDatabaseEntities">
     <EntitySetMapping Name="Cards">
       <EntityTypeMapping TypeName="madDatabaseModel.Card">
         <MappingFragment StoreEntitySet="Card">
+          <ScalarProperty Name="idCard" ColumnName="idCard" />
           <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
           <ScalarProperty Name="usrId" ColumnName="usrId" />
           <ScalarProperty Name="verificationCode" ColumnName="verificationCode" />
@@ -38,7 +39,7 @@
           <ScalarProperty Name="orderId" ColumnName="orderId" />
           <ScalarProperty Name="orderDate" ColumnName="orderDate" />
           <ScalarProperty Name="usrId" ColumnName="usrId" />
-          <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
+          <ScalarProperty Name="idCard" ColumnName="idCard" />
           <ScalarProperty Name="postalAddress" ColumnName="postalAddress" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -54,12 +55,12 @@
           <ScalarProperty Name="categoryId" ColumnName="categoryId" />
         </MappingFragment>
       </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.Book)">
-        <MappingFragment StoreEntitySet="Book">
-          <ScalarProperty Name="pages" ColumnName="pages" />
+      <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.Movie)">
+        <MappingFragment StoreEntitySet="Movie">
+          <ScalarProperty Name="duration" ColumnName="duration" />
           <ScalarProperty Name="topic" ColumnName="topic" />
           <ScalarProperty Name="summary" ColumnName="summary" />
-          <ScalarProperty Name="author" ColumnName="author" />
+          <ScalarProperty Name="director" ColumnName="director" />
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="productId" ColumnName="productId" />
         </MappingFragment>
@@ -73,14 +74,23 @@
           <ScalarProperty Name="productId" ColumnName="productId" />
         </MappingFragment>
       </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.Movie)">
-        <MappingFragment StoreEntitySet="Movie">
-          <ScalarProperty Name="duration" ColumnName="duration" />
+      <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.Book)">
+        <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="pages" ColumnName="pages" />
           <ScalarProperty Name="topic" ColumnName="topic" />
           <ScalarProperty Name="summary" ColumnName="summary" />
-          <ScalarProperty Name="director" ColumnName="director" />
+          <ScalarProperty Name="author" ColumnName="author" />
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="productId" ColumnName="productId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tags">
+      <EntityTypeMapping TypeName="madDatabaseModel.Tag">
+        <MappingFragment StoreEntitySet="Tag">
+          <ScalarProperty Name="tagId" ColumnName="tagId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="timesUsed" ColumnName="timesUsed" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -99,5 +109,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="ProductTags" TypeName="madDatabaseModel.ProductTags" StoreEntitySet="ProductTags">
+      <EndProperty Name="Product">
+        <ScalarProperty Name="productId" ColumnName="productId" />
+      </EndProperty>
+      <EndProperty Name="Tag">
+        <ScalarProperty Name="tagId" ColumnName="tagId" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

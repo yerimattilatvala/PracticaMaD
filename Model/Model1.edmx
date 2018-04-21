@@ -10,17 +10,18 @@
             <PropertyRef Name="productId" />
           </Key>
           <Property Name="productId" Type="bigint" Nullable="false" />
-          <Property Name="title" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="author" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="author" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="summary" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="topic" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="topic" Type="varchar" MaxLength="70" Nullable="false" />
           <Property Name="pages" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Card">
           <Key>
-            <PropertyRef Name="cardNumber" />
+            <PropertyRef Name="idCard" />
           </Key>
-          <Property Name="cardNumber" Type="int" Nullable="false" />
+          <Property Name="idCard" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cardNumber" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="usrId" Type="bigint" Nullable="false" />
           <Property Name="verificationCode" Type="int" Nullable="false" />
           <Property Name="expirationDate" Type="datetime2" Precision="7" Nullable="false" />
@@ -32,16 +33,16 @@
             <PropertyRef Name="categoryId" />
           </Key>
           <Property Name="categoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="CD">
           <Key>
             <PropertyRef Name="productId" />
           </Key>
           <Property Name="productId" Type="bigint" Nullable="false" />
-          <Property Name="title" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="artist" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="topic" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="artist" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="topic" Type="varchar" MaxLength="70" Nullable="false" />
           <Property Name="songs" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Movie">
@@ -49,10 +50,10 @@
             <PropertyRef Name="productId" />
           </Key>
           <Property Name="productId" Type="bigint" Nullable="false" />
-          <Property Name="title" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="director" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="director" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="summary" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="topic" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="topic" Type="varchar" MaxLength="70" Nullable="false" />
           <Property Name="duration" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderLine">
@@ -72,7 +73,7 @@
           <Property Name="orderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="orderDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="usrId" Type="bigint" Nullable="false" />
-          <Property Name="cardNumber" Type="int" Nullable="false" />
+          <Property Name="idCard" Type="bigint" Nullable="false" />
           <Property Name="postalAddress" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
@@ -81,10 +82,26 @@
           </Key>
           <Property Name="productId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="categoryId" Type="bigint" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="registerDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="numberOfUnits" Type="int" Nullable="false" />
           <Property Name="prize" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductTags">
+          <Key>
+            <PropertyRef Name="tagId" />
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="tagId" Type="bigint" Nullable="false" />
+          <Property Name="productId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="tagId" />
+          </Key>
+          <Property Name="tagId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="timesUsed" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -155,10 +172,10 @@
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Card">
-              <PropertyRef Name="cardNumber" />
+              <PropertyRef Name="idCard" />
             </Principal>
             <Dependent Role="Orders">
-              <PropertyRef Name="cardNumber" />
+              <PropertyRef Name="idCard" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -210,6 +227,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductTagsByUserproductId">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductTags" Type="Self.ProductTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="ProductTags">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTagsByUsertagId">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
+          <End Role="ProductTags" Type="Self.ProductTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="tagId" />
+            </Principal>
+            <Dependent Role="ProductTags">
+              <PropertyRef Name="tagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="madDatabaseModelStoreContainer">
           <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Card" EntityType="Self.Card" Schema="dbo" store:Type="Tables" />
@@ -219,6 +260,8 @@
           <EntitySet Name="OrderLine" EntityType="Self.OrderLine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTags" EntityType="Self.ProductTags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BookproductId" Association="Self.FK_BookproductId">
             <End Role="Product" EntitySet="Product" />
@@ -256,6 +299,14 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductTagsByUserproductId" Association="Self.FK_ProductTagsByUserproductId">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductTags" EntitySet="ProductTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTagsByUsertagId" Association="Self.FK_ProductTagsByUsertagId">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="ProductTags" EntitySet="ProductTags" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -263,17 +314,18 @@
     <edmx:ConceptualModels>
       <Schema Namespace="madDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Book" BaseType="madDatabaseModel.Product">
-          <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="author" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="summary" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="topic" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="topic" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="pages" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Card">
           <Key>
-            <PropertyRef Name="cardNumber" />
+            <PropertyRef Name="idCard" />
           </Key>
-          <Property Name="cardNumber" Type="Int32" Nullable="false" />
+          <Property Name="idCard" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cardNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="usrId" Type="Int64" Nullable="false" />
           <Property Name="verificationCode" Type="Int32" Nullable="false" />
           <Property Name="expirationDate" Type="DateTime" Nullable="false" Precision="7" />
@@ -287,20 +339,20 @@
             <PropertyRef Name="categoryId" />
           </Key>
           <Property Name="categoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Products" Relationship="Self.FK_ProductcategoryId" FromRole="Category" ToRole="Product" />
         </EntityType>
         <EntityType Name="CD" BaseType="madDatabaseModel.Product">
-          <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="artist" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="topic" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="artist" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="topic" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="songs" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Movie" BaseType="madDatabaseModel.Product">
-          <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="director" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="director" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="summary" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="topic" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="topic" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="duration" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderLine">
@@ -322,7 +374,7 @@
           <Property Name="orderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="orderDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="usrId" Type="Int64" Nullable="false" />
-          <Property Name="cardNumber" Type="Int32" Nullable="false" />
+          <Property Name="idCard" Type="Int64" Nullable="false" />
           <Property Name="postalAddress" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Card" Relationship="Self.FK_OrdercardNumber" FromRole="Orders" ToRole="Card" />
           <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderLineorderId" FromRole="Orders" ToRole="OrderLine" />
@@ -334,12 +386,22 @@
           </Key>
           <Property Name="productId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="categoryId" Type="Int64" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="registerDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="numberOfUnits" Type="Int32" Nullable="false" />
           <Property Name="prize" Type="Double" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="Self.FK_ProductcategoryId" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderLineproductId" FromRole="Product" ToRole="OrderLine" />
+          <NavigationProperty Name="Tags" Relationship="Self.ProductTags" FromRole="Product" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="tagId" />
+          </Key>
+          <Property Name="tagId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="timesUsed" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.ProductTags" FromRole="Tag" ToRole="Product" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -376,10 +438,10 @@
           <End Role="Orders" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Card">
-              <PropertyRef Name="cardNumber" />
+              <PropertyRef Name="idCard" />
             </Principal>
             <Dependent Role="Orders">
-              <PropertyRef Name="cardNumber" />
+              <PropertyRef Name="idCard" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -431,12 +493,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="madDatabaseEntities4" annotation:LazyLoadingEnabled="true">
+        <Association Name="ProductTags">
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="madDatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cards" EntityType="Self.Card" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="OrderLines" EntityType="Self.OrderLine" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
           <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
           <AssociationSet Name="FK_CardusrId" Association="Self.FK_CardusrId">
             <End Role="UserProfile" EntitySet="UserProfiles" />
@@ -462,16 +529,21 @@
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
+          <AssociationSet Name="ProductTags" Association="Self.ProductTags">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Tag" EntitySet="Tags" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="madDatabaseModelStoreContainer" CdmEntityContainer="madDatabaseEntities4">
+        <EntityContainerMapping StorageEntityContainer="madDatabaseModelStoreContainer" CdmEntityContainer="madDatabaseEntities">
           <EntitySetMapping Name="Cards">
             <EntityTypeMapping TypeName="madDatabaseModel.Card">
               <MappingFragment StoreEntitySet="Card">
+                <ScalarProperty Name="idCard" ColumnName="idCard" />
                 <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
                 <ScalarProperty Name="usrId" ColumnName="usrId" />
                 <ScalarProperty Name="verificationCode" ColumnName="verificationCode" />
@@ -506,7 +578,7 @@
                 <ScalarProperty Name="orderId" ColumnName="orderId" />
                 <ScalarProperty Name="orderDate" ColumnName="orderDate" />
                 <ScalarProperty Name="usrId" ColumnName="usrId" />
-                <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
+                <ScalarProperty Name="idCard" ColumnName="idCard" />
                 <ScalarProperty Name="postalAddress" ColumnName="postalAddress" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -522,12 +594,12 @@
                 <ScalarProperty Name="categoryId" ColumnName="categoryId" />
               </MappingFragment>
             </EntityTypeMapping>
-            <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.Book)">
-              <MappingFragment StoreEntitySet="Book">
-                <ScalarProperty Name="pages" ColumnName="pages" />
+            <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.Movie)">
+              <MappingFragment StoreEntitySet="Movie">
+                <ScalarProperty Name="duration" ColumnName="duration" />
                 <ScalarProperty Name="topic" ColumnName="topic" />
                 <ScalarProperty Name="summary" ColumnName="summary" />
-                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="director" ColumnName="director" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="productId" ColumnName="productId" />
               </MappingFragment>
@@ -541,14 +613,23 @@
                 <ScalarProperty Name="productId" ColumnName="productId" />
               </MappingFragment>
             </EntityTypeMapping>
-            <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.Movie)">
-              <MappingFragment StoreEntitySet="Movie">
-                <ScalarProperty Name="duration" ColumnName="duration" />
+            <EntityTypeMapping TypeName="IsTypeOf(madDatabaseModel.Book)">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="pages" ColumnName="pages" />
                 <ScalarProperty Name="topic" ColumnName="topic" />
                 <ScalarProperty Name="summary" ColumnName="summary" />
-                <ScalarProperty Name="director" ColumnName="director" />
+                <ScalarProperty Name="author" ColumnName="author" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="productId" ColumnName="productId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="madDatabaseModel.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="tagId" ColumnName="tagId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="timesUsed" ColumnName="timesUsed" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -567,6 +648,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="ProductTags" TypeName="madDatabaseModel.ProductTags" StoreEntitySet="ProductTags">
+            <EndProperty Name="Product">
+              <ScalarProperty Name="productId" ColumnName="productId" />
+            </EndProperty>
+            <EndProperty Name="Tag">
+              <ScalarProperty Name="tagId" ColumnName="tagId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

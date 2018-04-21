@@ -12,24 +12,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Card
+    public partial class Tag
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Card()
+        public Tag()
         {
-            this.Orders = new HashSet<Order>();
+            this.Products = new HashSet<Product>();
         }
     
-        public long idCard { get; set; }
-        public string cardNumber { get; set; }
-        public long usrId { get; set; }
-        public int verificationCode { get; set; }
-        public System.DateTime expirationDate { get; set; }
-        public string cardType { get; set; }
-        public bool defaultCard { get; set; }
+        public long tagId { get; set; }
+        public string name { get; set; }
+        public long timesUsed { get; set; }
     
-        public virtual UserProfile UserProfile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

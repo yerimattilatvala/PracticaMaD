@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CardDao
 {
-    public interface ICardDao : IGenericDao<Card, int>
+    public interface ICardDao : IGenericDao<Card, Int64>
     {
+        Card GetDefaultCard();
+        Card FindByCardNumber(string CardNumber);
     }
 }

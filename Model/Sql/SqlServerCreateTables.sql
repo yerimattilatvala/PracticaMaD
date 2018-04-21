@@ -26,6 +26,10 @@ USE [madDatabase]
 
 
 /* ********** Drop Table UserProfile if already exists *********** */
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[ProductTags]') AND type in ('U'))
+DROP TABLE [ProductTags]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Tag]') AND type in ('U'))
+DROP TABLE [Tag]
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[CD]') AND type in ('U'))
 DROP TABLE [CD]
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Movie]') AND type in ('U'))
@@ -40,7 +44,6 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Product]') A
 DROP TABLE [Product]
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Category]') AND type in ('U'))
 DROP TABLE [Category]
-
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Card]') AND type in ('U'))
 DROP TABLE [Card]
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[UserProfile]') AND type in ('U'))
@@ -75,14 +78,15 @@ PRINT N'CREA USUARIO'
 
 CREATE TABLE Card
 (
-    cardNumber int NOT NULL,
+	idCard bigint IDENTITY(1,1) NOT NULL,
+    cardNumber varchar(20) NOT NULL,
 	usrId bigint NOT NULL,
     verificationCode int NOT NULL,
 	expirationDate datetime2 NOT NULL,
 	cardType varchar(10) NOT NULL,
 	defaultCard bit NOT NULL,
 
-	CONSTRAINT [PK_Card] PRIMARY KEY (cardNumber),
+	CONSTRAINT [PK_Card] PRIMARY KEY (idCard),
 	CONSTRAINT [FK_CardusrId] FOREIGN KEY (usrId)
 		REFERENCES UserProfile (usrId) ON DELETE CASCADE
 )
@@ -91,7 +95,7 @@ PRINT N'CREA CARD'
 CREATE TABLE Category
 (
 	categoryId bigint IDENTITY(1,1) NOT NULL,
-	name varchar(10) NOT NULL,
+	name varchar(20) NOT NULL,
 
 	CONSTRAINT [PK_Category] PRIMARY KEY (categoryId)
 )
@@ -101,7 +105,7 @@ CREATE TABLE Product
 (
     productId bigint IDENTITY(1,1) NOT NULL,
 	categoryId bigint NOT NULL,
-    name varchar(10) NOT NULL,
+    name varchar(40) NOT NULL,
 	registerDate datetime2 NOT NULL,
 	numberOfUnits int NOT NULL,
 	prize float NOT NULL,
@@ -117,14 +121,14 @@ CREATE TABLE Orders
 	orderId bigint IDENTITY(1,1) NOT NULL,
 	orderDate datetime2 NOT NULL,
 	usrId bigint NOT NULL,
-	cardNumber int NOT NULL,
+	idCard bigint NOT NULL,
 	postalAddress int NOT NULL,
 	
 	CONSTRAINT [PK_Orders] PRIMARY KEY (orderId),
 	CONSTRAINT [FK_OrderuserdId] FOREIGN KEY (usrId)
 		REFERENCES UserProfile (usrId),
-	CONSTRAINT [FK_OrdercardNumber] FOREIGN KEY (cardNumber)
-		REFERENCES Card (cardNumber)
+	CONSTRAINT [FK_OrdercardNumber] FOREIGN KEY (idCard)
+		REFERENCES Card (idCard)
 )
 PRINT N'CREA order'
 CREATE TABLE OrderLine
@@ -145,10 +149,10 @@ PRINT N'CREA orderline'
 CREATE TABLE Book
 (
 	productId bigint NOT NULL,
-	title varchar(20) NOT NULL,
-	author varchar(20) NOT NULL,
+	title varchar(50) NOT NULL,
+	author varchar(50) NOT NULL,
 	summary varchar(50) NOT NULL,
-	topic varchar(20) NOT NULL,
+	topic varchar(70) NOT NULL,
 	pages int NOT NULL,
 
 	CONSTRAINT [PK_BookproductId] PRIMARY KEY (productId),
@@ -159,9 +163,9 @@ PRINT N'CREA book'
 CREATE TABLE CD
 (
 	productId bigint NOT NULL,
-	title varchar(20) NOT NULL,
-	artist varchar(20) NOT NULL,
-	topic varchar (10) NOT NULL,
+	title varchar(50) NOT NULL,
+	artist varchar(50) NOT NULL,
+	topic varchar (70) NOT NULL,
 	songs int  NOT NULL,
 
 	CONSTRAINT [PK_CDproductId] PRIMARY KEY (productId),
@@ -172,16 +176,42 @@ CREATE TABLE CD
 CREATE TABLE Movie
 (
 	productId bigint NOT NULL,
-	title varchar(20) NOT NULL,
-	director varchar(20) NOT NULL,
+	title varchar(50) NOT NULL,
+	director varchar(50) NOT NULL,
 	summary varchar(50) NOT NULL,
-	topic varchar(20) NOT NULL,
+	topic varchar(70) NOT NULL,
 	duration int NOT NULL,
 
 	CONSTRAINT [PK_MovieproductId] PRIMARY KEY (productId),
 	CONSTRAINT [FK_MovieproductId] FOREIGN KEY (productId)
 		REFERENCES Product (productId)
 )
+
+CREATE TABLE Tag
+(
+	tagId bigint IDENTITY(1,1) NOT NULL,
+	name varchar(50) NOT NULL,
+	timesUsed bigint NOT NULL,
+
+	CONSTRAINT [PK_TagId] PRIMARY KEY (tagId)
+)
+
+PRINT N'CREA TAGS'
+
+CREATE TABLE ProductTags
+(
+	tagId bigint NOT NULL,
+	productId bigint NOT NULL,
+
+	CONSTRAINT [PK_ProductTagsByUserId] PRIMARY KEY (tagId,productId),
+	CONSTRAINT [FK_ProductTagsByUsertagId] FOREIGN KEY (tagId)
+	REFERENCES Tag (tagId),
+	CONSTRAINT [FK_ProductTagsByUserproductId] FOREIGN KEY (productId)
+	REFERENCES Product (productId)
+
+)
+
+PRINT N'CREA PRODUCTASBYGUSER'
 
 CREATE NONCLUSTERED INDEX [IX_UserProfileIndexByLoginName]
 ON [UserProfile] ([loginName] ASC)

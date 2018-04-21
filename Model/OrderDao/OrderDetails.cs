@@ -15,7 +15,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 
         public long UsrId { get; }
 
-        public int CardNumber { get; }
+        public string CardNumber { get; }
 
         public int PostalAddress { get; }
 
@@ -23,7 +23,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 
         public List<OrderLineDetails> OrderLines;
         #endregion
-        public OrderDetails(long orderId,long usrId,int cardNumber, int postalAddress,DateTime orderDate,List<OrderLineDetails> orderLines)
+        public OrderDetails(long orderId,long usrId,string cardNumber, int postalAddress,DateTime orderDate,List<OrderLineDetails> orderLines)
         {
             this.OrderId = orderId;
             this.UsrId = usrId;
@@ -33,7 +33,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
             this.OrderLines = orderLines;
         }
 
-        public OrderDetails(long orderId, long usrId, int cardNumber, int postalAddress, DateTime orderDate)
+        public OrderDetails(long orderId, long usrId, string cardNumber, int postalAddress, DateTime orderDate)
         {
             this.OrderId = orderId;
             this.UsrId = usrId;

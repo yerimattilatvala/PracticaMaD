@@ -13,12 +13,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
     public class ProductDaoEntityFramework :
         GenericDaoEntityFramework<Product, Int64>, IProductDao
     {
-        public List<Product> FindByKeywords(String name, String category)
+        public List<Product> FindByKeywords(String name, long category)
         {
             List<Product> productList= new List<Product>();
 
             DbSet<Product> products = Context.Set<Product>();
-            if (category == null)
+            if (category == -1)
             {
                 string sqlQuery = "Select * FROM Product where name LIKE @name";
                 DbParameter productNameParameter =

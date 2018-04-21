@@ -10,13 +10,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
     public class ProductDetails
     {
         public string name;
-        public long category;
+        public string category;
         public DateTime registerDate;
         public double prize;
         public long productId { get; }
         public int numberOfUnits { get; }
 
-        public ProductDetails(string name, long category, DateTime registerDate, double prize)
+        public ProductDetails(string name, string category, DateTime registerDate, double prize)
         {
             this.name = name;
             this.category = category;

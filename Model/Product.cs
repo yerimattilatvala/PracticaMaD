@@ -18,6 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public Product()
         {
             this.OrderLines = new HashSet<OrderLine>();
+            this.Tags = new HashSet<Tag>();
         }
     
         public long productId { get; set; }
@@ -30,5 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderLine> OrderLines { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

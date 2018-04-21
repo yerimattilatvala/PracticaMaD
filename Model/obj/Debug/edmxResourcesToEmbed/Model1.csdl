@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="madDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Book" BaseType="madDatabaseModel.Product">
-    <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="author" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="summary" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="topic" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="topic" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="pages" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Card">
     <Key>
-      <PropertyRef Name="cardNumber" />
+      <PropertyRef Name="idCard" />
     </Key>
-    <Property Name="cardNumber" Type="Int32" Nullable="false" />
+    <Property Name="idCard" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cardNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="usrId" Type="Int64" Nullable="false" />
     <Property Name="verificationCode" Type="Int32" Nullable="false" />
     <Property Name="expirationDate" Type="DateTime" Nullable="false" Precision="7" />
@@ -25,20 +26,20 @@
       <PropertyRef Name="categoryId" />
     </Key>
     <Property Name="categoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Products" Relationship="Self.FK_ProductcategoryId" FromRole="Category" ToRole="Product" />
   </EntityType>
   <EntityType Name="CD" BaseType="madDatabaseModel.Product">
-    <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="artist" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="topic" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="artist" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="topic" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="songs" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Movie" BaseType="madDatabaseModel.Product">
-    <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="director" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="director" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="summary" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="topic" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="topic" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="duration" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="OrderLine">
@@ -60,7 +61,7 @@
     <Property Name="orderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="orderDate" Type="DateTime" Nullable="false" Precision="7" />
     <Property Name="usrId" Type="Int64" Nullable="false" />
-    <Property Name="cardNumber" Type="Int32" Nullable="false" />
+    <Property Name="idCard" Type="Int64" Nullable="false" />
     <Property Name="postalAddress" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Card" Relationship="Self.FK_OrdercardNumber" FromRole="Orders" ToRole="Card" />
     <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderLineorderId" FromRole="Orders" ToRole="OrderLine" />
@@ -72,12 +73,22 @@
     </Key>
     <Property Name="productId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="categoryId" Type="Int64" Nullable="false" />
-    <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="registerDate" Type="DateTime" Nullable="false" Precision="7" />
     <Property Name="numberOfUnits" Type="Int32" Nullable="false" />
     <Property Name="prize" Type="Double" Nullable="false" />
     <NavigationProperty Name="Category" Relationship="Self.FK_ProductcategoryId" FromRole="Product" ToRole="Category" />
     <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderLineproductId" FromRole="Product" ToRole="OrderLine" />
+    <NavigationProperty Name="Tags" Relationship="Self.ProductTags" FromRole="Product" ToRole="Tag" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="tagId" />
+    </Key>
+    <Property Name="tagId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="timesUsed" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.ProductTags" FromRole="Tag" ToRole="Product" />
   </EntityType>
   <EntityType Name="UserProfile">
     <Key>
@@ -114,10 +125,10 @@
     <End Role="Orders" Type="Self.Order" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Card">
-        <PropertyRef Name="cardNumber" />
+        <PropertyRef Name="idCard" />
       </Principal>
       <Dependent Role="Orders">
-        <PropertyRef Name="cardNumber" />
+        <PropertyRef Name="idCard" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -169,12 +180,17 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="madDatabaseEntities4" annotation:LazyLoadingEnabled="true">
+  <Association Name="ProductTags">
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="madDatabaseEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Cards" EntityType="Self.Card" />
     <EntitySet Name="Categories" EntityType="Self.Category" />
     <EntitySet Name="OrderLines" EntityType="Self.OrderLine" />
     <EntitySet Name="Orders" EntityType="Self.Order" />
     <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Tags" EntityType="Self.Tag" />
     <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
     <AssociationSet Name="FK_CardusrId" Association="Self.FK_CardusrId">
       <End Role="UserProfile" EntitySet="UserProfiles" />
@@ -199,6 +215,10 @@
     <AssociationSet Name="FK_OrderuserdId" Association="Self.FK_OrderuserdId">
       <End Role="UserProfile" EntitySet="UserProfiles" />
       <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="ProductTags" Association="Self.ProductTags">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Tag" EntitySet="Tags" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
