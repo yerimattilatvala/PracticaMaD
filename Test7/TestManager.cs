@@ -1,9 +1,16 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.CardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService;
+using Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService;
+using Es.Udc.DotNet.PracticaMaD.Model.ModelService.CategoryService;
+using Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService;
+using Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService;
+using Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService;
+using Es.Udc.DotNet.PracticaMaD.Model.ModelService.UserService;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Ninject;
 using System.Configuration;
@@ -41,8 +48,26 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             kernel.Bind<ICategoryDao>().
                To<CategoryDaoEntityFramework>();
 
-            kernel.Bind<IModelService>().
-                To<ModelService>();
+            kernel.Bind<ITagDao>().
+               To<TagDaoEntityFramework>();
+
+            kernel.Bind<ICardService>().
+                To<CardService>();
+
+            kernel.Bind<IUserService>().
+                To<UserService>();
+
+            kernel.Bind<ITagService>().
+                To<TagService>();
+
+            kernel.Bind<IOrderService>().
+                To<OrderService>();
+
+            kernel.Bind<ICategoryService>().
+                To<CategoryService>();
+
+            kernel.Bind<IProductService>().
+                To<ProductService>();
 
             string connectionString =
                 ConfigurationManager.ConnectionStrings["madDatabaseEntitiesTest"].ConnectionString;

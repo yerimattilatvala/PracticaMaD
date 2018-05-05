@@ -2,9 +2,24 @@
 
 <module name="nInjectConfiguration">
 
-  <bind service="Es.Udc.DotNet.PracticaMaD.Model.ModelService.IModelService, PracticaMaD.Model"
-      to="Es.Udc.DotNet.PracticaMaD.Model.ModelService.ModelService, PracticaMaD.Model" />
+  <bind service="Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService.ICardService, PracticaMaD.Model"
+      to="Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService.CardService, PracticaMaD.Model" />
+  
+  <bind service="Es.Udc.DotNet.PracticaMaD.Model.ModelService.UserService.IUserService, PracticaMaD.Model"
+      to="Es.Udc.DotNet.PracticaMaD.Model.ModelService.UserService.UserService, PracticaMaD.Model" />
 
+  <bind service="Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService.IProductService, PracticaMaD.Model"
+      to="Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService.ProductService, PracticaMaD.Model" />
+
+  <bind service="Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService.IOrderService, PracticaMaD.Model"
+      to="Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService.OrderService, PracticaMaD.Model" />
+
+  <bind service="Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService.ITagService, PracticaMaD.Model"
+      to="Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService.TagService, PracticaMaD.Model" />
+
+  <bind service="Es.Udc.DotNet.PracticaMaD.Model.ModelService.CategoryService.ICategoryService, PracticaMaD.Model"
+      to="Es.Udc.DotNet.PracticaMaD.Model.ModelService.CategoryService.CategoryService, PracticaMaD.Model" />
+  
   <bind service="Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao.IUserProfileDao, PracticaMaD.Model"
       to="Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao.UserProfileDaoEntityFramework, PracticaMaD.Model" />
 
@@ -22,6 +37,9 @@
   
   <bind service="Es.Udc.DotNet.PracticaMaD.Model.CategoryDao.ICategoryDao, PracticaMaD.Model"
       to="Es.Udc.DotNet.PracticaMaD.Model.CategoryDao.CategoryDaoEntityFramework, PracticaMaD.Model" />
+
+  <bind service="Es.Udc.DotNet.PracticaMaD.Model.TagDao.ITagDao, PracticaMaD.Model"
+      to="Es.Udc.DotNet.PracticaMaD.Model.TagDao.TagDaoEntityFramework, PracticaMaD.Model" />
 
   <bind service="System.Data.Entity.DbContext, EntityFramework"
       to="System.Data.Entity.DbContext, EntityFramework"

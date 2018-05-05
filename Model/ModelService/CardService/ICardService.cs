@@ -26,6 +26,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService
         List<CardDetails> ViewCardsByUser(long userProfileId);
 
         [Transactional]
-        void ChangeDefaultCard(long userProfileId, long cardNumber);
+        void ChangeDefaultCard(long userProfileId, long cardId);
     }
 }
