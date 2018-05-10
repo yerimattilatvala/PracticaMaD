@@ -1,0 +1,434 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Rolosoft.Practices.EnterpriseLibrary</name>
+    </assembly>
+    <members>
+        <member name="T:Rolosoft.Practices.EnterpriseLibrary.Common.IFactory`1">
+            <summary>
+            The Factory interface.
+            </summary>
+            <typeparam name="T">
+            </typeparam>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Common.IFactory`1.Create">
+            <summary>
+                The create.
+            </summary>
+            <returns>
+                The <see cref="!:T" />.
+            </returns>
+        </member>
+        <member name="T:Rolosoft.Practices.EnterpriseLibrary.Common.ITableWriter`1">
+            <summary>
+            The TableWriter interface.
+            </summary>
+            <typeparam name="T">
+            </typeparam>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Common.ITableWriter`1.ConnectionString">
+            <summary>
+                Gets or sets the connection string.
+            </summary>
+            <value>
+                The connection string.
+            </value>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Common.ITableWriter`1.TableName">
+            <summary>
+                Gets or sets the name of the table.
+            </summary>
+            <value>
+                The name of the table.
+            </value>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Common.ITableWriter`1.Write(`0)">
+            <summary>
+            The write.
+            </summary>
+            <param name="item">
+            The item.
+            </param>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Common.ITableWriter`1.WriteAsync(`0,System.Threading.CancellationToken)">
+            <summary>
+            Writes the asynchronous.
+            </summary>
+            <param name="item">
+            The item.
+            </param>
+            <param name="cancellationToken">
+            The cancellation token.
+            </param>
+            <returns>
+            the <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="T:Rolosoft.Practices.EnterpriseLibrary.Contracts.FactoryContracts`1">
+            <summary>
+            The factory contracts.
+            </summary>
+            <typeparam name="T">
+            </typeparam>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Contracts.FactoryContracts`1.Create">
+            <summary>
+                The create.
+            </summary>
+            <returns>
+                The <see cref="!:T" />.
+            </returns>
+        </member>
+        <member name="T:Rolosoft.Practices.EnterpriseLibrary.Contracts.TableWriterContracts`1">
+            <summary>
+            The table writer contracts.
+            </summary>
+            <typeparam name="T">
+            </typeparam>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Contracts.TableWriterContracts`1.ConnectionString">
+            <summary>
+                Gets or sets the connection string.
+            </summary>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Contracts.TableWriterContracts`1.TableName">
+            <summary>
+                Gets or sets the table name.
+            </summary>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Contracts.TableWriterContracts`1.Write(`0)">
+            <summary>
+            The write.
+            </summary>
+            <param name="item">
+            The item.
+            </param>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Contracts.TableWriterContracts`1.WriteAsync(`0,System.Threading.CancellationToken)">
+            <summary>
+            The write async.
+            </summary>
+            <param name="item">
+            The item.
+            </param>
+            <param name="cancellationToken">
+            The cancellation token.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Contracts.TableWriterContracts`1.ObjectInvariant">
+            <summary>
+                The object invariant.
+            </summary>
+        </member>
+        <member name="T:Rolosoft.Practices.EnterpriseLibrary.Factories.AzureTableWriterFactory">
+            <summary>
+                The Azure table writer factory.
+            </summary>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Factories.AzureTableWriterFactory.Create">
+            <summary>
+                Creates this instance.
+            </summary>
+            <returns>
+                The <see cref="T:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableWriter" />.
+            </returns>
+        </member>
+        <member name="T:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableTraceListener">
+            <summary>
+                The Azure table trace listener.
+            </summary>
+        </member>
+        <member name="F:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableTraceListener.AzureTableNameAppSettingKeyName">
+            <summary>
+                The azure table name application setting key name.
+            </summary>
+        </member>
+        <member name="F:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableTraceListener.AzureStorageConnectionAppSettingKeyName">
+            <summary>
+            The azure storage connection application setting key name
+            </summary>
+        </member>
+        <member name="F:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableTraceListener.DefaultAzureTableName">
+            <summary>
+                The default azure table name.
+            </summary>
+        </member>
+        <member name="F:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableTraceListener.ContainerConnectionString">
+            <summary>
+            The container connection string
+            </summary>
+        </member>
+        <member name="F:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableTraceListener.tableWriter">
+            <summary>
+                The table writer
+            </summary>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableTraceListener.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableTraceListener"/> class.
+            </summary>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableTraceListener.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableTraceListener" /> class.
+            </summary>
+            <param name="containerConnectionString">The Azure container connection string.</param>
+            <exception cref="T:System.ArgumentNullException">containerConnectionString is null or empty.</exception>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableTraceListener.AzureTableName">
+            <summary>
+                Gets the azure table name.
+            </summary>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableTraceListener.AzureContainerConnectionString">
+            <summary>
+            Gets the azure container connection string.
+            </summary>
+            <value>
+            The azure container connection string.
+            </value>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object)">
+            <summary>
+            Writes trace information, a data object and event information to the listener specific output.
+            </summary>
+            <param name="eventCache">
+            A <see cref="T:System.Diagnostics.TraceEventCache"/> object that contains the current process
+                ID, thread ID, and stack trace information.
+            </param>
+            <param name="source">
+            A name used to identify the output, typically the name of the application that generated the trace
+                event.
+            </param>
+            <param name="eventType">
+            One of the <see cref="T:System.Diagnostics.TraceEventType"/> values specifying the type of
+                event that has caused the trace.
+            </param>
+            <param name="id">
+            A numeric identifier for the event.
+            </param>
+            <param name="data">
+            The trace data to emit.
+            </param>
+            <PermissionSet>
+                <IPermission class="System.Security.Permissions.EnvironmentPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/>
+                <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode"/>
+            </PermissionSet>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableTraceListener.Write(System.String)">
+            <summary>
+            When overridden in a derived class, writes the specified message to the listener you create in the derived class.
+            </summary>
+            <param name="message">
+            A message to write.
+            </param>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableTraceListener.WriteLine(System.String)">
+            <summary>
+            When overridden in a derived class, writes a message to the listener you create in the derived class, followed by a
+                line terminator.
+            </summary>
+            <param name="message">
+            A message to write.
+            </param>
+        </member>
+        <member name="T:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableWriter">
+            <summary>
+                The Azure table writer.
+            </summary>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableWriter.ConnectionString">
+            <summary>
+                Gets or sets the connection string.
+            </summary>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableWriter.TableName">
+            <summary>
+                Gets or sets the table name.
+            </summary>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableWriter.Write(Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable)">
+            <summary>
+            The write.
+            </summary>
+            <param name="item">
+            The item.
+            </param>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.AzureTableWriter.WriteAsync(Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable,System.Threading.CancellationToken)">
+            <summary>
+            Writes the asynchronous.
+            </summary>
+            <param name="item">
+            The item.
+            </param>
+            <param name="cancellationToken">
+            The cancellation token.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="T:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable">
+            <summary>
+                The exception log table.
+            </summary>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.ActivityId">
+            <summary>
+                Gets or sets the activity identifier.
+            </summary>
+            <value>
+                The activity identifier.
+            </value>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.AppDomainName">
+            <summary>
+                Gets or sets the app domain name.
+            </summary>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.EventId">
+            <summary>
+                Gets or sets the event id.
+            </summary>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.LogMessage">
+            <summary>
+            Gets or sets the log message.
+            </summary>
+            <value>
+            The log message.
+            </value>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.LoggedSeverity">
+            <summary>
+                Gets or sets the logged severity.
+            </summary>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.MachineName">
+            <summary>
+                Gets or sets the machine name.
+            </summary>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.ManagedThreadName">
+            <summary>
+                Gets or sets the managed thread name.
+            </summary>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.Priority">
+            <summary>
+                Gets or sets the priority.
+            </summary>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.ProcessId">
+            <summary>
+                Gets or sets the process id.
+            </summary>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.ProcessName">
+            <summary>
+                Gets or sets the process name.
+            </summary>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.RelatedActivityId">
+            <summary>
+                Gets or sets the related activity identifier.
+            </summary>
+            <value>
+                The related activity identifier.
+            </value>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.Severity">
+            <summary>
+                Gets or sets the severity.
+            </summary>
+            <value>
+                The severity.
+            </value>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.Source">
+            <summary>
+                Gets or sets the source.
+            </summary>
+            <value>
+                The source.
+            </value>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.TimeStampString">
+            <summary>
+                Gets or sets the time stamp string.
+            </summary>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.Title">
+            <summary>
+                Gets or sets the title.
+            </summary>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.Type">
+            <summary>
+                Gets or sets the type.
+            </summary>
+        </member>
+        <member name="P:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable.Win32ThreadId">
+            <summary>
+                Gets or sets the win 32 thread id.
+            </summary>
+        </member>
+        <member name="T:Rolosoft.Practices.EnterpriseLibrary.Maps.LogEntryToExceptionLogTable">
+            <summary>
+                The log entry to exception log table.
+            </summary>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Maps.LogEntryToExceptionLogTable.ToExceptionLogTable(System.String,System.String,System.String)">
+            <summary>
+            The to exception log table.
+            </summary>
+            <param name="logEntry">
+            The log entry.
+            </param>
+            <param name="source">
+            The source.
+            </param>
+            <param name="type">
+            The type.
+            </param>
+            <returns>
+            The <see cref="T:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable"/>.
+            </returns>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Maps.LogEntryToExceptionLogTable.ToExceptionLogTable(Microsoft.Practices.EnterpriseLibrary.Logging.LogEntry,System.String,System.String)">
+            <summary>
+            The to exception log table.
+            </summary>
+            <param name="logEntry">
+            The log entry.
+            </param>
+            <param name="source">
+            The source.
+            </param>
+            <param name="type">
+            The type.
+            </param>
+            <returns>
+            The <see cref="T:Rolosoft.Practices.EnterpriseLibrary.Logging.TraceListeners.ExceptionLogTable"/>.
+            </returns>
+        </member>
+        <member name="M:Rolosoft.Practices.EnterpriseLibrary.Maps.LogEntryToExceptionLogTable.GetRowKey(System.String,System.Int32)">
+            <summary>
+            The get row key.
+            </summary>
+            <param name="machineName">
+            The machine name.
+            </param>
+            <param name="eventId">
+            The event id.
+            </param>
+            <returns>
+            The <see cref="T:System.String"/>.
+            </returns>
+        </member>
+    </members>
+</doc>

@@ -71,7 +71,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService
         {
             UserProfile userProfile = UserProfileDao.Find(userProfileId);
 
-            /*List<Card> userCards = userProfile.Cards.ToList<Card>();
+            List<Card> userCards = userProfile.Cards.ToList<Card>();
 
             for (int i = 0; i < userCards.Count; i++)
             {
@@ -80,10 +80,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService
                     userCards.ElementAt(i).defaultCard = false;
                     CardDao.Update(userCards.ElementAt(i));
                 }
-            }*/
-            Card c = CardDao.GetDefaultCard();
+            }
+            /*Card c = CardDao.GetDefaultCard();
             c.defaultCard = false;
-            CardDao.Update(c);  //AHORA FALLA AQUI
+            CardDao.Update(c);  //AHORA FALLA AQUI*/
             //Card card = CardDao.FindByCardNumber(cardNumber);
             Card card = CardDao.Find(cardID);   // sin esto produce error
             card.defaultCard = true;

@@ -228,6 +228,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.ICardServiceTest
                 cardService.ChangeDefaultCard(userId, card2.idCard);
                 
                 Card card = cardDao.FindByCardNumber(cardNumber);
+                card2 = cardDao.FindByCardNumber(cardNumber1);
 
                 // Check data
                 Assert.AreEqual(cardNumber, card.cardNumber);
