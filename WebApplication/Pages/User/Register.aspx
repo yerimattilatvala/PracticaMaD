@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
     Codebehind="Register.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.User.Register" 
-    meta:resourcekey="Page" %>
+    meta:resourcekey="Page" culture="auto" uiculture="auto" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation"
     runat="server">
@@ -80,6 +80,20 @@
                             Display="Dynamic" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
                             meta:resourcekey="revEmail"></asp:RegularExpressionValidator></span>
             </div>
+
+            <div class="field">
+                <span class="label">
+                    <asp:Localize ID="lclPostalAddress" runat="server" meta:resourcekey="lclPostalAddress" /></span><span
+                        class="entry">
+                        <asp:TextBox ID="txtPostalAddress" runat="server" Width="100px" Columns="16" 
+                    meta:resourcekey="txtPostalAddressResource"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvPostalAddress" runat="server" ControlToValidate="txtPostalAddress"
+                            Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>" 
+                    meta:resourcekey="rfvPostalAddressResource1"></asp:RequiredFieldValidator>
+                        <asp:CompareValidator ID="cvPostalAddress" runat="server" ControlToValidate="txtPostalAddress" Type="Integer"
+                         Operator="DataTypeCheck" ErrorMessage="<%$ Resources:Common, integerField %>" /></span>
+            </div>
+
             <div class="field">
                 <span class="label">
                     <asp:Localize ID="lclLanguage" runat="server" meta:resourcekey="lclLanguage" /></span><span

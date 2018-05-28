@@ -40,6 +40,10 @@ a:hover {
     font-weight: bold;    
 }
 
+#pageTitle a {
+    color: #fff;
+}
+
 /* Menu. */
 
 #menu {

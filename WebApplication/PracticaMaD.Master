@@ -9,12 +9,14 @@
     <link href="~/Css/Styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <form id="form1" runat="server">
     <!-- Window. -->
         <div id="window">
         <!-- Page title. -->
             <div id="pageTitle">
-                <asp:Localize ID="lclPageTitle" runat="server" meta:resourcekey="lclPageTitle" />
+                <asp:HyperLink ID="lnkMainPage" runat="server" 
+                NavigateUrl="~/Pages/MainPage.aspx"
+                meta:resourcekey="lclPageTitle">[lnkMainPage]</asp:HyperLink>
+                
             </div>
         <!-- Menu. -->
             <div id="menu">
@@ -31,12 +33,12 @@
                 
                 <span id="menuLinks">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder_MenuLinks" runat="server">
-                        <asp:Label ID="lblDash1" runat="server" Text="-" />
-                        <asp:HyperLink ID="lnkAuthenticate" runat="server" meta:resourcekey="lnkAuthenticate" NavigateUrl="~/Pages/User/Authentication.aspx" />
-                        <asp:Label ID="lblDash2" runat="server" Text="-" />
-                        <asp:HyperLink ID="lnkUpdate" runat="server" meta:resourcekey="lnkUpdate" NavigateUrl="~/Pages/User/UpdateUserProfile.aspx" />
-                        <asp:Label ID="lblDash3" runat="server" Text="-" />
-                        <asp:HyperLink ID="lnkLogout" runat="server" meta:resourcekey="lnkLogout" NavigateUrl="~/Pages/User/Logout.aspx" />
+                        <asp:Label ID="lblDash1" runat="server" Text="-" meta:resourcekey="lblDash1Resource1" />
+                        <asp:HyperLink ID="lnkAuthenticate" runat="server" meta:resourcekey="lnkAuthenticate" NavigateUrl="~/Pages/User/Authentication.aspx" >[lnkAuthenticate]</asp:HyperLink>
+                        <asp:Label ID="lblDash2" runat="server" Text="-" meta:resourcekey="lblDash2Resource1" />
+                        <asp:HyperLink ID="lnkUpdate" runat="server" meta:resourcekey="lnkUpdate" NavigateUrl="~/Pages/User/UpdateUserProfile.aspx" >[lnkUpdate]</asp:HyperLink>
+                        <asp:Label ID="lblDash3" runat="server" Text="-" meta:resourcekey="lblDash3Resource1" />
+                        <asp:HyperLink ID="lnkLogout" runat="server" meta:resourcekey="lnkLogout" NavigateUrl="~/Pages/User/Logout.aspx" >[lnkLogout]</asp:HyperLink>
                 </asp:ContentPlaceHolder>
                 </span>
             </div>
@@ -52,6 +54,5 @@
         <!-- End of Window. -->
         </div>
     <!-- End of HTML body. -->
-    </form>
 </body>
 </html>
