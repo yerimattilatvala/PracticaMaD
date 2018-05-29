@@ -9,6 +9,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 {
     public interface IProductDao : IGenericDao<Product, Int64>
     {
-        List<Product> FindByKeywords(String name, long category);
+        List<Product> FindByKeywords(String name, long category,int startIndex, int count);
+
+        int GetNumberOfProductsByKeywords(String name, long category);
     }
 }

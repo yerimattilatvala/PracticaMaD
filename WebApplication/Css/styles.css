@@ -137,3 +137,9 @@ input, select, textarea  {
     padding-top: 5px;
    
 }
+
+table.productsResult {
+    margin: 0 auto;
+    text-align: right;
+    width: 60%;
+}

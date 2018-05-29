@@ -21,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
             {
                 ProductDaoEntityFramework p = new ProductDaoEntityFramework();
                 p.Context = dbContext;
-                List<Product> productS = p.FindByKeywords("ACDC",-1);
+                List<Product> productS = p.FindByKeywords("ACDC",-1,1,10);
                 
                     Console.WriteLine(productS[1].name);
                 transaction.Complete();

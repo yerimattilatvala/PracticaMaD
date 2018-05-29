@@ -117,31 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnFind.Text" xml:space="preserve">
-    <value>Search</value>
+  <data name="productCategory" xml:space="preserve">
+    <value>Category</value>
   </data>
-  <data name="btnFind.ToolTip" xml:space="preserve">
-    <value />
+  <data name="productName" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="lclContent.Text" xml:space="preserve">
-    <value>Content of the main page.</value>
-  </data>
-  <data name="PageResource1.Title" xml:space="preserve">
-    <value>Amazon Market</value>
-  </data>
-  <data name="rfvKeywordsResource1.ErrorMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rfvKeywordsResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="searchProducts.Text" xml:space="preserve">
-    <value>Search products</value>
-  </data>
-  <data name="txtKeywordsResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="txtKeywordsResource1.ToolTip" xml:space="preserve">
-    <value />
+  <data name="productPrize" xml:space="preserve">
+    <value>Prize</value>
   </data>
 </root>

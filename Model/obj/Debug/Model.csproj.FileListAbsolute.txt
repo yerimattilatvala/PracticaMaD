@@ -16,7 +16,6 @@ C:\Users\abnav\Desktop\PracticaMaD\Model\bin\Debug\Ninject.xml
 C:\Users\abnav\Desktop\PracticaMaD\Model\bin\Debug\Ninject.Extensions.Interception.xml
 C:\Users\abnav\Desktop\PracticaMaD\Model\bin\Debug\Ninject.Extensions.Interception.DynamicProxy.xml
 C:\Users\abnav\Desktop\PracticaMaD\Model\bin\Debug\Ninject.Extensions.Xml.xml
-C:\Users\abnav\Desktop\PracticaMaD\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 C:\Users\abnav\Desktop\PracticaMaD\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
 C:\Users\abnav\Desktop\PracticaMaD\Model\obj\Debug\PracticaMaD.Model.exe
 C:\Users\abnav\Desktop\PracticaMaD\Model\obj\Debug\PracticaMaD.Model.pdb
@@ -43,3 +42,4 @@ D:\Marcos\PracticaMaD\Model\obj\Debug\PracticaMaD.Model.exe
 D:\Marcos\PracticaMaD\Model\obj\Debug\PracticaMaD.Model.pdb
 C:\Users\abnav\Desktop\PracticaMaD\Model\obj\Debug\PracticaMaD.Model.exe.config
 C:\Users\abnav\Desktop\PracticaMaD\Model\obj\Debug\Model.csproj.CopyComplete
+C:\Users\abnav\Desktop\PracticaMaD\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

@@ -54,3 +54,4 @@ C:\Users\abnav\Desktop\PracticaMaD\Test7\obj\Debug\Test.csprojResolveAssemblyRef
 C:\Users\abnav\Desktop\PracticaMaD\Test7\obj\Debug\Test.csproj.CoreCompileInputs.cache
 C:\Users\abnav\Desktop\PracticaMaD\Test7\obj\Debug\PracticaMaD.Test.dll
 C:\Users\abnav\Desktop\PracticaMaD\Test7\obj\Debug\PracticaMaD.Test.pdb
+C:\Users\abnav\Desktop\PracticaMaD\Test7\obj\Debug\Test.csproj.CopyComplete

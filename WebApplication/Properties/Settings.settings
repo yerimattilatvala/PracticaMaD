@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Es.Udc.DotNet.PracticaMaD.WebApplication.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AmazonMarket_defaultCount" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="AmazonMarket_applicationURL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/MiniBank</Value>
+    </Setting>
+    <Setting Name="ObjectDS_ProductsResult_Service" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService.IProductService</Value>
+    </Setting>
+    <Setting Name="ObjectDS_ProductsResult_SelectMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FindByKeywords</Value>
+    </Setting>
+    <Setting Name="ObjectDS_ProductsResult_CountMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">getNumberOfProductsByKeywords</Value>
+    </Setting>
+    <Setting Name="ObjectDS_ProductsResult_StartIndexParameter" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">startIndex</Value>
+    </Setting>
+    <Setting Name="ObjectDS_AccountOperations_CountParameter" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">count</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

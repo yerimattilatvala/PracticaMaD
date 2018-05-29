@@ -23,12 +23,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
         ITagDao TagDao { set; }
 
         [Transactional]
-        List<ProductDetails> FindByKeywords(String keywords);
+        List<ProductDetails> FindByKeywords(String keywords,int startIndex,int count);
 
         [Transactional]
-        List<ProductDetails> FindByKeywords(String keywords,long categoryId);
+        List<ProductDetails> FindByKeywords(String keywords,long categoryId,int startIndex, int count);
 
         [Transactional]
         List<ProductDetails> FindByTag(long tagId);
+
+        [Transactional]
+        int getNumberOfProductsByKeywords(String keywords);
+
+        [Transactional]
+        int getNumberOfProductsByKeywords(String keywords, long categoryId);
     }
 }

@@ -23,12 +23,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
         public ITagDao TagDao { private get; set; }
 
         [Transactional]
-        public List<ProductDetails> FindByKeywords(string keywords)
+        public List<ProductDetails> FindByKeywords(string keywords,int startIndex, int count)
         {
             List<ProductDetails> products = new List<ProductDetails>();
             string productName = keywords;
 
-            List<Product> productList = ProductDao.FindByKeywords(keywords, -1);
+            List<Product> productList = ProductDao.FindByKeywords(keywords, -1,startIndex,count);
 
             for (int i = 0; i < productList.Count; i++)
             {
@@ -42,12 +42,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
         }
 
         [Transactional]
-        public List<ProductDetails> FindByKeywords(string keywords, long categoryId)
+        public List<ProductDetails> FindByKeywords(string keywords, long categoryId,int startIndex,int count)
         {
             List<ProductDetails> products = new List<ProductDetails>();
             string productName = keywords;
 
-            List<Product> productList = ProductDao.FindByKeywords(keywords, categoryId);
+            List<Product> productList = ProductDao.FindByKeywords(keywords, categoryId,startIndex,count);
 
             for (int i = 0; i < productList.Count; i++)
             {
@@ -74,6 +74,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
                 products.Add(new ProductDetails(name, category, registerDate, prize));
             }
             return products;
+        }
+        [Transactional]
+        public int getNumberOfProductsByKeywords(string keywords)
+        {
+            return ProductDao.GetNumberOfProductsByKeywords(keywords, -1);
+        }
+        [Transactional]
+        public int getNumberOfProductsByKeywords(string keywords, long categoryId)
+        {
+            return ProductDao.GetNumberOfProductsByKeywords(keywords, categoryId);
         }
     }
 }
