@@ -37,7 +37,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
                 string category = CategoryDao.Find(productList.ElementAt(i).categoryId).name;
                 DateTime registerDate = productList.ElementAt(i).registerDate;
                 double prize = productList.ElementAt(i).prize;
-                products.Add(new ProductDetails(name, category, registerDate, prize,productId));
+                int numberOfUnits = productList.ElementAt(i).numberOfUnits;
+                products.Add(new ProductDetails(name, category, registerDate, prize,productId,numberOfUnits));
             }
             return products;
         }
@@ -56,7 +57,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
                 string name = productList.ElementAt(i).name;
                 string category = CategoryDao.Find(productList.ElementAt(i).categoryId).name; DateTime registerDate = productList.ElementAt(i).registerDate;
                 double prize = productList.ElementAt(i).prize;
-                products.Add(new ProductDetails(name, category, registerDate, prize,productId));
+                int numberOfUnits = productList.ElementAt(i).numberOfUnits;
+
+                products.Add(new ProductDetails(name, category, registerDate, prize,productId,numberOfUnits));
             }
             return products;
         }
@@ -72,12 +75,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
             {
                 long productId = productList.ElementAt(i).productId;
                 string name = productList.ElementAt(i).name;
-                string category = CategoryDao.Find(productList.ElementAt(i).categoryId).name; DateTime registerDate = productList.ElementAt(i).registerDate;
+                string category = CategoryDao.Find(productList.ElementAt(i).categoryId).name;
+                DateTime registerDate = productList.ElementAt(i).registerDate;
                 double prize = productList.ElementAt(i).prize;
-                products.Add(new ProductDetails(name, category, registerDate, prize,productId));
+                int numberOfUnits = productList.ElementAt(i).numberOfUnits;
+
+                products.Add(new ProductDetails(name, category, registerDate, prize,productId,numberOfUnits));
             }
             return products;
         }
+
+        public ProductDetails FindProduct(long id)
+        {
+            Product product;
+            product = ProductDao.Find(id);
+            string category = CategoryDao.Find(product.categoryId).name;
+            ProductDetails productDetails = new ProductDetails(product.name,category,product.registerDate,product.prize,product.productId,product.numberOfUnits);
+            return productDetails;
+        }
+
         [Transactional]
         public int getNumberOfProductsByKeywords(string keywords)
         {

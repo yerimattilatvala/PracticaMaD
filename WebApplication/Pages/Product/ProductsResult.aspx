@@ -6,9 +6,7 @@
     <form runat="server">
     <asp:GridView ID="gvProductsResult"  CssClass="productsResult"
         AutoGenerateColumns="False"
-        
-       autogenerateselectbutton="True"
-        onpageindexchanging="GvAccOperationsPageIndexChanging"
+         onpageindexchanging="GvAccOperationsPageIndexChanging"
         OnSelectedIndexChanging="gvProductsResult_SelectedIndexChanging"
         runat="server"
         ShowHeaderWhenEmpty="True" meta:resourcekey="gvProductsResultResource1">
@@ -16,7 +14,10 @@
             <asp:BoundField DataField="Name" HeaderText="<%$ Resources:, productName %>"/>
             <asp:BoundField DataField="Category" HeaderText="<%$ Resources:, productCategory %>"/>
             <asp:BoundField DataField="Prize" HeaderText="<%$ Resources:, productPrize %>"/>
-            <asp:BoundField DataField="ProductId" HeaderText="<%$ Resources:, productId %>" InsertVisible="True" />
+            <asp:BoundField DataField="NumberOfUnits" HeaderText="<%$ Resources:, numberOfUnits %>"/>
+            <asp:BoundField DataField="ProductId" HeaderText="<%$ Resources:, productId %>" Visible="False" />
+
+            <asp:CommandField ShowSelectButton="True" SelectText="<%$ Resources:, addToCart %>" />
         </Columns>
     </asp:GridView>
         

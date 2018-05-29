@@ -36,5 +36,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
 
         [Transactional]
         int getNumberOfProductsByKeywords(String keywords, long categoryId);
+
+        [Transactional]
+        ProductDetails FindProduct(long id);
     }
 }

@@ -10,6 +10,7 @@ using Es.Udc.DotNet.Es.Udc.DotNet.PracticaMaD.WebApplication.Util;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.View.ApplicationObjects;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using System.Collections.Generic;
+using Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
 {
@@ -92,9 +93,16 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
 
         private static IUserService userService;
 
+        private static IProductService productService;
+
         public IUserService UserService
         {
             set { userService = value; }
+        }
+
+        public IProductService ProductService
+        {
+            set { productService = value;  }
         }
 
         static SessionManager()
@@ -102,11 +110,30 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
             IIoCManager iocManager =
                 (IIoCManager)HttpContext.Current.Application["managerIoC"];
 
-            userService = iocManager.Resolve<IUserService>(); 
+            shoppingCart = new List<ProductDetails>();
+            userService = iocManager.Resolve<IUserService>();
+            productService = iocManager.Resolve<IProductService>();
         }
 
 
+        public static void AddToShoppingCart(long id,int numberOfElements)
+        {
+            ProductDetails productDetails = productService.FindProduct(id);
 
+            //el contains solo compara por productId ya se ha sobreescrito el equals
+            if (shoppingCart.Contains(productDetails))
+            {
+                //Si ya existe en el carrito se añade a la cantidad
+                ProductDetails cartProduct = shoppingCart[shoppingCart.IndexOf(productDetails)];
+                cartProduct.numberOfUnits += numberOfElements;
+            }
+            else
+            {
+                //Si no existe se ponen las unidades que se quieran y se añade al carrito
+                productDetails.numberOfUnits = numberOfElements;
+                shoppingCart.Add(productDetails);
+            }
+        }
 
         /// <summary>
         /// Registers the user.

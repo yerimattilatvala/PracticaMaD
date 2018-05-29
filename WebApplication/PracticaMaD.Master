@@ -39,6 +39,7 @@
                         <asp:HyperLink ID="lnkUpdate" runat="server" meta:resourcekey="lnkUpdate" NavigateUrl="~/Pages/User/UpdateUserProfile.aspx" >[lnkUpdate]</asp:HyperLink>
                         <asp:Label ID="lblDash3" runat="server" Text="-" meta:resourcekey="lblDash3Resource1" />
                         <asp:HyperLink ID="lnkLogout" runat="server" meta:resourcekey="lnkLogout" NavigateUrl="~/Pages/User/Logout.aspx" >[lnkLogout]</asp:HyperLink>
+                        <asp:HyperLink ID="HyperLink1" runat="server" meta:resourcekey="lnkCart" CssClass="cart" NavigateUrl="~/Pages/MainPage.aspx" >[lnkCart] </asp:HyperLink>
                 </asp:ContentPlaceHolder>
                 </span>
             </div>

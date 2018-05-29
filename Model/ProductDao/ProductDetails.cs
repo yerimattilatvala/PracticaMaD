@@ -14,14 +14,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         public DateTime registerDate { get; }
         public double prize { get; }
         public long productId { get; }
-        public int numberOfUnits { get; }
-        public ProductDetails(string name, string category, DateTime registerDate, double prize, long productId)
+        //se necesita el set para ir actualizanndo las unidades del carrito.
+        public int numberOfUnits { get; set; }
+        public ProductDetails(string name, string category, DateTime registerDate, double prize, long productId,int numberOfUnits)
         {
             this.name = name;
             this.category = category;
             this.registerDate = registerDate;
             this.prize = prize;
             this.productId = productId;
+            this.numberOfUnits = numberOfUnits;
         }
+
+        public override bool Equals(object obj)
+        {
+            var details = obj as ProductDetails;
+            return details != null &&
+                   productId == details.productId;
+        }
+
+        public override int GetHashCode()
+        {
+            return -1857272791 + productId.GetHashCode();
+        }
+
     }
 }

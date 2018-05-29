@@ -51,8 +51,15 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                 gvProductsResult.AllowPaging = true;
                 gvProductsResult.PageSize = Settings.Default.AmazonMarket_defaultCount;
                 gvProductsResult.DataSource = pbpDataSource;
+                //Antes de hacer el databind hay que poner la columna de id a visible para luego poder acceder a ella
+                gvProductsResult.Columns[4].Visible = true;
                 gvProductsResult.DataBind();
-            } catch (TargetInvocationException)
+                //Luego ya se pone a false.
+                gvProductsResult.Columns[4].Visible = false;
+
+
+            }
+            catch (TargetInvocationException)
             {
 
             }
@@ -86,7 +93,11 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
             // property. For this example, if the user selects a customer with 
             // the ID "ANATR", the select operation is canceled and an error message
             // is displayed.
-            MessageLabel.Text = "You selected " + row.Cells[0].Text + ".";
+            long idProduct = Convert.ToInt32(row.Cells[4].Text);
+            //Si seleccionamos desde la pagina de resultados siempre añadimos de 1 en 1
+            int numberOfElements = 1;
+            SessionManager.AddToShoppingCart(idProduct, numberOfElements);
+            MessageLabel.Text = "Shopping list "+SessionManager.shoppingCart;
 
         }
     }

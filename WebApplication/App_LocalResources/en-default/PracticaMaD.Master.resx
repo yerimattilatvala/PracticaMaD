@@ -156,6 +156,9 @@
   <data name="lnkAuthenticate.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="lnkCart.Text" xml:space="preserve">
+    <value>Cart</value>
+  </data>
   <data name="lnkLogout.Text" xml:space="preserve">
     <value>Exit</value>
   </data>
