@@ -43,3 +43,4 @@ D:\Marcos\PracticaMaD\Model\obj\Debug\PracticaMaD.Model.pdb
 C:\Users\abnav\Desktop\PracticaMaD\Model\obj\Debug\PracticaMaD.Model.exe.config
 C:\Users\abnav\Desktop\PracticaMaD\Model\obj\Debug\Model.csproj.CopyComplete
 C:\Users\abnav\Desktop\PracticaMaD\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\Marcos\PracticaMaD\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

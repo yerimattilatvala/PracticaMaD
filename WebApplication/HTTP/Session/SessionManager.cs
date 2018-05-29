@@ -8,6 +8,8 @@ using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.UserService;
 using Es.Udc.DotNet.Es.Udc.DotNet.PracticaMaD.WebApplication.Util;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.View.ApplicationObjects;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
 {
@@ -81,7 +83,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
     public class SessionManager
     {
 
-
+        public static List<ProductDetails> shoppingCart;
 
         public static readonly String LOCALE_SESSION_ATTRIBUTE = "locale";
 

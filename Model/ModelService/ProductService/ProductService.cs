@@ -32,11 +32,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
 
             for (int i = 0; i < productList.Count; i++)
             {
+                long productId = productList.ElementAt(i).productId;
                 string name = productList.ElementAt(i).name;
                 string category = CategoryDao.Find(productList.ElementAt(i).categoryId).name;
                 DateTime registerDate = productList.ElementAt(i).registerDate;
                 double prize = productList.ElementAt(i).prize;
-                products.Add(new ProductDetails(name, category, registerDate, prize));
+                products.Add(new ProductDetails(name, category, registerDate, prize,productId));
             }
             return products;
         }
@@ -51,10 +52,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
 
             for (int i = 0; i < productList.Count; i++)
             {
+                long productId = productList.ElementAt(i).productId;
                 string name = productList.ElementAt(i).name;
                 string category = CategoryDao.Find(productList.ElementAt(i).categoryId).name; DateTime registerDate = productList.ElementAt(i).registerDate;
                 double prize = productList.ElementAt(i).prize;
-                products.Add(new ProductDetails(name, category, registerDate, prize));
+                products.Add(new ProductDetails(name, category, registerDate, prize,productId));
             }
             return products;
         }
@@ -68,10 +70,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
 
             for (int i = 0; i < productList.Count; i++)
             {
+                long productId = productList.ElementAt(i).productId;
                 string name = productList.ElementAt(i).name;
                 string category = CategoryDao.Find(productList.ElementAt(i).categoryId).name; DateTime registerDate = productList.ElementAt(i).registerDate;
                 double prize = productList.ElementAt(i).prize;
-                products.Add(new ProductDetails(name, category, registerDate, prize));
+                products.Add(new ProductDetails(name, category, registerDate, prize,productId));
             }
             return products;
         }
