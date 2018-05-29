@@ -50,7 +50,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
             string productName = keywords;
 
             List<Product> productList = ProductDao.FindByKeywords(keywords, categoryId,startIndex,count);
-
             for (int i = 0; i < productList.Count; i++)
             {
                 long productId = productList.ElementAt(i).productId;
@@ -84,7 +83,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
             }
             return products;
         }
-
+        [Transactional]
         public ProductDetails FindProduct(long id)
         {
             Product product;

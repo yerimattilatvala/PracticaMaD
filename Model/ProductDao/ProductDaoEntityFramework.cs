@@ -26,12 +26,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
                 productList = Context.Database.SqlQuery<Product>(sqlQuery, productNameParameter).Skip(startIndex).Take(count).ToList<Product>();
             } else
             {
-                string sqlQuery = "Select * FROM Product INNER JOIN Category ON Product.categoryId = Category.categoryId  where Product.name LIKE @name AND Category.name=@category";
+                string sqlQuery = "Select * FROM Product INNER JOIN Category ON Product.categoryId = Category.categoryId  where Product.name LIKE @name AND Category.categoryId=@category";
                 DbParameter productNameParameter =
                     new System.Data.SqlClient.SqlParameter("name", name);
                 DbParameter categoryNameParameter =
-                    new System.Data.SqlClient.SqlParameter("category", category);
-                productList = Context.Database.SqlQuery<Product>(sqlQuery, productNameParameter, categoryNameParameter).Skip(startIndex).Take(count).ToList<Product>();
+                    new System.Data.SqlClient.SqlParameter("category",category);
+                productList = Context.Database.SqlQuery<Product>(sqlQuery, productNameParameter, categoryNameParameter).Skip(startIndex).Take(count).ToList<Product>(); 
             }
 
 

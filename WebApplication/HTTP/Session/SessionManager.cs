@@ -11,6 +11,8 @@ using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.View.ApplicationObjects;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService;
+using Es.Udc.DotNet.PracticaMaD.Model.ModelService.CategoryService;
+using Es.Udc.DotNet.PracticaMaD.Model;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
 {
@@ -92,8 +94,8 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
                "userSession";
 
         private static IUserService userService;
-
         private static IProductService productService;
+        private static ICategoryService categoryService;
 
         public IUserService UserService
         {
@@ -105,6 +107,12 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
             set { productService = value;  }
         }
 
+        public ICategoryService CategoryService
+        {
+            set { categoryService = value; }
+        }
+
+
         static SessionManager()
         {
             IIoCManager iocManager =
@@ -113,9 +121,14 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
             shoppingCart = new List<ProductDetails>();
             userService = iocManager.Resolve<IUserService>();
             productService = iocManager.Resolve<IProductService>();
+            categoryService = iocManager.Resolve<ICategoryService>();
         }
 
-
+        public static List<Category> GetAllCategories()
+        {
+            return categoryService.GetAllCategories();
+        }
+        
         public static void AddToShoppingCart(long id,int numberOfElements)
         {
             ProductDetails productDetails = productService.FindProduct(id);
@@ -133,6 +146,16 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
                 productDetails.numberOfUnits = numberOfElements;
                 shoppingCart.Add(productDetails);
             }
+        }
+
+        public static int GetNumberOfItemsShoppingCart()
+        {
+            int value = 0;
+            foreach(ProductDetails pd in shoppingCart)
+            {
+                value += pd.numberOfUnits;
+            }
+            return value;
         }
 
         /// <summary>

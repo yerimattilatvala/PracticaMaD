@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,7 +15,6 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!SessionManager.IsUserAuthenticated(Context))
             {
 
@@ -38,6 +38,21 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication
                     lblDash1.Visible = false;
                 if (lnkAuthenticate != null)
                     lnkAuthenticate.Visible = false;
+            }
+            if (SessionManager.shoppingCart == null)
+            {
+                if(lnkCart != null)
+                {
+                    lnkCart.Visible = false;
+                }
+            }
+            else
+            {
+                if (lnkCart != null)
+                {
+                    lnkCart.Visible = true;
+                    lnkCart.Text = GetLocalResourceObject("lnkCart.Text").ToString() + "(" + SessionManager.GetNumberOfItemsShoppingCart() + ")";
+                }
             }
         }
     }

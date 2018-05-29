@@ -12,6 +12,15 @@
                     Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>" CssClass="errorMessage" meta:resourcekey="rfvKeywordsResource1" />
             </span>
             </div>
+        <div class="field">
+                <span class="label">
+                    <asp:Localize ID="lclCategory" runat="server" meta:resourcekey="lclCategory" /></span><span
+                        class="entry">
+                        <asp:DropDownList ID="comboCategory" runat="server" AutoPostBack="True" 
+                    Width="100px" meta:resourcekey="comboCategoryResource1" 
+                    onselectedindexchanged="ComboCategorySelectedIndexChanged">
+                        </asp:DropDownList></span>
+        </div>
         <div class="button">
             <asp:Button ID="btnFind" runat="server" meta:resourcekey="btnFind" OnClick="BtnFindClick" />
         </div>

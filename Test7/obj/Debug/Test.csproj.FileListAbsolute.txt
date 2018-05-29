@@ -52,6 +52,6 @@ C:\Users\abnav\Desktop\PracticaMaD\Test7\bin\Debug\Ninject.Extensions.Intercepti
 C:\Users\abnav\Desktop\PracticaMaD\Test7\bin\Debug\Ninject.Extensions.Xml.xml
 C:\Users\abnav\Desktop\PracticaMaD\Test7\obj\Debug\Test.csprojResolveAssemblyReference.cache
 C:\Users\abnav\Desktop\PracticaMaD\Test7\obj\Debug\Test.csproj.CoreCompileInputs.cache
+C:\Users\abnav\Desktop\PracticaMaD\Test7\obj\Debug\Test.csproj.CopyComplete
 C:\Users\abnav\Desktop\PracticaMaD\Test7\obj\Debug\PracticaMaD.Test.dll
 C:\Users\abnav\Desktop\PracticaMaD\Test7\obj\Debug\PracticaMaD.Test.pdb
-C:\Users\abnav\Desktop\PracticaMaD\Test7\obj\Debug\Test.csproj.CopyComplete

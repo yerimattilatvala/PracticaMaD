@@ -15,18 +15,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CategoryService
         public ICategoryDao CategoryDao { private get; set; }
 
         [Transactional]
-        public List<string> GetAllCategories()
+        public List<Category> GetAllCategories()
         {
             List<Category> categories = CategoryDao.GetAllElements();
-
-            List<string> categoriesName = new List<string>();
+            return categories;
+           /* List<string> categoriesName = new List<string>();
 
             for (int i = 0; i < categories.Count; i++)
             {
                 categoriesName.Add(categories.ElementAt(i).name);
             }
 
-            return categoriesName;
+            return categoriesName;*/
         }
     }
 }

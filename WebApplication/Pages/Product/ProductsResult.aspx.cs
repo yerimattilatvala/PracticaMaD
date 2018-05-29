@@ -8,6 +8,7 @@ using System.Data;
 using System.Reflection;
 
 using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
+using System.Security.Policy;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
 {
@@ -17,8 +18,9 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Si quitas el try da error siempre
-            try {
+
+            try
+            {
                 pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
                 //Esto lo deberia de coger desde settings.settigns pero me daba error , CAMBIARLO LUEGO
                 Type type = typeof(IProductService);
@@ -31,20 +33,16 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
 
                 //Cogemos los keywords
                 String keywords = Request.Params.Get("keywords");
-
-                //Cogemos la categoria. Se pasa el nombre o un int????
-                //Int32 category = Convert.ToInt32(Request.Params.Get("category"));
+                Int32 category = Convert.ToInt32(Request.Params.Get("category"));
 
                 //Añadimos el parametro keywords
                 pbpDataSource.SelectParameters.Add("keywords", DbType.String, keywords);
-                //Depende de si pasamos categoria o no
-                // if (category != null)
-                // {
-                //IMPORTANTE: en la base de datos está puesto como bigInt que es el equivalente a Int64
-                //pero a lo largo del código se ha usado Int32. No debería dar problemas ya que no serán 
-                //números muy grandes, pero cabe la posibilidad de overflow.
-                //  pbpDataSource.SelectParameters.Add("category", DbType.Int64,category.ToString());
-                // }
+                //Depende de si la categoria es all (-1) o una definida en la bd.
+                 if (category !=-1)
+                 {
+                  pbpDataSource.SelectParameters.Add("categoryId", DbType.String,category.ToString());
+                 }
+
                 pbpDataSource.SelectCountMethod = Settings.Default.ObjectDS_ProductsResult_CountMethod;
                 pbpDataSource.StartRowIndexParameterName = Settings.Default.ObjectDS_ProductsResult_StartIndexParameter;
                 pbpDataSource.MaximumRowsParameterName = Settings.Default.ObjectDS_AccountOperations_CountParameter;
@@ -97,8 +95,8 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
             //Si seleccionamos desde la pagina de resultados siempre añadimos de 1 en 1
             int numberOfElements = 1;
             SessionManager.AddToShoppingCart(idProduct, numberOfElements);
-            MessageLabel.Text = "Shopping list "+SessionManager.shoppingCart;
-
+            //Para actualizar el texto del carrito. Creo que se puede acceder al elemento de la Master Page pero no se como, asiq recarga la pagina.
+            Response.Redirect(Request.RawUrl.ToString());
         }
     }
 }
