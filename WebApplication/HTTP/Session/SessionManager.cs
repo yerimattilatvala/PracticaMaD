@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.CategoryService;
 using Es.Udc.DotNet.PracticaMaD.Model;
+using System.Linq;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
 {
@@ -145,6 +146,26 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
                 //Si no existe se ponen las unidades que se quieran y se añade al carrito
                 productDetails.numberOfUnits = numberOfElements;
                 shoppingCart.Add(productDetails);
+            }
+        }
+
+        public static void RemoveProductOfShoppingCart(long id)
+        {
+            for (int i = 0; i < shoppingCart.Count; i++)
+            {
+                if (shoppingCart.ElementAt(i).productId == id) { 
+                    shoppingCart.ElementAt(i).numberOfUnits = 0;
+                    shoppingCart.RemoveAt(i);
+                }
+            }
+        }
+
+        public static void IncrementProductUnits(long id, int units)
+        {
+            for (int i = 0; i < shoppingCart.Count; i++)
+            {
+                if (shoppingCart.ElementAt(i).productId == id)
+                    shoppingCart.ElementAt(i).numberOfUnits = units;
             }
         }
 
