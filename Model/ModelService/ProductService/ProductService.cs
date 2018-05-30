@@ -8,6 +8,7 @@ using Es.Udc.DotNet.ModelUtil.Transactions;
 using Ninject;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
 {
@@ -27,18 +28,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
         {
             List<ProductDetails> products = new List<ProductDetails>();
             string productName = keywords;
-
-            List<Product> productList = ProductDao.FindByKeywords(keywords, -1,startIndex,count);
-
-            for (int i = 0; i < productList.Count; i++)
+            try
             {
-                long productId = productList.ElementAt(i).productId;
-                string name = productList.ElementAt(i).name;
-                string category = CategoryDao.Find(productList.ElementAt(i).categoryId).name;
-                DateTime registerDate = productList.ElementAt(i).registerDate;
-                double prize = productList.ElementAt(i).prize;
-                int numberOfUnits = productList.ElementAt(i).numberOfUnits;
-                products.Add(new ProductDetails(name, category, registerDate, prize,productId,numberOfUnits));
+                List<Product> productList = ProductDao.FindByKeywords(keywords, -1, startIndex, count);
+
+                for (int i = 0; i < productList.Count; i++)
+                {
+                    long productId = productList.ElementAt(i).productId;
+                    string name = productList.ElementAt(i).name;
+                    string category = CategoryDao.Find(productList.ElementAt(i).categoryId).name;
+                    DateTime registerDate = productList.ElementAt(i).registerDate;
+                    double prize = productList.ElementAt(i).prize;
+                    int numberOfUnits = productList.ElementAt(i).numberOfUnits;
+                    products.Add(new ProductDetails(name, category, registerDate, prize, productId, numberOfUnits));
+                }
+            }catch (InstanceNotFoundException e)
+            {
+
             }
             return products;
         }
@@ -47,18 +53,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
         public List<ProductDetails> FindByKeywords(string keywords, long categoryId,int startIndex,int count)
         {
             List<ProductDetails> products = new List<ProductDetails>();
-            string productName = keywords;
 
-            List<Product> productList = ProductDao.FindByKeywords(keywords, categoryId,startIndex,count);
-            for (int i = 0; i < productList.Count; i++)
+            try
             {
-                long productId = productList.ElementAt(i).productId;
-                string name = productList.ElementAt(i).name;
-                string category = CategoryDao.Find(productList.ElementAt(i).categoryId).name; DateTime registerDate = productList.ElementAt(i).registerDate;
-                double prize = productList.ElementAt(i).prize;
-                int numberOfUnits = productList.ElementAt(i).numberOfUnits;
+                List<Product> productList = ProductDao.FindByKeywords(keywords, categoryId, startIndex, count);
+                for (int i = 0; i < productList.Count; i++)
+                {
+                    long productId = productList.ElementAt(i).productId;
+                    string name = productList.ElementAt(i).name;
+                    string category = CategoryDao.Find(productList.ElementAt(i).categoryId).name; DateTime registerDate = productList.ElementAt(i).registerDate;
+                    double prize = productList.ElementAt(i).prize;
+                    int numberOfUnits = productList.ElementAt(i).numberOfUnits;
 
-                products.Add(new ProductDetails(name, category, registerDate, prize,productId,numberOfUnits));
+                    products.Add(new ProductDetails(name, category, registerDate, prize, productId, numberOfUnits));
+                }
+            }catch (InstanceNotFoundException e)
+            {
+
             }
             return products;
         }
@@ -96,12 +107,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
         [Transactional]
         public int getNumberOfProductsByKeywords(string keywords)
         {
-            return ProductDao.GetNumberOfProductsByKeywords(keywords, -1);
+            int result = 0;
+            try
+            {
+                result = ProductDao.GetNumberOfProductsByKeywords(keywords, -1);
+            }catch(InstanceNotFoundException e)
+            {
+
+            }
+            return result;
         }
         [Transactional]
         public int getNumberOfProductsByKeywords(string keywords, long categoryId)
         {
-            return ProductDao.GetNumberOfProductsByKeywords(keywords, categoryId);
+            int result = 0;
+            try
+            {
+                return ProductDao.GetNumberOfProductsByKeywords(keywords, categoryId);
+            }catch(InstanceNotFoundException e)
+            {
+
+            }
+            return result;
         }
     }
 }

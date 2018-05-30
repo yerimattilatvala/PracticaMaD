@@ -22,13 +22,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             {
                 string sqlQuery = "Select * FROM Product where name LIKE @name";
                 DbParameter productNameParameter =
-                    new System.Data.SqlClient.SqlParameter("name", name);
+                    new System.Data.SqlClient.SqlParameter("name", "%" + name + "%");
                 productList = Context.Database.SqlQuery<Product>(sqlQuery, productNameParameter).Skip(startIndex).Take(count).ToList<Product>();
             } else
             {
                 string sqlQuery = "Select * FROM Product INNER JOIN Category ON Product.categoryId = Category.categoryId  where Product.name LIKE @name AND Category.categoryId=@category";
                 DbParameter productNameParameter =
-                    new System.Data.SqlClient.SqlParameter("name", name);
+                    new System.Data.SqlClient.SqlParameter("name", "%" + name + "%");
                 DbParameter categoryNameParameter =
                     new System.Data.SqlClient.SqlParameter("category",category);
                 productList = Context.Database.SqlQuery<Product>(sqlQuery, productNameParameter, categoryNameParameter).Skip(startIndex).Take(count).ToList<Product>(); 
@@ -51,14 +51,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             {
                 string sqlQuery = "Select * FROM Product where name LIKE @name";
                 DbParameter productNameParameter =
-                    new System.Data.SqlClient.SqlParameter("name", name);
+                    new System.Data.SqlClient.SqlParameter("name", "%"+name+"%");
                 result = Context.Database.SqlQuery<Product>(sqlQuery, productNameParameter).ToList<Product>().Count;
             }
             else
             {
-                string sqlQuery = "Select * FROM Product INNER JOIN Category ON Product.categoryId = Category.categoryId  where Product.name LIKE @name AND Category.name=@category";
+                string sqlQuery = "Select * FROM Product INNER JOIN Category ON Product.categoryId = Category.categoryId  where Product.name LIKE @name AND Category.categoryId=@category";
                 DbParameter productNameParameter =
-                    new System.Data.SqlClient.SqlParameter("name", name);
+                    new System.Data.SqlClient.SqlParameter("name", "%"+name+"%");
                 DbParameter categoryNameParameter =
                     new System.Data.SqlClient.SqlParameter("category", category);
                 result = Context.Database.SqlQuery<Product>(sqlQuery, productNameParameter, categoryNameParameter).ToList<Product>().Count;

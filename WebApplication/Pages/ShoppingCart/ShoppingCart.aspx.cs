@@ -31,11 +31,12 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.ShoppingCart
             // is displayed.
             long idProduct = (long)Convert.ToInt32(row.Cells[3].Text);
             //Si seleccionamos desde la pagina de resultados siempre añadimos de 1 en 1
-            SessionManager.RemoveProductOfShoppingCart(idProduct);     
+            SessionManager.RemoveProductOfShoppingCart(idProduct);
             /*Label lb = Master.FindControl("lnkCart.Text") as Label;
-            lb.Text = lb.Text + "(" + SessionManager.GetNumberOfItemsShoppingCart() + ")";*/
+            lb.Text = lb.Text + "(" + SessionManager.GetNumberOfItemsShoppingCart() + ")";
             gvProductsInCard.DataSource = SessionManager.shoppingCart;
-            gvProductsInCard.DataBind();
+            gvProductsInCard.DataBind();*/
+            Response.Redirect(Request.RawUrl.ToString());
         }
 
         protected void listaCantidades_SelectedIndexChanged(object sender, EventArgs e){
@@ -44,11 +45,12 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.ShoppingCart
             GridViewRow row = drop.NamingContainer as GridViewRow;
             long idProduct = (long)Convert.ToInt32(row.Cells[3].Text);
             SessionManager.IncrementProductUnits(idProduct, units);
-            Label lb = (Label)Master.FindControl("lnkCart");
+            /*Label lb = (Label)Master.FindControl("lnkCart");
             MessageLabel.Text = "Cart" + "(" + SessionManager.GetNumberOfItemsShoppingCart() + ")";
             lb.Text = "Cart" + "(" + SessionManager.GetNumberOfItemsShoppingCart() + ")";
             gvProductsInCard.DataSource = SessionManager.shoppingCart;
-            gvProductsInCard.DataBind(); 
+            gvProductsInCard.DataBind(); */
+            Response.Redirect(Request.RawUrl.ToString());
         }
 
         protected void gvProductsInCard_RowCreated(object sender, GridViewRowEventArgs e)

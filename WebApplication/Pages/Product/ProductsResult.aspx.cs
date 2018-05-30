@@ -40,7 +40,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                 //Depende de si la categoria es all (-1) o una definida en la bd.
                  if (category !=-1)
                  {
-                  pbpDataSource.SelectParameters.Add("categoryId", DbType.String,category.ToString());
+                    pbpDataSource.SelectParameters.Add("categoryId", DbType.Int32,category.ToString());
                  }
 
                 pbpDataSource.SelectCountMethod = Settings.Default.ObjectDS_ProductsResult_CountMethod;
