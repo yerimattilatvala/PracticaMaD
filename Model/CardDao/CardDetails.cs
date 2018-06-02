@@ -17,8 +17,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CardDao
         public DateTime ExpirateTime { get; }
 
         public string CardType { get; }
+
+        public bool DefaultCard { get; }
+
+        public long CardId { get; }
         
         #endregion
+
+        public CardDetails(string cardNumber, int verificationCode, DateTime expirateTime, string cardType,long cardId,bool defaultCard)
+        {
+            this.CardNumber = cardNumber;
+            this.VerificationCode = verificationCode;
+            this.ExpirateTime = expirateTime;
+            this.CardType = cardType;
+            this.CardId = cardId;
+            this.DefaultCard = defaultCard;
+        }
 
         public CardDetails(string cardNumber, int verificationCode, DateTime expirateTime, string cardType)
         {

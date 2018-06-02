@@ -26,7 +26,10 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication
                     lblDash3.Visible = false;
                 if (lnkLogout != null)
                     lnkLogout.Visible = false;
-
+                if (lnlkAddCard != null)
+                    lnlkAddCard.Visible = false;
+                if (lnkCards != null)
+                    lnkCards.Visible = false;
             }
             else
             {
@@ -38,6 +41,10 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication
                     lblDash1.Visible = false;
                 if (lnkAuthenticate != null)
                     lnkAuthenticate.Visible = false;
+                if (lnlkAddCard != null)
+                    lnlkAddCard.Visible = true;
+                if (lnkCards != null)
+                    lnkCards.Visible = true;
             }
             if (SessionManager.shoppingCart == null)
             {

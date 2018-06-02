@@ -61,7 +61,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService
                 int cv = cards.ElementAt(i).verificationCode;
                 DateTime expirationDate = cards.ElementAt(i).expirationDate;
                 string type = cards.ElementAt(i).cardType;
-                userCards.Add(new CardDetails(cardNumber, cv, expirationDate, type));
+                bool defaultCard = cards.ElementAt(i).defaultCard;
+                long cardId = cards.ElementAt(i).idCard;
+                userCards.Add(new CardDetails(cardNumber, cv, expirationDate, type,cardId,defaultCard));
             }
             return userCards;
         }
@@ -69,7 +71,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService
         [Transactional]
         public void ChangeDefaultCard(long userProfileId, long cardID)
         {
-            UserProfile userProfile = UserProfileDao.Find(userProfileId);
+            UserProfile userProfile = null;
+            Card card = null;
+            try
+            {
+                userProfile = UserProfileDao.Find(userProfileId);
+            } catch (InstanceNotFoundException e)
+            {
+                new InstanceNotFoundException(userProfileId,"Usuario no encontrado");
+            }
 
             List<Card> userCards = userProfile.Cards.ToList<Card>();
 
@@ -81,11 +91,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService
                     CardDao.Update(userCards.ElementAt(i));
                 }
             }
-            /*Card c = CardDao.GetDefaultCard();
-            c.defaultCard = false;
-            CardDao.Update(c);  //AHORA FALLA AQUI*/
-            //Card card = CardDao.FindByCardNumber(cardNumber);
-            Card card = CardDao.Find(cardID);   // sin esto produce error
+            try
+            {
+
+                card = CardDao.Find(cardID);
+            } catch(InstanceNotFoundException e)
+            {
+                new InstanceNotFoundException(cardID, "Trajeta no encontrada");
+            }
             card.defaultCard = true;
             CardDao.Update(card);
         }

@@ -4,20 +4,17 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <br />
     <form runat="server">
-        <asp:GridView ID="gvProductsInCard" runat="server" CssClass="productsResult"
+        <asp:GridView ID="gvProductsInCard"  runat="server" CssClass="productsResult"
             AutoGenerateColumns="False"
             OnSelectedIndexChanging="gvProductsInCard_changing"
             OnRowCreated="gvProductsInCard_RowCreated"
             ShowHeaderWhenEmpty="True"  meta:resourcekey="gvProductsInCard">
             <Columns>
-            <asp:BoundField DataField="Name" HeaderText="<%$ Resources:, productName %>" meta:resourcekey="BoundFieldResource1"/>
+            <asp:BoundField DataField="Name"  HeaderText="<%$ Resources:, productName %>" meta:resourcekey="BoundFieldResource1"/>
             <asp:BoundField DataField="Prize" HeaderText="<%$ Resources:, productPrize %>" meta:resourcekey="BoundFieldResource2"/>
             <asp:BoundField DataField="NumberOfUnits" HeaderText="<%$ Resources:, numberOfUnits %>" meta:resourcekey="BoundFieldResource3"/>
             <asp:BoundField DataField="ProductId" HeaderText="<%$ Resources:, productId %>" Visible="true"  meta:resourcekey="BoundFieldResource4" />
             <asp:CommandField ShowSelectButton="True" SelectText="<%$ Resources:, deleteProduct %>" meta:resourcekey="CommandFieldResource1" />           
-            
-                
-            
                 <asp:TemplateField HeaderText="<%$ Resources:, quantity %>" meta:resourcekey="TemplateFieldResource2">
                     <ItemTemplate>
                         <asp:DropDownList ID="listaCantidades"  AutoPostBack="True" OnSelectedIndexChanged="listaCantidades_SelectedIndexChanged" runat="server" meta:resourcekey="listaCantidadesResource2">

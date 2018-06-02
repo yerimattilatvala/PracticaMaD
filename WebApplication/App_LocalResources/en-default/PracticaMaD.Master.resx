@@ -156,6 +156,9 @@
   <data name="lnkAuthenticate.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="lnkCards.Text" xml:space="preserve">
+    <value>See my cards</value>
+  </data>
   <data name="lnkCart.Text" xml:space="preserve">
     <value>Cart</value>
   </data>
@@ -170,5 +173,8 @@
   </data>
   <data name="lnkUpdate.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="lnlkAddCard.Text" xml:space="preserve">
+    <value>Add a new card</value>
   </data>
 </root>

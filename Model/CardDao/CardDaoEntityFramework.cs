@@ -8,23 +8,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CardDao
 {
     public class CardDaoEntityFramework : GenericDaoEntityFramework<Card, Int64>, ICardDao
     {
-
-        public Card GetDefaultCard()
-        {
-            Card card = null;
-
-            string sqlQuery = "Select * FROM Card where defaultCard=@defaultCard";
-            DbParameter cardNumberParameter =
-                new System.Data.SqlClient.SqlParameter("defaultCard", true);
-
-            card = Context.Database.SqlQuery<Card>(sqlQuery, cardNumberParameter).FirstOrDefault<Card>();
-
-            if (card == null)
-                throw new InstanceNotFoundException("Default card",
-                    typeof(Card).FullName);
-
-            return card;
-        }
         public Card FindByCardNumber(string CardNumber)
         {
             Card card = null;

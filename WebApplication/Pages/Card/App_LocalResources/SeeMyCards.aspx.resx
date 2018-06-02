@@ -141,188 +141,41 @@
   <data name="BoundFieldResource4.FooterText" xml:space="preserve">
     <value />
   </data>
-  <data name="btnPay.Text" xml:space="preserve">
-    <value>Pay</value>
-  </data>
-  <data name="btnPay.ToolTip" xml:space="preserve">
+  <data name="BoundFieldResource5.AccessibleHeaderText" xml:space="preserve">
     <value />
   </data>
-  <data name="CommandFieldResource1.AccessibleHeaderText" xml:space="preserve">
+  <data name="BoundFieldResource5.FooterText" xml:space="preserve">
     <value />
   </data>
-  <data name="CommandFieldResource1.CancelText" xml:space="preserve">
-    <value>Cancelar</value>
+  <data name="CardId" xml:space="preserve">
+    <value>Card Id</value>
   </data>
-  <data name="CommandFieldResource1.DeleteText" xml:space="preserve">
-    <value>Eliminar</value>
+  <data name="CardNumber" xml:space="preserve">
+    <value>Card number</value>
   </data>
-  <data name="CommandFieldResource1.EditText" xml:space="preserve">
-    <value>Editar</value>
+  <data name="CardType" xml:space="preserve">
+    <value>Type of card</value>
   </data>
-  <data name="CommandFieldResource1.FooterText" xml:space="preserve">
+  <data name="DefaultCard" xml:space="preserve">
+    <value>Default card</value>
+  </data>
+  <data name="ExpirateTime" xml:space="preserve">
+    <value>Date of expiry</value>
+  </data>
+  <data name="gvAllCardsResource1.Caption" xml:space="preserve">
     <value />
   </data>
-  <data name="CommandFieldResource1.HeaderText" xml:space="preserve">
+  <data name="gvAllCardsResource1.EmptyDataText" xml:space="preserve">
     <value />
   </data>
-  <data name="CommandFieldResource1.InsertText" xml:space="preserve">
-    <value>Insertar</value>
-  </data>
-  <data name="CommandFieldResource1.NewText" xml:space="preserve">
-    <value>Nuevo</value>
-  </data>
-  <data name="CommandFieldResource1.UpdateText" xml:space="preserve">
-    <value>Actualizar</value>
-  </data>
-  <data name="deleteProduct" xml:space="preserve">
-    <value>Delete Product</value>
-  </data>
-  <data name="gvProductsInCard.Caption" xml:space="preserve">
+  <data name="gvAllCardsResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="gvProductsInCard.EmptyDataText" xml:space="preserve">
+  <data name="lclMenuExplanation.Text" xml:space="preserve">
     <value />
-  </data>
-  <data name="gvProductsInCard.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="listaCantidadesResource1.Text" xml:space="preserve">
-    <value>Quantity</value>
-  </data>
-  <data name="listaCantidadesResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="listaCantidadesResource2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ListItemResource1.Text" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ListItemResource1.Value" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ListItemResource10.Text" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="ListItemResource10.Value" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="ListItemResource11.Text" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="ListItemResource11.Value" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="ListItemResource12.Text" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="ListItemResource12.Value" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="ListItemResource13.Text" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="ListItemResource13.Value" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="ListItemResource14.Text" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="ListItemResource14.Value" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="ListItemResource15.Text" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="ListItemResource15.Value" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="ListItemResource16.Text" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="ListItemResource16.Value" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="ListItemResource17.Text" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="ListItemResource17.Value" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="ListItemResource2.Text" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="ListItemResource2.Value" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="ListItemResource3.Text" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="ListItemResource3.Value" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="ListItemResource4.Text" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="ListItemResource4.Value" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="ListItemResource5.Text" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="ListItemResource5.Value" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="ListItemResource6.Text" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="ListItemResource6.Value" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="ListItemResource7.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ListItemResource7.Value" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ListItemResource8.Text" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ListItemResource8.Value" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ListItemResource9.Text" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="ListItemResource9.Value" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="MessageLabelResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="MessageLabelResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numberOfUnits" xml:space="preserve">
-    <value>Units</value>
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>Amazon Market</value>
-  </data>
-  <data name="productId" xml:space="preserve">
-    <value>Id</value>
-  </data>
-  <data name="productName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="productPrize" xml:space="preserve">
-    <value>Prize</value>
-  </data>
-  <data name="quantity" xml:space="preserve">
-    <value>Quantity</value>
-  </data>
-  <data name="quantity.Text" xml:space="preserve">
-    <value />
   </data>
   <data name="TemplateFieldResource1.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -330,13 +183,7 @@
   <data name="TemplateFieldResource1.FooterText" xml:space="preserve">
     <value />
   </data>
-  <data name="TemplateFieldResource1.HeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource2.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource2.FooterText" xml:space="preserve">
-    <value />
+  <data name="changeDefault" xml:space="preserve">
+    <value>Change to a default card</value>
   </data>
 </root>
