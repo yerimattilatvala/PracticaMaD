@@ -19,25 +19,28 @@
             <asp:BoundField DataField="Prize" HeaderText="<%$ Resources:, productPrize %>"/>
             <asp:BoundField DataField="NumberOfUnits" HeaderText="<%$ Resources:, numberOfUnits %>"/>
             <asp:BoundField DataField="ProductId" HeaderText="<%$ Resources:, productId %>" Visible="true"/>
-            <asp:CommandField ShowSelectButton="True" SelectText="<%$ Resources:, deleteProduct %>" />           
-                <asp:TemplateField HeaderText="<%$ Resources:, quantity %>" meta:resourcekey="TemplateFieldResource2">
-                    <ItemTemplate>
-                        <asp:DropDownList ID="listaCantidades"  AutoPostBack="True" runat="server" OnSelectedIndexChanged="listaCantidades_SelectedIndexChanged">
-                            <asp:ListItem meta:resourcekey="ListItemResource7"></asp:ListItem>
-                            <asp:ListItem Value="1" meta:resourcekey="ListItemResource8">1</asp:ListItem>
-                            <asp:ListItem Value="2" meta:resourcekey="ListItemResource9">2</asp:ListItem>
-                            <asp:ListItem  Value="3" meta:resourcekey="ListItemResource10">3</asp:ListItem>
-                            <asp:ListItem  Value="4" meta:resourcekey="ListItemResource11">4</asp:ListItem>
-                            <asp:ListItem value="5" meta:resourcekey="ListItemResource12">5</asp:ListItem>
-                            <asp:ListItem Value="6" meta:resourcekey="ListItemResource13">6</asp:ListItem>
-                            <asp:ListItem Value="7" meta:resourcekey="ListItemResource14">7</asp:ListItem>
-                            <asp:ListItem Value="8" meta:resourcekey="ListItemResource15">8</asp:ListItem>
-                            <asp:ListItem Value="9" meta:resourcekey="ListItemResource16">9</asp:ListItem>
-                            <asp:ListItem Value="10" meta:resourcekey="ListItemResource17">10</asp:ListItem>
-                        </asp:DropDownList>
-                    </ItemTemplate>
-                </asp:TemplateField>
+            <asp:CheckBoxField DataField="ForGift" HeaderText="<%$ Resources:, ForGift %>" Visible="true"/>     
+            <asp:TemplateField HeaderText="<%$ Resources:, quantity %>">
+                <ItemTemplate>
+                    <asp:DropDownList ID="listaCantidades"  AutoPostBack="True" runat="server" OnSelectedIndexChanged="listaCantidades_SelectedIndexChanged">
+                        <asp:ListItem meta:resourcekey="ListItemResource7"></asp:ListItem>
+                        <asp:ListItem Value="1" meta:resourcekey="ListItemResource8">1</asp:ListItem>
+                        <asp:ListItem Value="2" meta:resourcekey="ListItemResource9">2</asp:ListItem>
+                        <asp:ListItem  Value="3" meta:resourcekey="ListItemResource10">3</asp:ListItem>
+                        <asp:ListItem  Value="4" meta:resourcekey="ListItemResource11">4</asp:ListItem>
+                        <asp:ListItem value="5" meta:resourcekey="ListItemResource12">5</asp:ListItem>
+                        <asp:ListItem Value="6" meta:resourcekey="ListItemResource13">6</asp:ListItem>
+                        <asp:ListItem Value="7" meta:resourcekey="ListItemResource14">7</asp:ListItem>
+                        <asp:ListItem Value="8" meta:resourcekey="ListItemResource15">8</asp:ListItem>
+                        <asp:ListItem Value="9" meta:resourcekey="ListItemResource16">9</asp:ListItem>
+                        <asp:ListItem Value="10" meta:resourcekey="ListItemResource17">10</asp:ListItem>
+                    </asp:DropDownList>
+                </ItemTemplate>
+            </asp:TemplateField>
+        <asp:CommandField ShowSelectButton="True" SelectText="<%$ Resources:, deleteProduct %>" />           
         </Columns>
         </asp:GridView>
+        <br />
+
     </form>
 </asp:Content>

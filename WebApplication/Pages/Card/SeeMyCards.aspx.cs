@@ -22,15 +22,6 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Card
         protected void gvAllCards_RowCreated(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
             e.Row.Cells[3].Visible = false;
-            e.Row.Cells[4].Visible = false;
-        }
-
-        protected void RadioButton1_DataBinding(object sender, EventArgs e)
-        {
-            RadioButton rb = sender as RadioButton;
-            GridViewRow gvR = rb.NamingContainer as GridViewRow;
-            if (gvR.Cells[4].Text.Equals("True"))
-                rb.Checked = true;
         }
 
             /*RadioButton rb = sender as RadioButton;

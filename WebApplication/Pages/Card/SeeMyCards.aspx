@@ -17,12 +17,7 @@
             <asp:BoundField DataField="CardType" HeaderText="<%$ Resources:, CardType %>" meta:resourcekey="BoundFieldResource2" />
             <asp:BoundField DataField="ExpirateTime" HeaderText="<%$ Resources:, ExpirateTime %>" meta:resourcekey="BoundFieldResource3" />
             <asp:BoundField DataField="CardId" HeaderText="<%$ Resources:, CardId %>" Visible="true" meta:resourcekey="BoundFieldResource4"  />
-            <asp:BoundField DataField="DefaultCard" HeaderText="<%$ Resources:, DefaultCard %>" Visible="true" meta:resourcekey="BoundFieldResource5"  />
-            <asp:TemplateField HeaderText="<%$ Resources:, DefaultCard %>" meta:resourcekey="TemplateFieldResource1">
-                <ItemTemplate>
-                    <asp:RadioButton ID="RadioButton1" OnDataBinding="RadioButton1_DataBinding" runat="server" />
-                </ItemTemplate>
-            </asp:TemplateField>
+            <asp:CheckBoxField DataField="DefaultCard" HeaderText="<%$ Resources:, DefaultCard %>" Visible="true" meta:resourcekey="BoundFieldResource5"  />
             <asp:CommandField ShowSelectButton="True" SelectText="<%$ Resources:, changeDefault %>" meta:resourcekey="BoundFieldResource5" /> 
         </Columns>
         </asp:GridView>
