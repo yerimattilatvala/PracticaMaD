@@ -14,28 +14,28 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.ShoppingCart
         {
             if (!Page.IsPostBack)
             {
+                if (SessionManager.shoppingCart.Count ==0)
+                    btnPay.Visible = false;
                 gvProductsInCard.DataSource = SessionManager.shoppingCart;
                 gvProductsInCard.DataBind();
             }
         }
         protected void BtnPayClick(object sender, EventArgs e) {
+            if (Page.IsValid)
+            {
+                if (!SessionManager.IsUserAuthenticated(Context))
+                    Response.Redirect(Response.
+                        ApplyAppPathModifier("~/Pages/User/Authentication.aspx"));
+                else
+                    Response.Redirect(Response.
+                        ApplyAppPathModifier("~/Pages/Order/ManageOrder.aspx"));
+            }
         }
         protected void gvProductsInCard_changing(object sender, GridViewSelectEventArgs e)
         {
-
             GridViewRow row = gvProductsInCard.Rows[e.NewSelectedIndex];
-
-            // You can cancel the select operation by using the Cancel
-            // property. For this example, if the user selects a customer with 
-            // the ID "ANATR", the select operation is canceled and an error message
-            // is displayed.
             long idProduct = (long)Convert.ToInt32(row.Cells[3].Text);
-            //Si seleccionamos desde la pagina de resultados siempre añadimos de 1 en 1
             SessionManager.RemoveProductOfShoppingCart(idProduct);
-            /*Label lb = Master.FindControl("lnkCart.Text") as Label;
-            lb.Text = lb.Text + "(" + SessionManager.GetNumberOfItemsShoppingCart() + ")";
-            gvProductsInCard.DataSource = SessionManager.shoppingCart;
-            gvProductsInCard.DataBind();*/
             Response.Redirect(Request.RawUrl.ToString());
         }
 
@@ -44,12 +44,9 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.ShoppingCart
             int units = Convert.ToInt32(drop.SelectedItem.Text);
             GridViewRow row = drop.NamingContainer as GridViewRow;
             long idProduct = (long)Convert.ToInt32(row.Cells[3].Text);
+            // forma chapuza de comprobar que detecta que é envolto para regalo
+            SessionManager.WrappedProductForGift(idProduct);
             SessionManager.IncrementProductUnits(idProduct, units);
-            /*Label lb = (Label)Master.FindControl("lnkCart");
-            MessageLabel.Text = "Cart" + "(" + SessionManager.GetNumberOfItemsShoppingCart() + ")";
-            lb.Text = "Cart" + "(" + SessionManager.GetNumberOfItemsShoppingCart() + ")";
-            gvProductsInCard.DataSource = SessionManager.shoppingCart;
-            gvProductsInCard.DataBind(); */
             Response.Redirect(Request.RawUrl.ToString());
         }
 

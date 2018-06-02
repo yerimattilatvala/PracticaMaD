@@ -40,7 +40,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
                     DateTime registerDate = productList.ElementAt(i).registerDate;
                     double prize = productList.ElementAt(i).prize;
                     int numberOfUnits = productList.ElementAt(i).numberOfUnits;
-                    products.Add(new ProductDetails(name, category, registerDate, prize, productId, numberOfUnits));
+                    products.Add(new ProductDetails(name, category, registerDate, prize, productId, numberOfUnits,false));
                 }
             }catch (InstanceNotFoundException e)
             {
@@ -65,7 +65,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
                     double prize = productList.ElementAt(i).prize;
                     int numberOfUnits = productList.ElementAt(i).numberOfUnits;
 
-                    products.Add(new ProductDetails(name, category, registerDate, prize, productId, numberOfUnits));
+                    products.Add(new ProductDetails(name, category, registerDate, prize, productId, numberOfUnits, false));
                 }
             }catch (InstanceNotFoundException e)
             {
@@ -90,7 +90,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
                 double prize = productList.ElementAt(i).prize;
                 int numberOfUnits = productList.ElementAt(i).numberOfUnits;
 
-                products.Add(new ProductDetails(name, category, registerDate, prize,productId,numberOfUnits));
+                products.Add(new ProductDetails(name, category, registerDate, prize,productId,numberOfUnits,false));
             }
             return products;
         }
@@ -100,7 +100,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
             Product product;
             product = ProductDao.Find(id);
             string category = CategoryDao.Find(product.categoryId).name;
-            ProductDetails productDetails = new ProductDetails(product.name,category,product.registerDate,product.prize,product.productId,product.numberOfUnits);
+            ProductDetails productDetails = new ProductDetails(product.name,category,product.registerDate,product.prize,product.productId,product.numberOfUnits,false);
             return productDetails;
         }
 

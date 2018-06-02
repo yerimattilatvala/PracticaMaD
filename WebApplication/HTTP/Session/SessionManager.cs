@@ -179,6 +179,15 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
             return value;
         }
 
+        public static void WrappedProductForGift(long productId)
+        {
+            for (int i = 0; i < shoppingCart.Count; i++)
+            {
+                if (shoppingCart.ElementAt(i).productId == productId)
+                    shoppingCart.ElementAt(i).forGift = true;
+            }
+        }
+
         /// <summary>
         /// Registers the user.
         /// </summary>

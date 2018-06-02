@@ -16,7 +16,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         public long productId { get; }
         //se necesita el set para ir actualizanndo las unidades del carrito.
         public int numberOfUnits { get; set; }
-        public ProductDetails(string name, string category, DateTime registerDate, double prize, long productId,int numberOfUnits)
+        public bool forGift { get; set; }
+        public ProductDetails(string name, string category, DateTime registerDate, double prize, long productId,int numberOfUnits,bool gift)
         {
             this.name = name;
             this.category = category;
@@ -24,6 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             this.prize = prize;
             this.productId = productId;
             this.numberOfUnits = numberOfUnits;
+            this.forGift = gift;
         }
 
         public override bool Equals(object obj)

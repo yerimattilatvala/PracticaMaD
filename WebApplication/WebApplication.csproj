@@ -188,6 +188,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Pages\Order\ManageOrder.aspx" />
+    <Content Include="Pages\Order\SeeMyOrders.aspx" />
     <Content Include="Pages\Product\ProductsResult.aspx" />
     <Content Include="Pages\ShoppingCart\ShoppingCart.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
@@ -260,6 +262,20 @@
     </Compile>
     <Compile Include="Pages\MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Order\ManageOrder.aspx.cs">
+      <DependentUpon>ManageOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Order\ManageOrder.aspx.designer.cs">
+      <DependentUpon>ManageOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Order\SeeMyOrders.aspx.cs">
+      <DependentUpon>SeeMyOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Order\SeeMyOrders.aspx.designer.cs">
+      <DependentUpon>SeeMyOrders.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Product\ProductsResult.aspx.cs">
       <DependentUpon>ProductsResult.aspx</DependentUpon>
