@@ -24,16 +24,6 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Card
             e.Row.Cells[3].Visible = false;
         }
 
-            /*RadioButton rb = sender as RadioButton;
-            rb.Checked = true;
-            GridViewRow gvR = rb.NamingContainer as GridViewRow;
-            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
-            ICardService cardService = (ICardService)iocManager.Resolve<ICardService>();
-            long idCard = Convert.ToInt32(gvR.Cells[3].Text.ToString());
-            long usrId = SessionManager.GetUserSession(Context).UserProfileId;
-            cardService.ChangeDefaultCard(usrId, 2);
-            Response.Redirect(Request.RawUrl.ToString());*/
-
         protected void gvAllCards_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];

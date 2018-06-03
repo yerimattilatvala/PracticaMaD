@@ -188,6 +188,16 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
             }
         }
 
+        public static double GetTotalPrize()
+        {
+            double prize = 0;
+            for(int i = 0; i < shoppingCart.Count; i++)
+            {
+                prize += shoppingCart.ElementAt(i).prize * shoppingCart.ElementAt(i).numberOfUnits;
+            }
+            return prize;
+        }
+
         /// <summary>
         /// Registers the user.
         /// </summary>

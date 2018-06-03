@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="ManageOrder.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order.ManageOrder" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="ManageOrder.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order.ManageOrder" meta:resourcekey="PageResource1" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation" runat="server">
        -
@@ -9,20 +9,102 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <br />
     <form runat="server">
-         <asp:GridView ID="gvProductsToPay"  runat="server" CssClass="productsResult"
+        <br />
+        <div>
+        <span>
+            <asp:Localize ID="lclIntroducePostalAddress" runat="server" meta:resourcekey="lclIntroducePostalAddressResource1"/>
+        </span>
+        </div>
+            <div class="field">
+                <span class="label">
+                    <asp:Localize ID="lclPostalAddress" runat="server" meta:resourcekey="lclPostalAddressResource1"  /></span><span
+                        class="entry">
+                        <asp:TextBox ID="txtPostalAddress" runat="server" Width="100px" Columns="16" meta:resourcekey="txtPostalAddressResource1" ></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvPostalAddress" runat="server" ControlToValidate="txtPostalAddress"
+                            Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>" meta:resourcekey="rfvPostalAddressResource2" ></asp:RequiredFieldValidator>
+                        <asp:CompareValidator ID="cvPostalAddress" runat="server" ControlToValidate="txtPostalAddress" Type="Integer"
+                         Operator="DataTypeCheck" ErrorMessage="<%$ Resources:Common, integerField %>" meta:resourcekey="cvPostalAddressResource2"  /></span>
+        </div>
+        <br />
+        <div>
+        <span>
+            <asp:Label ID="lclSelectPayMethod" runat="server" meta:resourcekey="lclSelectPayMethodResource1"  />
+        </span>
+        </div>
+        <br />
+        <asp:GridView ID="gvAllCards"  runat="server" CssClass="productsResult"
+            AutoGenerateColumns="False"
+            OnRowCreated="gvAllCards_RowCreated"
+            OnSelectedIndexChanging="gvAllCards_SelectedIndexChanging"
+            ShowHeaderWhenEmpty="True" meta:resourcekey="gvAllCardsResource2" >
+            <Columns>
+            <asp:BoundField DataField="CardNumber"  HeaderText="<%$ Resources:, CardNumber %>" meta:resourcekey="BoundFieldResource10"  />
+            <asp:BoundField DataField="CardType" HeaderText="<%$ Resources:, CardType %>" meta:resourcekey="BoundFieldResource11" />
+            <asp:BoundField DataField="ExpirateTime" HeaderText="<%$ Resources:, ExpirateTime %>" meta:resourcekey="BoundFieldResource12"  />
+            <asp:BoundField DataField="CardId" HeaderText="<%$ Resources:, CardId %>" Visible="true" meta:resourcekey="BoundFieldResource13" />
+            <asp:CheckBoxField DataField="DefaultCard" HeaderText="<%$ Resources:, DefaultCard %>" Visible="true" meta:resourcekey="CheckBoxFieldResource2"   />
+            <asp:CommandField ShowSelectButton="True" SelectText="<%$ Resources:, changeDefault %>" meta:resourcekey="CommandFieldResource2"  /> 
+        </Columns>
+        </asp:GridView>
+        <br />
+            <div id="form">
+                <div class="field">
+                <span class="label">
+                    <asp:Localize Visible="false" ID="lclId" runat="server" meta:resourcekey="lclIdResource2" /></span><span
+                        class="entry">
+                        <asp:TextBox Visible="false" ID="txtId" runat="server" Width="100px" Columns="16" meta:resourcekey="txtIdResource2"  ></asp:TextBox>
+                       </span>
+            </div>
+            <div class="field">
+                <span class="label">
+                    <asp:Localize ID="lclCardNumber" runat="server" meta:resourcekey="lclCardNumberResource2" /></span><span
+                        class="entry">
+                        <asp:TextBox ID="txtCardNumber" runat="server" Width="100px" Columns="16" meta:resourcekey="txtCardNumberResource2"  ></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvCardNumber" runat="server" ControlToValidate="txtCardNumber"
+                            Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>" meta:resourcekey="rfvCardNumberResource2"></asp:RequiredFieldValidator>
+                       </span>
+            </div>
+            <div class="field">
+                <span class="label">
+                    <asp:Localize ID="lclCardType" runat="server" meta:resourcekey="lclCardTypeResource2"  /></span><span
+                        class="entry">
+                        <asp:TextBox ID="txtType" runat="server" 
+                    Width="100px" Columns="16" meta:resourcekey="txtTypeResource1"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvType" runat="server" ControlToValidate="txtType"
+                            Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>" meta:resourcekey="rfvTypeResource2"  ></asp:RequiredFieldValidator></span>
+            </div>
+            <div class="field">
+                <span class="label">
+                    <asp:Localize ID="lclExpirationTime" runat="server" meta:resourcekey="lclExpirationTimeResource2"  /></span><span
+                        class="entry">
+                        <asp:TextBox ID="txtExpirationTime" runat="server" Width="100px" 
+                    Columns="16" meta:resourcekey="txtExpirationTimeResource2" ></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvExpirationTime" runat="server" ControlToValidate="txtExpirationTime"
+                            Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>" meta:resourcekey="rfvExpirationTimeResource2"  ></asp:RequiredFieldValidator></span>
+            </div>
+    </div>
+        <br />
+        
+        <div>
+        <span>
+            <asp:Label ID="lclProductsToPay" runat="server" meta:resourcekey="lclProductsToPayResource1" />
+        </span>
+        </div>
+        <br />
+        <asp:GridView ID="gvProductsToPay"  runat="server" CssClass="productsResult"
             AutoGenerateColumns="False"
              OnRowCreated="gvProductsToPay_RowCreated"
              OnSelectedIndexChanging="gvProductsToPay_SelectedIndexChanging"
-            ShowHeaderWhenEmpty="True">
+            ShowHeaderWhenEmpty="True" meta:resourcekey="gvProductsToPayResource2">
             <Columns>
-            <asp:BoundField DataField="Name"  HeaderText="<%$ Resources:, productName %>"/>
-            <asp:BoundField DataField="Prize" HeaderText="<%$ Resources:, productPrize %>"/>
-            <asp:BoundField DataField="NumberOfUnits" HeaderText="<%$ Resources:, numberOfUnits %>"/>
-            <asp:BoundField DataField="ProductId" HeaderText="<%$ Resources:, productId %>" Visible="true"/>
-            <asp:CheckBoxField DataField="ForGift" HeaderText="<%$ Resources:, ForGift %>" Visible="true"/>     
-            <asp:TemplateField HeaderText="<%$ Resources:, quantity %>">
+            <asp:BoundField DataField="Name"  HeaderText="<%$ Resources:, productName %>" meta:resourcekey="BoundFieldResource14" />
+            <asp:BoundField DataField="Prize" HeaderText="<%$ Resources:, productPrize %>" meta:resourcekey="BoundFieldResource15" />
+            <asp:BoundField DataField="NumberOfUnits" HeaderText="<%$ Resources:, numberOfUnits %>" meta:resourcekey="BoundFieldResource16" />
+            <asp:BoundField DataField="ProductId" HeaderText="<%$ Resources:, productId %>" Visible="true" meta:resourcekey="BoundFieldResource17" />
+            <asp:CheckBoxField DataField="ForGift" HeaderText="<%$ Resources:, ForGift %>" Visible="true" meta:resourcekey="CheckBoxFieldResource3" />     
+            <asp:TemplateField HeaderText="<%$ Resources:, quantity %>" meta:resourcekey="TemplateFieldResource2">
                 <ItemTemplate>
-                    <asp:DropDownList ID="listaCantidades"  AutoPostBack="True" runat="server" OnSelectedIndexChanged="listaCantidades_SelectedIndexChanged">
+                    <asp:DropDownList ID="listaCantidades"  AutoPostBack="True" runat="server"  OnSelectedIndexChanged="listaCantidades_SelectedIndexChanged" meta:resourcekey="listaCantidadesResource2">
                         <asp:ListItem meta:resourcekey="ListItemResource7"></asp:ListItem>
                         <asp:ListItem Value="1" meta:resourcekey="ListItemResource8">1</asp:ListItem>
                         <asp:ListItem Value="2" meta:resourcekey="ListItemResource9">2</asp:ListItem>
@@ -37,10 +119,19 @@
                     </asp:DropDownList>
                 </ItemTemplate>
             </asp:TemplateField>
-        <asp:CommandField ShowSelectButton="True" SelectText="<%$ Resources:, deleteProduct %>" />           
+        <asp:CommandField ShowSelectButton="True" SelectText="<%$ Resources:, deleteProduct %>" meta:resourcekey="CommandFieldResource3"/>           
         </Columns>
         </asp:GridView>
         <br />
-
+            <div class="field">
+                <span class ="field">
+                    <asp:Localize ID="lclPrize" runat="server" meta:resourcekey="lclPrizeResource1" /></span>
+                <asp:TextBox ID="txtPrizeTotal" ReadOnly="True" runat="server" meta:resourcekey="txtPrizeTotalResource2"></asp:TextBox>
+            </div>
+        <br />
+            <div class="button">
+                <asp:Button ID="btnToPay" runat="server" OnClick="btnToPay_Click" meta:resourcekey="btnToPayResource1" />
+            </div>
     </form>
+    <br />
 </asp:Content>

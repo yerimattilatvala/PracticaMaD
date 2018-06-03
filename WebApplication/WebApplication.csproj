@@ -385,6 +385,9 @@
   <ItemGroup>
     <Content Include="Pages\Card\App_LocalResources\SeeMyCards.aspx.resx" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Order\App_LocalResources\ManageOrder.aspx.resx" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

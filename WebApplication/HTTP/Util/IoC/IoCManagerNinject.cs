@@ -8,6 +8,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.UserService;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
+using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
@@ -45,6 +46,10 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Util.IoC
             /* OrderDao */
             kernel.Bind<IOrderDao>().
                 To<OrderDaoEntityFramework>();
+
+            /* OrderLineDao */
+            kernel.Bind<IOrderLineDao>().
+                To<OrderLineDaoEntityFramework>();
 
             /* OrderService */
             kernel.Bind<IOrderService>().

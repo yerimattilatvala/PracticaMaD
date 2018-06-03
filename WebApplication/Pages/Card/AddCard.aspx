@@ -5,7 +5,6 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <div id="form">
-        <form id="RegisterForm" method="post" runat="server">
             <div class="field">
                 <span class="label">
                     <asp:Localize ID="lclCardNumber" runat="server" meta:resourcekey="lclCardNumberResource1"/></span><span
@@ -45,6 +44,5 @@
             <div class="button">
                 <asp:Button ID="btnAddCard" runat="server" OnClick="btnAddCard_Click" meta:resourcekey="btnAddCardResource1"/>
             </div>
-        </form>
     </div>
 </asp:Content>
