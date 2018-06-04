@@ -89,5 +89,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService
             }
             return ordersDetails;
         }
+
+        public OrderDetails FindOrder(long orderId)
+        {
+            Order order = OrderDao.Find(orderId);
+            OrderDetails orderDetails = new OrderDetails(order.orderId,order.usrId,CardDao.Find(order.idCard).cardNumber,order.postalAddress,order.orderDate);
+            return orderDetails;
+        }
     }
 }

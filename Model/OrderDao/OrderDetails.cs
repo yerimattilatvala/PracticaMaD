@@ -21,7 +21,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 
         public DateTime OrderDate { get; }
 
-        public List<OrderLineDetails> OrderLines;
+        public List<OrderLineDetails> OrderLines { get; }
+        
+        public int NumberOfProducts { get; }
         #endregion
         public OrderDetails(long orderId,long usrId,string cardNumber, int postalAddress,DateTime orderDate,List<OrderLineDetails> orderLines)
         {
@@ -31,6 +33,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
             this.PostalAddress = postalAddress;
             this.OrderDate = orderDate;
             this.OrderLines = orderLines;
+            this.NumberOfProducts = this.OrderLines.Count;
         }
 
         public OrderDetails(long orderId, long usrId, string cardNumber, int postalAddress, DateTime orderDate)

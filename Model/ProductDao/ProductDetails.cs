@@ -28,6 +28,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             this.forGift = gift;
         }
 
+        public ProductDetails(string name, string category, DateTime registerDate, double prize, long productId, int numberOfUnits)
+        {
+            this.name = name;
+            this.category = category;
+            this.registerDate = registerDate;
+            this.prize = prize;
+            this.productId = productId;
+            this.numberOfUnits = numberOfUnits;
+        }
+
         public override bool Equals(object obj)
         {
             var details = obj as ProductDetails;

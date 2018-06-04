@@ -66,7 +66,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             kernel.Bind<ICategoryService>().
                 To<CategoryService>();
 
-            kernel.Bind<IProductService>().
+            kernel.Bind<ProductService>().
                 To<ProductService>();
 
             string connectionString =

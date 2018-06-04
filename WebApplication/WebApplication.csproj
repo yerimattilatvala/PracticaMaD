@@ -189,6 +189,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Pages\Order\ManageOrder.aspx" />
+    <Content Include="Pages\Order\OrderDetail.aspx" />
     <Content Include="Pages\Order\SeeMyOrders.aspx" />
     <Content Include="Pages\Product\ProductsResult.aspx" />
     <Content Include="Pages\ShoppingCart\ShoppingCart.aspx" />
@@ -269,6 +270,13 @@
     </Compile>
     <Compile Include="Pages\Order\ManageOrder.aspx.designer.cs">
       <DependentUpon>ManageOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Order\OrderDetail.aspx.cs">
+      <DependentUpon>OrderDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Order\OrderDetail.aspx.designer.cs">
+      <DependentUpon>OrderDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Order\SeeMyOrders.aspx.cs">
       <DependentUpon>SeeMyOrders.aspx</DependentUpon>
@@ -387,6 +395,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Order\App_LocalResources\ManageOrder.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Order\App_LocalResources\SeeMyOrders.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Order\App_LocalResources\OrderDetail.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

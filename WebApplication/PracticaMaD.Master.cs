@@ -30,6 +30,8 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication
                     lnlkAddCard.Visible = false;
                 if (lnkCards != null)
                     lnkCards.Visible = false;
+                if (lnlOrders != null)
+                    lnlOrders.Visible = false;
             }
             else
             {
@@ -45,6 +47,8 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication
                     lnlkAddCard.Visible = true;
                 if (lnkCards != null)
                     lnkCards.Visible = true;
+                if (lnlOrders != null)
+                    lnlOrders.Visible = true;
             }
             if (SessionManager.shoppingCart == null)
             {

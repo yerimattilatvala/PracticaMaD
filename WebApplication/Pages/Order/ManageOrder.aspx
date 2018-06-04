@@ -59,7 +59,7 @@
                 <span class="label">
                     <asp:Localize ID="lclCardNumber" runat="server" meta:resourcekey="lclCardNumberResource2" /></span><span
                         class="entry">
-                        <asp:TextBox ID="txtCardNumber" runat="server" Width="100px" Columns="16" meta:resourcekey="txtCardNumberResource2"  ></asp:TextBox>
+                        <asp:TextBox ID="txtCardNumber" ReadOnly="true" runat ="server" Width="100px" Columns="16" meta:resourcekey="txtCardNumberResource2"  ></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvCardNumber" runat="server" ControlToValidate="txtCardNumber"
                             Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>" meta:resourcekey="rfvCardNumberResource2"></asp:RequiredFieldValidator>
                        </span>
@@ -68,7 +68,7 @@
                 <span class="label">
                     <asp:Localize ID="lclCardType" runat="server" meta:resourcekey="lclCardTypeResource2"  /></span><span
                         class="entry">
-                        <asp:TextBox ID="txtType" runat="server" 
+                        <asp:TextBox ID="txtType" ReadOnly="true" runat="server" 
                     Width="100px" Columns="16" meta:resourcekey="txtTypeResource1"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvType" runat="server" ControlToValidate="txtType"
                             Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>" meta:resourcekey="rfvTypeResource2"  ></asp:RequiredFieldValidator></span>
@@ -77,7 +77,7 @@
                 <span class="label">
                     <asp:Localize ID="lclExpirationTime" runat="server" meta:resourcekey="lclExpirationTimeResource2"  /></span><span
                         class="entry">
-                        <asp:TextBox ID="txtExpirationTime" runat="server" Width="100px" 
+                        <asp:TextBox ID="txtExpirationTime" ReadOnly="true" runat="server" Width="100px" 
                     Columns="16" meta:resourcekey="txtExpirationTimeResource2" ></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvExpirationTime" runat="server" ControlToValidate="txtExpirationTime"
                             Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>" meta:resourcekey="rfvExpirationTimeResource2"  ></asp:RequiredFieldValidator></span>

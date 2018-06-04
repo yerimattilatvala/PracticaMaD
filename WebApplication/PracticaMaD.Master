@@ -42,6 +42,8 @@
                         <asp:Label ID="Label1" runat="server" Text="-" meta:resourcekey="lblDash3Resource1" />
                         <asp:HyperLink ID="lnlkAddCard" runat="server" meta:resourcekey="lnlkAddCard" NavigateUrl="~/Pages/Card/AddCard.aspx" >[lnlkAddCard]</asp:HyperLink>
                         <asp:Label ID="Label2" runat="server" Text="-" meta:resourcekey="lblDash3Resource1" />
+                        <asp:HyperLink ID="lnlOrders" runat="server" meta:resourcekey="lnlOrders" NavigateUrl="~/Pages/Order/SeeMyOrders.aspx" >[lnlOrders]</asp:HyperLink>
+                        <asp:Label ID="Label3" runat="server" Text="-" meta:resourcekey="lblDash3Resource1" />
                         <asp:HyperLink ID="lnkLogout" runat="server" meta:resourcekey="lnkLogout" NavigateUrl="~/Pages/User/Logout.aspx" >[lnkLogout]</asp:HyperLink>
                         <asp:HyperLink ID="lnkCart" runat="server" meta:resourcekey="lnkCart" CssClass="cart" NavigateUrl="~/Pages/ShoppingCart/ShoppingCart.aspx" >[lnkCart] </asp:HyperLink>
                 </asp:ContentPlaceHolder>

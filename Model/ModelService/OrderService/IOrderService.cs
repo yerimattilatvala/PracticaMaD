@@ -31,5 +31,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService
 
         [Transactional]
         List<OrderDetails> ViewOrdersByUser(long usrId);
+
+        [Transactional]
+        OrderDetails FindOrder(long orderId);
     }
 }

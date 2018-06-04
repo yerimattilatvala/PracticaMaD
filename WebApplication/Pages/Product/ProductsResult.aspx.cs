@@ -23,7 +23,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
             {
                 pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
                 //Esto lo deberia de coger desde settings.settigns pero me daba error , CAMBIARLO LUEGO
-                Type type = typeof(IProductService);
+                Type type = typeof(ProductService);
                 string assemblyQualifiedName = type.AssemblyQualifiedName;
                 pbpDataSource.TypeName = assemblyQualifiedName;
 
@@ -77,9 +77,9 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
 
             /* Get the Service */
             IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
-            IProductService productService = (IProductService)iocManager.Resolve<IProductService>();
+            ProductService productService = (ProductService)iocManager.Resolve<ProductService>();
 
-            e.ObjectInstance = (IProductService)productService;
+            e.ObjectInstance = (ProductService)productService;
         }
 
         protected void gvProductsResult_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)

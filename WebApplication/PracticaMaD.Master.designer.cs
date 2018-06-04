@@ -139,6 +139,24 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
+        /// Control lnlOrders.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnlOrders;
+        
+        /// <summary>
+        /// Control Label3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
         /// Control lnkLogout.
         /// </summary>
         /// <remarks>
