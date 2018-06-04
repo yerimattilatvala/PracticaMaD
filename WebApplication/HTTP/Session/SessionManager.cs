@@ -95,7 +95,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
                "userSession";
 
         private static IUserService userService;
-        private static ProductService productService;
+        private static IProductService productService;
         private static ICategoryService categoryService;
 
         public IUserService UserService
@@ -103,7 +103,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
             set { userService = value; }
         }
 
-        public ProductService ProductService
+        public IProductService ProductService
         {
             set { productService = value;  }
         }
@@ -121,7 +121,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
 
             shoppingCart = new List<ProductDetails>();
             userService = iocManager.Resolve<IUserService>();
-            productService = iocManager.Resolve<ProductService>();
+            productService = iocManager.Resolve<IProductService>();
             categoryService = iocManager.Resolve<ICategoryService>();
         }
 

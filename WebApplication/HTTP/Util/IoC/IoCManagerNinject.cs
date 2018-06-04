@@ -41,7 +41,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Util.IoC
                 To<ProductDaoEntityFramework>();
 
             /* ProductService */
-            kernel.Bind<ProductService>().
+            kernel.Bind<IProductService>().
                 To<ProductService>();
 
             /* OrderDao */
