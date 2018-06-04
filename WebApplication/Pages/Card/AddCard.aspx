@@ -4,6 +4,7 @@
     <asp:Localize ID="lclMenuExplanation" runat="server" meta:resourcekey="lclMenuExplanation" />
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
+    <form runat="server">
     <div id="form">
             <div class="field">
                 <span class="label">
@@ -45,4 +46,5 @@
                 <asp:Button ID="btnAddCard" runat="server" OnClick="btnAddCard_Click" meta:resourcekey="btnAddCardResource1"/>
             </div>
     </div>
+    </form>
 </asp:Content>
