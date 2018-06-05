@@ -27,7 +27,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService
         IOrderLineDao OrderLineDao { set; }
 
         [Transactional]
-        OrderDetails GenerateOrder(long userProfileId, long idCard, int postalAddress, List<ProductDetails> productList);
+        long GenerateOrder(long userProfileId, long idCard, int postalAddress, List<ProductDetails> productList);
 
         [Transactional]
         List<OrderDetails> ViewOrdersByUser(long usrId);

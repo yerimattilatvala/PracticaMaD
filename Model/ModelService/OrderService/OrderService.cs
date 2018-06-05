@@ -30,7 +30,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService
         public IOrderDao OrderDao { private get; set; }
 
         [Transactional]
-        public OrderDetails GenerateOrder(long usrId, long idCard, int postalAddress, List<ProductDetails> productList)
+        public long GenerateOrder(long usrId, long idCard, int postalAddress, List<ProductDetails> productList)
         {
             Order order = new Order();
             order.usrId = usrId;
@@ -56,7 +56,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService
                 orderLine.unitPrize = product.prize;
                 OrderLineDao.Create(orderLine);
             }
-            return new OrderDetails(orderId, usrId, CardDao.Find(idCard).cardNumber, order.postalAddress, order.orderDate);
+            return orderId;
         }
 
         [Transactional]

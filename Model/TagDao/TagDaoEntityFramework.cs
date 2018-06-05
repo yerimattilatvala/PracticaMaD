@@ -11,7 +11,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
         {
             List<Tag> tags = null;
 
-            string sqlQuery = "Select top " +n.ToString() +" timesUsed, name FROM Tag Order by timesUsed desc";
+            string sqlQuery = "Select top " +n.ToString() +" * FROM Tag Order by timesUsed desc";
 
             tags = Context.Database.SqlQuery<Tag>(sqlQuery).ToList<Tag>();
 

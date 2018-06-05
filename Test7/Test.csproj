@@ -100,7 +100,10 @@
   <ItemGroup>
     <Compile Include="ICardServiceTest\ICardServiceTest.cs" />
     <Compile Include="ICategoryServiceTest\ICategoryServiceTest.cs" />
+    <Compile Include="IOrderServiceTest\IOrderServiceTest.cs" />
     <Compile Include="IProductServiceTest\IProductServiceTest.cs" />
+    <Compile Include="ITagServiceTest\ITagServiceTest.cs" />
+    <Compile Include="IUserServiceTest\IUserServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestManager.cs" />
   </ItemGroup>
