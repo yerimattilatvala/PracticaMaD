@@ -1,6 +1,6 @@
 ﻿using Es.Udc.DotNet.ModelUtil.IoC;
-using Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderLineService;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService;
+using Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
@@ -18,12 +18,12 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order
         protected void Page_Load(object sender, EventArgs e)
         {
             IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
-            IOrderLineService orderLineService = (IOrderLineService)iocManager.Resolve<IOrderLineService>();
+            IProductService productService = (IProductService)iocManager.Resolve<IProductService>();
             IOrderService orderService = (IOrderService)iocManager.Resolve<IOrderService>();
 
             //Cogemos los keywords
             long orderId = (long)Convert.ToInt32(Request.Params.Get("orderId"));
-            List<ProductDetails> products = orderLineService.GetOrderLineProductsByOrderId(orderId);
+            List<ProductDetails> products = productService.GetOrderLineProductsByOrderId(orderId);
             double prize = 0;
             for (int i = 0; i < products.Count; i++)
             {

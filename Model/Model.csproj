@@ -120,8 +120,6 @@
     <Compile Include="ModelService\CategoryService\ICategoryService.cs" />
     <Compile Include="ModelService\Exceptions\IncorrectPasswordException.cs" />
     <Compile Include="ModelService\Exceptions\InsuficientNumberOfUnitsException.cs" />
-    <Compile Include="ModelService\OrderLineService\IOrderLineService.cs" />
-    <Compile Include="ModelService\OrderLineService\OrderLineService.cs" />
     <Compile Include="ModelService\OrderService\IOrderService.cs" />
     <Compile Include="ModelService\OrderService\OrderService.cs" />
     <Compile Include="ModelService\ProductService\IProductService.cs" />

@@ -1,5 +1,6 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Ninject;
@@ -13,6 +14,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
 {
     public interface IProductService
     {
+        [Inject]
+        IOrderDao OrderDao { set; }
+
         [Inject]
         IProductDao ProductDao { set; }
 
@@ -39,5 +43,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
 
         [Transactional]
         ProductDetails FindProduct(long id);
+
+        [Transactional]
+        List<ProductDetails> GetOrderLineProductsByOrderId(long orderId);
     }
 }

@@ -3,7 +3,6 @@ using Es.Udc.DotNet.PracticaMaD.Model.CardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.CategoryService;
-using Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderLineService;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService;
@@ -51,10 +50,6 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Util.IoC
             /* OrderLineDao */
             kernel.Bind<IOrderLineDao>().
                 To<OrderLineDaoEntityFramework>();
-
-            /* OrderLineService */
-            kernel.Bind<IOrderLineService>().
-                To<OrderLineService>();
 
             /* OrderService */
             kernel.Bind<IOrderService>().

@@ -9,6 +9,7 @@ using Ninject;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
 {
@@ -16,6 +17,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
     {
         [Inject]
         public IProductDao ProductDao { private get; set; }
+
+        [Inject]
+        public IOrderDao OrderDao { private get; set; }
 
         [Inject]
         public ICategoryDao CategoryDao { private get; set; }
@@ -129,6 +133,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
 
             }
             return result;
+        }
+
+        [Transactional]
+        public List<ProductDetails> GetOrderLineProductsByOrderId(long orderId)
+        {
+            Order order = OrderDao.Find(orderId);
+            List<ProductDetails> productsDetails = new List<ProductDetails>();
+
+            for (int i = 0; i < order.OrderLines.Count; i++)
+            {
+                Product p = ProductDao.Find(order.OrderLines.ElementAt(i).productId);
+                ProductDetails productDetails = new ProductDetails(p.name, CategoryDao.Find(p.categoryId).name, p.registerDate, order.OrderLines.ElementAt(i).unitPrize, p.productId, order.OrderLines.ElementAt(i).numberOfUnits);
+                productsDetails.Add(productDetails);
+            }
+
+            return productsDetails;
         }
     }
 }
