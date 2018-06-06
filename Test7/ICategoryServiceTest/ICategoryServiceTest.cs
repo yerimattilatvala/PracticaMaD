@@ -77,21 +77,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.ICategoryServiceTest
         [TestMethod()]
         public void GetAllCategoriesTest()
         {
-            Category cat1 = new Category();
-            cat1.name = "Music";
-            Category cat2 = new Category();
-            cat2.name = "Book";
+            using (TransactionScope scope = new TransactionScope())
+            {
+                Category cat1 = new Category();
+                cat1.name = "Music";
+                Category cat2 = new Category();
+                cat2.name = "Book";
 
-            // Add categories
-            categoryDao.Create(cat1);
-            categoryDao.Create(cat2);
+                // Add categories
+                categoryDao.Create(cat1);
+                categoryDao.Create(cat2);
 
-            // Extract all categories
-            List<Category> categories = categoryService.GetAllCategories();
+                // Extract all categories
+                List<Category> categories = categoryService.GetAllCategories();
 
-            // Check data
-            Assert.AreEqual(cat1.name, categories[0].name);
-            Assert.AreEqual(cat2.name, categories[1].name);
+                // Check the data
+                Assert.AreEqual(cat1.name, categories[0].name);
+                Assert.AreEqual(cat2.name, categories[1].name);
+            }
         }
     }
 }

@@ -29,7 +29,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService
             {
                 string name = tagList.ElementAt(i).name;
                 long times = tagList.ElementAt(i).timesUsed;
-                tags.Add(new TagDetails(name,times));
+                long tagId = tagList.ElementAt(i).tagId;
+                tags.Add(new TagDetails(tagId, name, times));
             }
 
             return tags;
@@ -46,7 +47,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService
             {
                 string name = tagList.ElementAt(i).name;
                 long times = tagList.ElementAt(i).timesUsed;
-                tags.Add(new TagDetails(name, times));
+                long tagId = tagList.ElementAt(i).tagId;
+                tags.Add(new TagDetails(tagId,name, times));
             }
 
             return tags;
@@ -63,8 +65,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService
             tag.Products.Add(product);
             TagDao.Update(tag);
 
-            product.Tags.Add(tag);
-            ProductDao.Update(product);
+            /*product.Tags.Add(tag);
+            ProductDao.Update(product);*/
         }
     }
 }
