@@ -10,7 +10,7 @@
             OnRowCreated="gvProductsInCard_RowCreated"
             ShowHeaderWhenEmpty="True"  meta:resourcekey="gvProductsInCard">
             <Columns>
-            <asp:BoundField DataField="Name"  HeaderText="<%$ Resources:, productName %>" meta:resourcekey="BoundFieldResource1"/>
+            <asp:HyperLinkField DataTextField="Name" HeaderText="<%$ Resources:, productName %>" meta:resourcekey="BoundFieldResource1" DataNavigateUrlFields="ProductId" DataNavigateUrlFormatString="~/Pages/Product/ProductDetails.aspx?productId={0}" />
             <asp:BoundField DataField="Prize" HeaderText="<%$ Resources:, productPrize %>" meta:resourcekey="BoundFieldResource2"/>
             <asp:BoundField DataField="NumberOfUnits" HeaderText="<%$ Resources:, numberOfUnits %>" meta:resourcekey="BoundFieldResource3"/>
             <asp:BoundField DataField="ProductId" HeaderText="<%$ Resources:, productId %>" Visible="true"  meta:resourcekey="BoundFieldResource4" />

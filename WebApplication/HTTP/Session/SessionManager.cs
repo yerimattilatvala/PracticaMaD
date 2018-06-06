@@ -14,6 +14,8 @@ using Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.CategoryService;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using System.Linq;
+using Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService;
+using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
 {
@@ -97,6 +99,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
         private static IUserService userService;
         private static IProductService productService;
         private static ICategoryService categoryService;
+        private static ITagService tagService;
 
         public static IUserService UserService
         {
@@ -116,6 +119,11 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
             get { return categoryService; }
         }
 
+        public static ITagService TagService
+        {
+            set { tagService = value; }
+            get { return tagService; }
+        }
 
         static SessionManager()
         {
@@ -126,11 +134,17 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
             UserService = iocManager.Resolve<IUserService>();
             ProductService = iocManager.Resolve<IProductService>();
             CategoryService = iocManager.Resolve<ICategoryService>();
+            TagService = iocManager.Resolve<ITagService>();
         }
 
         public static List<Category> GetAllCategories()
         {
             return CategoryService.GetAllCategories();
+        }
+
+        public static List<TagDetails> GetAllTags()
+        {
+            return TagService.GetAllTags();
         }
         
         public static void AddToShoppingCart(long id,int numberOfElements)

@@ -21,5 +21,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
             this.timesUsed = times;
             this.tagId = tagId;
         }
+
+        public TagDetails(string name)
+        {
+            this.name = name;
+        }
     }
 }

@@ -61,12 +61,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService
 
             Tag tag = TagDao.Find(tagId);
 
-            tag.timesUsed += 1;
-            tag.Products.Add(product);
-            TagDao.Update(tag);
+            if (!product.Tags.Contains(tag))
+            {
+                tag.timesUsed += 1;
+                tag.Products.Add(product);
+                TagDao.Update(tag);
+            }
+        }
 
-            /*product.Tags.Add(tag);
-            ProductDao.Update(product);*/
+        public List<TagDetails> GetTagsByProduct(long productId)
+        {
+            Product product = ProductDao.Find(productId);
+            List<TagDetails> tags = new List<TagDetails>();
+            List<Tag> productTags = product.Tags.ToList();
+
+            for (int i = 0; i < productTags.Count; i++)
+                tags.Add(new TagDetails(productTags.ElementAt(i).tagId, productTags.ElementAt(i).name, productTags.ElementAt(i).timesUsed));
+            return tags;
+        }
+
+        public long AddNewTag(TagDetails newTag)
+        {
+            Tag tag = new Tag();
+            tag.name = newTag.name;
+            tag.timesUsed = 0;
+            TagDao.Create(tag);
+            return tag.tagId;
         }
     }
 }

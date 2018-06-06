@@ -26,5 +26,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService
 
         [Transactional]
         void TagProduct(long productId, long tagId);
+
+        [Transactional]
+        List<TagDetails> GetTagsByProduct(long productId);
+
+        [Transactional]
+        long AddNewTag(TagDetails newTag);
     }
 }
