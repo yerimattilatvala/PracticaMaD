@@ -98,19 +98,22 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
         private static IProductService productService;
         private static ICategoryService categoryService;
 
-        public IUserService UserService
+        public static IUserService UserService
         {
             set { userService = value; }
+            get { return userService; }
         }
 
-        public IProductService ProductService
+        public static IProductService ProductService
         {
             set { productService = value;  }
+            get { return productService; }
         }
 
-        public ICategoryService CategoryService
+        public static ICategoryService CategoryService
         {
             set { categoryService = value; }
+            get { return categoryService; }
         }
 
 
@@ -120,19 +123,19 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
                 (IIoCManager)HttpContext.Current.Application["managerIoC"];
 
             shoppingCart = new List<ProductDetails>();
-            userService = iocManager.Resolve<IUserService>();
-            productService = iocManager.Resolve<IProductService>();
-            categoryService = iocManager.Resolve<ICategoryService>();
+            UserService = iocManager.Resolve<IUserService>();
+            ProductService = iocManager.Resolve<IProductService>();
+            CategoryService = iocManager.Resolve<ICategoryService>();
         }
 
         public static List<Category> GetAllCategories()
         {
-            return categoryService.GetAllCategories();
+            return CategoryService.GetAllCategories();
         }
         
         public static void AddToShoppingCart(long id,int numberOfElements)
         {
-            ProductDetails productDetails = productService.FindProduct(id);
+            ProductDetails productDetails = ProductService.GetProductDetails(id);
 
             //el contains solo compara por productId ya se ha sobreescrito el equals
             if (shoppingCart.Contains(productDetails))
@@ -212,7 +215,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
         {
             
             /* Register user. */
-            long usrId = userService.RegisterUser(loginName, clearPassword,
+            long usrId = UserService.RegisterUser(loginName, clearPassword,
                 userProfileDetails);
 
             /* Insert necessary objects in the session. */
@@ -274,7 +277,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
         {
 
             LoginResult loginResult =
-                userService.Login(loginName, password,
+                UserService.Login(loginName, password,
                     passwordIsEncrypted);
 
             /* Insert necessary objects in the session. */
@@ -370,7 +373,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
                 (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
 
             UserProfileDetails userProfileDetails = 
-                userService.FindUserProfileDetails(userSession.UserProfileId);
+                UserService.FindUserProfileDetails(userSession.UserProfileId);
 
             return userProfileDetails;
         }
@@ -402,7 +405,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
             UserSession userSession =
                 (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
 
-            userService.ChangePassword(userSession.UserProfileId,
+            UserService.ChangePassword(userSession.UserProfileId,
                 oldClearPassword, newClearPassword);
 
             /* Remove cookies. */

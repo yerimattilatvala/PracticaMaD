@@ -76,7 +76,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService
             try
             {
                 userProfile = UserProfileDao.Find(userProfileId);
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             } catch (InstanceNotFoundException e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 new InstanceNotFoundException(userProfileId,"Usuario no encontrado");
             }
@@ -95,7 +97,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService
             {
 
                 card = CardDao.Find(cardID);
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             } catch(InstanceNotFoundException e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 new InstanceNotFoundException(cardID, "Trajeta no encontrada");
             }

@@ -17,7 +17,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.ICategoryServiceTest
         private static IKernel kernel;
         private static ICategoryDao categoryDao;
         private static ICategoryService categoryService;
+#pragma warning disable CS0169 // El campo 'ICategoryServiceTest.transaction' nunca se usa
         TransactionScope transaction;
+#pragma warning restore CS0169 // El campo 'ICategoryServiceTest.transaction' nunca se usa
         private TestContext testContextInstance;
 
         /// <summary>

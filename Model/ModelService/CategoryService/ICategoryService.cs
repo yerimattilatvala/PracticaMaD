@@ -16,6 +16,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CategoryService
 
         [Transactional]
         List<Category> GetAllCategories();
+        [Transactional]
+        Category GetCategory(long categoryId);
 
     }
 }

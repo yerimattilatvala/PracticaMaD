@@ -19,14 +19,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CategoryService
         {
             List<Category> categories = CategoryDao.GetAllElements();
             return categories;
-           /* List<string> categoriesName = new List<string>();
+        }
 
-            for (int i = 0; i < categories.Count; i++)
-            {
-                categoriesName.Add(categories.ElementAt(i).name);
-            }
-
-            return categoriesName;*/
+        public Category GetCategory(long categoryId)
+        {
+            return CategoryDao.Find(categoryId);
         }
     }
 }

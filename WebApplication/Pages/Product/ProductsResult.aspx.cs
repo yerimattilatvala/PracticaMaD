@@ -9,6 +9,7 @@ using System.Reflection;
 
 using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
 using System.Security.Policy;
+using Es.Udc.DotNet.PracticaMaD.Model;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
 {
@@ -21,6 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
 
             try
             {
+                
                 pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
                 //Esto lo deberia de coger desde settings.settigns pero me daba error , CAMBIARLO LUEGO
                 Type type = typeof(IProductService);
@@ -95,8 +97,37 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
             //Si seleccionamos desde la pagina de resultados siempre añadimos de 1 en 1
             int numberOfElements = 1;
             SessionManager.AddToShoppingCart(idProduct, numberOfElements);
-            //Para actualizar el texto del carrito. Creo que se puede acceder al elemento de la Master Page pero no se como, asiq recarga la pagina.
+            //Para actualizar el texto del carrito. Creo que se puede acceder al elemento de la Master Page pero no se como, asi que recarga la pagina.
             Response.Redirect(Request.RawUrl.ToString());
+        }
+
+        protected void OnProductNameClick(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "ViewProduct")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvProductsResult.Rows[index];
+                long productId = Convert.ToInt32(row.Cells[4].Text);
+                Model.Product product = SessionManager.ProductService.FindProduct(productId);
+                String url;
+                if (product is Movie)
+                {
+                    url = String.Format("~/Pages/Product/MovieDetails.aspx?productId={0}", productId);
+                }
+                else if(product is Book)
+                {
+                    url = String.Format("~/Pages/Product/BookDetails.aspx?productId={0}", productId);
+
+                }else if (product is CD)
+                {
+                    url = String.Format("~/Pages/Product/CDDetails.aspx?productId={0}", productId);
+                }
+                else
+                {
+                    url = String.Format("~/Pages/Product/ProductDetails.aspx?productId={0}", productId);
+                }
+                Response.Redirect(Response.ApplyAppPathModifier(url));
+            }
         }
     }
 }

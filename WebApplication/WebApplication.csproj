@@ -191,6 +191,10 @@
     <Content Include="Pages\Order\ManageOrder.aspx" />
     <Content Include="Pages\Order\OrderDetail.aspx" />
     <Content Include="Pages\Order\SeeMyOrders.aspx" />
+    <Content Include="Pages\Product\BookDetails.aspx" />
+    <Content Include="Pages\Product\CDDetails.aspx" />
+    <Content Include="Pages\Product\MovieDetails.aspx" />
+    <Content Include="Pages\Product\ProductDetails.aspx" />
     <Content Include="Pages\Product\ProductsResult.aspx" />
     <Content Include="Pages\ShoppingCart\ShoppingCart.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
@@ -199,6 +203,7 @@
     <Content Include="Pages\User\Register.aspx" />
     <Content Include="Pages\User\UpdateUserProfile.aspx" />
     <Content Include="PracticaMaD.Master" />
+    <Content Include="Pages\Product\ProductMasterPage.master" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -284,6 +289,41 @@
     </Compile>
     <Compile Include="Pages\Order\SeeMyOrders.aspx.designer.cs">
       <DependentUpon>SeeMyOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\BookDetails.aspx.cs">
+      <DependentUpon>BookDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\BookDetails.aspx.designer.cs">
+      <DependentUpon>BookDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\CDDetails.aspx.cs">
+      <DependentUpon>CDDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\CDDetails.aspx.designer.cs">
+      <DependentUpon>CDDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\MovieDetails.aspx.cs">
+      <DependentUpon>MovieDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\MovieDetails.aspx.designer.cs">
+      <DependentUpon>MovieDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\ProductDetails.aspx.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\ProductDetails.aspx.designer.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\ProductMasterPage.master.cs">
+      <DependentUpon>ProductMasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\ProductMasterPage.master.designer.cs">
+      <DependentUpon>ProductMasterPage.master</DependentUpon>
     </Compile>
     <Compile Include="Pages\Product\ProductsResult.aspx.cs">
       <DependentUpon>ProductsResult.aspx</DependentUpon>
@@ -401,6 +441,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Order\App_LocalResources\OrderDetail.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\MovieDetails.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\ProductMasterPage.master.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\BookDetails.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\CDDetails.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

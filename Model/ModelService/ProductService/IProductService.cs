@@ -42,7 +42,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
         int getNumberOfProductsByKeywords(String keywords, long categoryId);
 
         [Transactional]
-        ProductDetails FindProduct(long id);
+        ProductDetails GetProductDetails(long id);
+
+        [Transactional]
+        Product FindProduct(long id);
 
         [Transactional]
         List<ProductDetails> GetOrderLineProductsByOrderId(long orderId);

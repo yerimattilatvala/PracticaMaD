@@ -35,7 +35,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.ICardServiceTest
         private static ICardService cardService;
         private static IUserService userService;
 
+#pragma warning disable CS0169 // El campo 'ICardServiceTest.transaction' nunca se usa
         TransactionScope transaction;
+#pragma warning restore CS0169 // El campo 'ICardServiceTest.transaction' nunca se usa
 
         private TestContext testContextInstance;
 

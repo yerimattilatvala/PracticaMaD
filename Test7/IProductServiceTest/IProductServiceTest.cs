@@ -24,7 +24,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.IProductServiceTest
         private static ITagDao tagDao;
         private static IOrderDao orderDao;
         private static IProductService productService;
+#pragma warning disable CS0169 // El campo 'IProductServiceTest.transaction' nunca se usa
         TransactionScope transaction;
+#pragma warning restore CS0169 // El campo 'IProductServiceTest.transaction' nunca se usa
         private TestContext testContextInstance;
 
         /// <summary>

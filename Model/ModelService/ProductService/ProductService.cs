@@ -46,7 +46,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
                     int numberOfUnits = productList.ElementAt(i).numberOfUnits;
                     products.Add(new ProductDetails(name, category, registerDate, prize, productId, numberOfUnits,false));
                 }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             }catch (InstanceNotFoundException e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
 
             }
@@ -71,7 +73,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
 
                     products.Add(new ProductDetails(name, category, registerDate, prize, productId, numberOfUnits, false));
                 }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             }catch (InstanceNotFoundException e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
 
             }
@@ -99,7 +103,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
             return products;
         }
         [Transactional]
-        public ProductDetails FindProduct(long id)
+        public ProductDetails GetProductDetails(long id)
         {
             Product product;
             product = ProductDao.Find(id);
@@ -108,6 +112,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
             return productDetails;
         }
 
+        
+
         [Transactional]
         public int getNumberOfProductsByKeywords(string keywords)
         {
@@ -115,7 +121,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
             try
             {
                 result = ProductDao.GetNumberOfProductsByKeywords(keywords, -1);
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             }catch(InstanceNotFoundException e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
 
             }
@@ -128,7 +136,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
             try
             {
                 return ProductDao.GetNumberOfProductsByKeywords(keywords, categoryId);
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             }catch(InstanceNotFoundException e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
 
             }
@@ -149,6 +159,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
             }
 
             return productsDetails;
+        }
+
+        public Product FindProduct(long id)
+        {
+            Product product;
+            product = ProductDao.Find(id);
+            return product;
         }
     }
 }

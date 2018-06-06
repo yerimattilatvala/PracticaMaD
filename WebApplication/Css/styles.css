@@ -74,6 +74,7 @@ a.cart{
     width: 100%;
 }
 
+
 p.info {
     font-size: 16px;
 }
@@ -95,15 +96,16 @@ div.field span.label {
     text-align: right;
     font-weight: bold;
     vertical-align: middle;
-    padding-top: 0.3em;
     width: 49.5%;
 }
 
 div.field span.entry {
-    float: right;    
+    float: right;
     text-align: left;
     width: 49.5%;
+    vertical-align: middle;
 }
+
 
 div.checkbox {
     clear: both;
