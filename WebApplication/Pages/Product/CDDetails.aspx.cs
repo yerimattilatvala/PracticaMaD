@@ -14,20 +14,19 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
         protected void Page_Load(object sender, EventArgs e)
         {
             Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));
-            Model.Product product = SessionManager.ProductService.FindProduct(productId);
-            if (product is CD)
+            Model.ProductDao.ProductDetails product = SessionManager.ProductService.FindProduct(productId);
+            if (product is Model.ProductDao.CDDetails)
             {
-                CD cd = product as CD;
+                Model.ProductDao.CDDetails cd = product as Model.ProductDao.CDDetails;
                 SetCDInfo(cd);
             }
         }
 
-        private void SetCDInfo(CD cd)
+        private void SetCDInfo(Model.ProductDao.CDDetails cd)
         {
 
             lclNameValue.Text = cd.name;
-            Category category = SessionManager.CategoryService.GetCategory(cd.categoryId);
-            lclCategoryValue.Text = category.name;
+            lclCategoryValue.Text = cd.category;
             lclTitleValue.Text = cd.title;
             lclArtistValue.Text = cd.artist;
             lclTopicValue.Text = cd.topic;

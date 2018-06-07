@@ -28,8 +28,6 @@ D:\Marcos\PracticaMaD\Test7\obj\Debug\PracticaMaD.Test.pdb
 C:\Users\abnav\Desktop\PracticaMaD\Test7\bin\Debug\PracticaMaD.Test.dll.config
 C:\Users\abnav\Desktop\PracticaMaD\Test7\bin\Debug\PracticaMaD.Test.dll
 C:\Users\abnav\Desktop\PracticaMaD\Test7\bin\Debug\PracticaMaD.Test.pdb
-C:\Users\abnav\Desktop\PracticaMaD\Test7\bin\Debug\PracticaMaD.Test.dll.CodeAnalysisLog.xml
-C:\Users\abnav\Desktop\PracticaMaD\Test7\bin\Debug\PracticaMaD.Test.dll.lastcodeanalysissucceeded
 C:\Users\abnav\Desktop\PracticaMaD\Test7\bin\Debug\Castle.Core.dll
 C:\Users\abnav\Desktop\PracticaMaD\Test7\bin\Debug\EntityFramework.dll
 C:\Users\abnav\Desktop\PracticaMaD\Test7\bin\Debug\EntityFramework.SqlServer.dll

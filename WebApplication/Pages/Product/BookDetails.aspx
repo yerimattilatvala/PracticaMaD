@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Pages/Product/ProductMasterPage.master" AutoEventWireup="true" CodeBehind="BookDetails.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product.BookDetails" meta:resourcekey="PageResource1" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_ProductDetails_BodyContent"
-    runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_ProductDetails_BodyContent" runat="server">
     <div id="form">
             <div class="field">
                 <span class="label">
@@ -66,3 +65,6 @@
             </div>
     </div>
 <br />
+</asp:Content>
+
+   

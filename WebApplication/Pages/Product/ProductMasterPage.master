@@ -5,6 +5,8 @@
     <div id="content">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder_ProductDetails_BodyContent" runat="server" />
     </div>
+         <asp:panel runat="server" id="tagPanel" backcolor="pink">
+      </asp:panel>
         <span class="label">
             <asp:Localize ID="lclCategory" runat="server" meta:resourcekey="lclNumberOfElements" />
         </span>
@@ -21,33 +23,29 @@
             <asp:ListItem Value="10" meta:resourcekey="ListItemResource17">10</asp:ListItem>
         </asp:DropDownList>
          <br />
+         <br /> 
          <br />
-         <asp:GridView ID="gvTags" runat="server" CssClass="productsResult"
-             ShowHeaderWhenEmpty="true" AutoGenerateColumns="false"
-             OnRowCreated="gvTags_RowCreated" >
-             <Columns>
-                 <asp:HyperLinkField DataTextField="Name" HeaderText="<%$ Resources:, Name %>" />
-                 <asp:BoundField DataField="TagId" Visible="true" HeaderText="<%$ Resources:, TagId %>" />
-             </Columns>
-         </asp:GridView>
-         <br />
-         <div class="button">
+         <div class="field">
               <span class="label">
                 <asp:Localize ID="lclTag" runat="server" meta:resourcekey="lclTag" />
-                  <asp:DropDownList ID="tagList" AutoPostBack="true" OnSelectedIndexChanged="tagList_SelectedIndexChanged" runat="server">
-             </asp:DropDownList>
               </span>
+             <span class="entry">
+                  <asp:DropDownList ID="tagList" AutoPostBack="true" OnSelectedIndexChanged="tagList_SelectedIndexChanged" runat="server">
+                    </asp:DropDownList>
+            </span>
          </div>
          <br />
-         <div class="button">
+         <div class="field">
              <span class="label">
                  <asp:Localize ID="lclCreateTag" runat="server" meta:resourcekey="lclCreateTag" />
+             </span>
+             <span class="entry">
                  <asp:TextBox ID="txtTag" runat="server">
                  </asp:TextBox>
                  <asp:Label ID="lblTagError" runat="server" ForeColor="Red" Style="position: relative"
                             Visible="False" meta:resourcekey="lblTagError"></asp:Label>
                  <asp:Button ID="btnCreateTag" runat="server" OnClick="btnCreateTag_Click" meta:resourcekey="btnCreateTag" />
-             </span>
+            </span>
          </div>
          <br />
         <div class="button">

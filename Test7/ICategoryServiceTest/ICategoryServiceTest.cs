@@ -89,7 +89,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.ICategoryServiceTest
                 categoryDao.Create(cat2);
 
                 // Extract all categories
-                List<Category> categories = categoryService.GetAllCategories();
+                List<CategoryDetails> categories = categoryService.GetAllCategories();
 
                 // Check the data
                 Assert.AreEqual(cat1.name, categories[0].name);

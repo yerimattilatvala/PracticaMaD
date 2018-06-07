@@ -31,6 +31,15 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder_ProductDetails_BodyContent;
         
         /// <summary>
+        /// Control tagPanel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel tagPanel;
+        
+        /// <summary>
         /// Control lclCategory.
         /// </summary>
         /// <remarks>
@@ -47,15 +56,6 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList listaCantidades;
-        
-        /// <summary>
-        /// Control gvTags.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvTags;
         
         /// <summary>
         /// Control lclTag.

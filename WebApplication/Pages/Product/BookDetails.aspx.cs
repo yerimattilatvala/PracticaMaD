@@ -1,4 +1,5 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
 using System;
 using System.Collections.Generic;
@@ -14,20 +15,19 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
         protected void Page_Load(object sender, EventArgs e)
         {
             Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));
-            Model.Product product = SessionManager.ProductService.FindProduct(productId);
-            if (product is Book)
+            Model.ProductDao.ProductDetails product = SessionManager.ProductService.FindProduct(productId);
+            if (product is Model.ProductDao.BookDetails)
             {
-                Book book = product as Book;
+                Model.ProductDao.BookDetails book = product as Model.ProductDao.BookDetails;
                 SetBookInfo(book);
             }
         }
 
-        private void SetBookInfo(Book book)
+        private void SetBookInfo(Model.ProductDao.BookDetails book)
         {
 
             lclNameValue.Text = book.name;
-            Category category = SessionManager.CategoryService.GetCategory(book.categoryId);
-            lclCategoryValue.Text = category.name;
+            lclCategoryValue.Text = book.category;
             lclTitleValue.Text = book.title;
             lclAuthorValue.Text = book.author;
             lclSummaryValue.Text = book.summary;

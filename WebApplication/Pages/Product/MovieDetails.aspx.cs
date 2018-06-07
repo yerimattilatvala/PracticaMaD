@@ -14,20 +14,18 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
         protected void Page_Load(object sender, EventArgs e)
         {
             Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));
-            Model.Product product = SessionManager.ProductService.FindProduct(productId);
-            if ( product is Movie)
+            Model.ProductDao.ProductDetails product = SessionManager.ProductService.FindProduct(productId);
+            if ( product is Model.ProductDao.MovieDetails)
             {
-                Movie mov = product as Movie;
+                Model.ProductDao.MovieDetails mov = product as Model.ProductDao.MovieDetails;
                 SetMovieInfo(mov);
             }
         }
 
-        private void SetMovieInfo(Movie mov)
+        private void SetMovieInfo(Model.ProductDao.MovieDetails mov)
         {
-
             lclNameValue.Text =  mov.name;
-            Category category = SessionManager.CategoryService.GetCategory(mov.categoryId);
-            lclCategoryValue.Text =category.name;
+            lclCategoryValue.Text = mov.category;
             lclTitleValue.Text = mov.title;
             lclDirectorValue.Text = mov.director;
             lclSummaryValue.Text = mov.summary;

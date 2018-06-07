@@ -95,6 +95,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="CategoryDao\CategoryDaoEntityFramework.cs" />
+    <Compile Include="CategoryDao\CategoryDetails.cs" />
     <Compile Include="CategoryDao\ICategoryDao.cs" />
     <Compile Include="CD.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -147,7 +148,10 @@
     <Compile Include="Product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductDao\BookDetails.cs" />
+    <Compile Include="ProductDao\CDDetails.cs" />
     <Compile Include="ProductDao\IProductDao.cs" />
+    <Compile Include="ProductDao\MovieDetails.cs" />
     <Compile Include="ProductDao\ProductDaoEntityFramework.cs" />
     <Compile Include="ProductDao\ProductDetails.cs" />
     <Compile Include="Program.cs" />

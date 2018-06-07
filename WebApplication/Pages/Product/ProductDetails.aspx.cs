@@ -17,15 +17,13 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
         protected void Page_Load(object sender, EventArgs e)
         {
             Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));
-            Model.Product product = SessionManager.ProductService.FindProduct(productId);
+            Model.ProductDao.ProductDetails product = SessionManager.ProductService.FindProduct(productId);
             SetProductInfo(product);
         }
-        private void SetProductInfo(Model.Product prod)
+        private void SetProductInfo(Model.ProductDao.ProductDetails prod)
         {
             lclNameValue.Text = prod.name;
-            Category category = SessionManager.CategoryService.GetCategory(prod.categoryId);
-            lclCategoryValue.Text = category.name;
-            
+            lclCategoryValue.Text = prod.category; 
         }
     }
 

@@ -15,9 +15,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CategoryService
         ICategoryDao CategoryDao { set; }
 
         [Transactional]
-        List<Category> GetAllCategories();
+        List<CategoryDetails> GetAllCategories();
         [Transactional]
-        Category GetCategory(long categoryId);
+        CategoryDetails GetCategory(long categoryId);
 
     }
 }

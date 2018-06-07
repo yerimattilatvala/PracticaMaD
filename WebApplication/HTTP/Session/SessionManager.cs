@@ -17,6 +17,8 @@ using System.Linq;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
 {
 
@@ -137,7 +139,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
             TagService = iocManager.Resolve<ITagService>();
         }
 
-        public static List<Category> GetAllCategories()
+        public static List<CategoryDetails> GetAllCategories()
         {
             return CategoryService.GetAllCategories();
         }
@@ -149,7 +151,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
         
         public static void AddToShoppingCart(long id,int numberOfElements)
         {
-            ProductDetails productDetails = ProductService.GetProductDetails(id);
+            ProductDetails productDetails = ProductService.FindProduct(id);
 
             //el contains solo compara por productId ya se ha sobreescrito el equals
             if (shoppingCart.Contains(productDetails))

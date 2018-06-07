@@ -108,17 +108,17 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvProductsResult.Rows[index];
                 long productId = Convert.ToInt32(row.Cells[4].Text);
-                Model.Product product = SessionManager.ProductService.FindProduct(productId);
+                Model.ProductDao.ProductDetails product = SessionManager.ProductService.FindProduct(productId);
                 String url;
-                if (product is Movie)
+                if (product is Model.ProductDao.MovieDetails)
                 {
                     url = String.Format("~/Pages/Product/MovieDetails.aspx?productId={0}", productId);
                 }
-                else if(product is Book)
+                else if(product is Model.ProductDao.BookDetails)
                 {
                     url = String.Format("~/Pages/Product/BookDetails.aspx?productId={0}", productId);
 
-                }else if (product is CD)
+                }else if (product is Model.ProductDao.CDDetails)
                 {
                     url = String.Format("~/Pages/Product/CDDetails.aspx?productId={0}", productId);
                 }

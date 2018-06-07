@@ -10,6 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
     public class ProductDetails
     {
         public string name { get; }
+        public long categoryId { get; }
         public string category { get; }
         public DateTime registerDate { get; }
         public double prize { get; }
@@ -17,25 +18,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         //se necesita el set para ir actualizanndo las unidades del carrito.
         public int numberOfUnits { get; set; }
         public bool forGift { get; set; }
-        public ProductDetails(string name, string category, DateTime registerDate, double prize, long productId,int numberOfUnits,bool gift)
+        public ProductDetails(string name, long categoryId,string categoryName, DateTime registerDate, double prize, long productId,int numberOfUnits,bool gift)
         {
             this.name = name;
-            this.category = category;
+            this.categoryId = categoryId;
             this.registerDate = registerDate;
             this.prize = prize;
             this.productId = productId;
             this.numberOfUnits = numberOfUnits;
             this.forGift = gift;
+            this.category = categoryName;
         }
 
-        public ProductDetails(string name, string category, DateTime registerDate, double prize, long productId, int numberOfUnits)
+        public ProductDetails(string name, long categoryId,string categoryName, DateTime registerDate, double prize, long productId, int numberOfUnits)
         {
             this.name = name;
-            this.category = category;
+            this.categoryId = categoryId;
             this.registerDate = registerDate;
             this.prize = prize;
             this.productId = productId;
             this.numberOfUnits = numberOfUnits;
+            this.category = categoryName;
         }
 
         public override bool Equals(object obj)

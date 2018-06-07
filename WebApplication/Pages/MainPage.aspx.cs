@@ -9,9 +9,7 @@ using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.Properties;
 using Es.Udc.DotNet.PracticaMaD.Model;
-
-
-
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication
 {
@@ -42,11 +40,9 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication
 
         private void UpdateComboLanguage()
         {
-            List<Category> categories = SessionManager.GetAllCategories();
+            List<CategoryDetails> categories = SessionManager.GetAllCategories();
             //Hay que añadir una categoria 'virtual' para coger todo
-            Category allCat = new Category();
-            allCat.categoryId = -1;
-            allCat.name = "All";
+            CategoryDetails allCat = new CategoryDetails(-1,"All");
             categories.Add(allCat);
             this.comboCategory.DataSource = categories;
             this.comboCategory.DataTextField = "name";

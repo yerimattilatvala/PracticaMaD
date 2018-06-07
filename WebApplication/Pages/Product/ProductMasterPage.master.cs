@@ -13,9 +13,10 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            InitializeProductTags();
+
             if (!IsPostBack)
             {
-                LoadTagGrid();
                 LoadTags();
                 listaCantidades.SelectedValue = "1";
                 lblTagError.Visible = false;
@@ -52,8 +53,11 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
         {
             Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));
             Int32 tagId  = Convert.ToInt32(tagList.SelectedValue);
-            SessionManager.TagService.TagProduct(productId,tagId);
-            LoadTagGrid();
+            if (tagId != -1)
+            {
+                SessionManager.TagService.TagProduct(productId, tagId);
+                InitializeProductTags();
+            }
         }
 
         protected void btnCreateTag_Click(object sender, EventArgs e)
@@ -66,16 +70,23 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                 TagDetails newTag = new TagDetails(txtTag.Text);
                 long tagId = SessionManager.TagService.AddNewTag(newTag);
                 SessionManager.TagService.TagProduct(productId,tagId);
-                LoadTagGrid();
+                InitializeProductTags();
                 LoadTags();
             }
         }
 
-        private void LoadTagGrid()
+        private void InitializeProductTags()
         {
+            tagPanel.Controls.Clear();
             Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));
-            gvTags.DataSource = SessionManager.TagService.GetTagsByProduct(productId);
-            gvTags.DataBind();
+            List<TagDetails> tagDetails = SessionManager.TagService.GetTagsByProduct(productId);
+            foreach(TagDetails tag in tagDetails)
+            {
+                HyperLink tagLink = new HyperLink();
+                tagLink.Text = tag.name + " ";
+                tagLink.NavigateUrl = "~/Pages/MainPage.aspx";
+                tagPanel.Controls.Add(tagLink);
+            }
         }
 
         protected void gvTags_RowCreated(object sender, GridViewRowEventArgs e)

@@ -40,11 +40,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
                 {
                     long productId = productList.ElementAt(i).productId;
                     string name = productList.ElementAt(i).name;
-                    string category = CategoryDao.Find(productList.ElementAt(i).categoryId).name;
+                    long categoryId = productList.ElementAt(i).categoryId;
+                    string categoryName = CategoryDao.Find(productList.ElementAt(i).categoryId).name;
                     DateTime registerDate = productList.ElementAt(i).registerDate;
                     double prize = productList.ElementAt(i).prize;
                     int numberOfUnits = productList.ElementAt(i).numberOfUnits;
-                    products.Add(new ProductDetails(name, category, registerDate, prize, productId, numberOfUnits,false));
+                    products.Add(new ProductDetails(name, categoryId,categoryName, registerDate, prize, productId, numberOfUnits,false));
                 }
 #pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             }catch (InstanceNotFoundException e)
@@ -67,15 +68,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
                 {
                     long productId = productList.ElementAt(i).productId;
                     string name = productList.ElementAt(i).name;
-                    string category = CategoryDao.Find(productList.ElementAt(i).categoryId).name; DateTime registerDate = productList.ElementAt(i).registerDate;
+                    string categoryName = CategoryDao.Find(productList.ElementAt(i).categoryId).name;
+                    DateTime registerDate = productList.ElementAt(i).registerDate;
                     double prize = productList.ElementAt(i).prize;
                     int numberOfUnits = productList.ElementAt(i).numberOfUnits;
 
-                    products.Add(new ProductDetails(name, category, registerDate, prize, productId, numberOfUnits, false));
+                    products.Add(new ProductDetails(name, categoryId,categoryName, registerDate, prize, productId, numberOfUnits, false));
                 }
-#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             }catch (InstanceNotFoundException e)
-#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
 
             }
@@ -93,22 +93,41 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
             {
                 long productId = productList.ElementAt(i).productId;
                 string name = productList.ElementAt(i).name;
-                string category = CategoryDao.Find(productList.ElementAt(i).categoryId).name;
+                long categoryId = productList.ElementAt(i).categoryId;
+                string categoryName = CategoryDao.Find(productList.ElementAt(i).categoryId).name;
                 DateTime registerDate = productList.ElementAt(i).registerDate;
                 double prize = productList.ElementAt(i).prize;
                 int numberOfUnits = productList.ElementAt(i).numberOfUnits;
 
-                products.Add(new ProductDetails(name, category, registerDate, prize,productId,numberOfUnits,false));
+                products.Add(new ProductDetails(name, categoryId,categoryName, registerDate, prize,productId,numberOfUnits,false));
             }
             return products;
         }
         [Transactional]
-        public ProductDetails GetProductDetails(long id)
+        public ProductDetails FindProduct(long id)
         {
             Product product;
             product = ProductDao.Find(id);
-            string category = CategoryDao.Find(product.categoryId).name;
-            ProductDetails productDetails = new ProductDetails(product.name,category,product.registerDate,product.prize,product.productId,product.numberOfUnits,false);
+            long categoryId = product.categoryId;
+            string categoryName = CategoryDao.Find(product.categoryId).name;
+
+            ProductDetails productDetails;
+            if(product is Movie)
+            {
+                Movie mov = product as Movie;
+                productDetails = new MovieDetails(product.name, categoryId,categoryName, product.registerDate, product.prize, product.productId, product.numberOfUnits, false, mov.title, mov.director, mov.summary, mov.topic, mov.duration);
+            }else if(product is Book)
+            {
+                Book book = product as Book;
+                productDetails = new BookDetails(product.name, categoryId,categoryName, product.registerDate, product.prize, product.productId, product.numberOfUnits, false, book.title, book.author, book.summary, book.topic, book.pages);
+            }else if (product is CD)
+            {
+                CD cd = product as CD;
+                productDetails = new CDDetails(product.name, categoryId,categoryName, product.registerDate, product.prize, product.productId, product.numberOfUnits, false, cd.title, cd.artist, cd.topic, cd.songs);
+            }
+            else {
+                productDetails = new ProductDetails(product.name, categoryId,categoryName, product.registerDate, product.prize, product.productId, product.numberOfUnits, false);
+            }
             return productDetails;
         }
 
@@ -154,18 +173,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
             for (int i = 0; i < order.OrderLines.Count; i++)
             {
                 Product p = ProductDao.Find(order.OrderLines.ElementAt(i).productId);
-                ProductDetails productDetails = new ProductDetails(p.name, CategoryDao.Find(p.categoryId).name, p.registerDate, order.OrderLines.ElementAt(i).unitPrize, p.productId, order.OrderLines.ElementAt(i).numberOfUnits);
+                string categoryName = CategoryDao.Find(p.categoryId).name;
+                ProductDetails productDetails = new ProductDetails(p.name, p.categoryId,categoryName, p.registerDate, order.OrderLines.ElementAt(i).unitPrize, p.productId, order.OrderLines.ElementAt(i).numberOfUnits);
                 productsDetails.Add(productDetails);
             }
 
             return productsDetails;
         }
 
-        public Product FindProduct(long id)
-        {
-            Product product;
-            product = ProductDao.Find(id);
-            return product;
-        }
     }
 }

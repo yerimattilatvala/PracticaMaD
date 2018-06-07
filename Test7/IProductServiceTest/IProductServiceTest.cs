@@ -34,17 +34,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.IProductServiceTest
         private static ITagDao tagDao;
         private static IOrderDao orderDao;
         private static IProductService productService;
-<<<<<<< HEAD
-#pragma warning disable CS0169 // El campo 'IProductServiceTest.transaction' nunca se usa
         TransactionScope transaction;
-#pragma warning restore CS0169 // El campo 'IProductServiceTest.transaction' nunca se usa
-=======
         private static ITagService tagService;
         private static IUserService userService;
         private static ICardService cardService;
         private static IOrderService orderService;
-        TransactionScope transaction;
->>>>>>> master
         private TestContext testContextInstance;
 
         /// <summary>
@@ -154,7 +148,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.IProductServiceTest
                 Product product = productDao.Find(productId);
                 // Check the data
                 Assert.AreEqual(productId,products[0].productId);
-                Assert.AreEqual(categoryDao.Find(product.categoryId).name, products[0].category);
+                Assert.AreEqual(product.categoryId, products[0].categoryId);
                 Assert.AreEqual(product.name, products[0].name);
                 Assert.AreEqual(product.numberOfUnits, products[0].numberOfUnits);
                 Assert.AreEqual(product.prize, products[0].prize);
@@ -181,7 +175,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.IProductServiceTest
                 Product product = productDao.Find(productId);
                 // Check the data
                 Assert.AreEqual(productId, products[0].productId);
-                Assert.AreEqual(categoryDao.Find(product.categoryId).name, products[0].category);
+                Assert.AreEqual(product.categoryId, products[0].categoryId);
                 Assert.AreEqual(product.name, products[0].name);
                 Assert.AreEqual(product.numberOfUnits, products[0].numberOfUnits);
                 Assert.AreEqual(product.prize, products[0].prize);
@@ -214,7 +208,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.IProductServiceTest
                 Product product = productDao.Find(productId);
                 // Check the data
                 Assert.AreEqual(productId, products[0].productId);
-                Assert.AreEqual(categoryDao.Find(product.categoryId).name, products[0].category);
+                Assert.AreEqual(product.categoryId, products[0].categoryId);
                 Assert.AreEqual(product.name, products[0].name);
                 Assert.AreEqual(product.numberOfUnits, products[0].numberOfUnits);
                 Assert.AreEqual(product.prize, products[0].prize);
@@ -240,7 +234,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.IProductServiceTest
                 
                 // Check the data
                 Assert.AreEqual(productId, product.productId);
-                Assert.AreEqual(categoryDao.Find(categoryId).name, product.category);
+                Assert.AreEqual(categoryId, product.categoryId);
                 Assert.AreEqual(product.name, product.name);
                 Assert.AreEqual(10, product.numberOfUnits);
                 Assert.AreEqual((float)8.65, product.prize);
