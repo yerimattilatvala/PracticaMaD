@@ -12,7 +12,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -29,15 +29,6 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Properties {
         public int AmazonMarket_defaultCount {
             get {
                 return ((int)(this["AmazonMarket_defaultCount"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/MiniBank")]
-        public string AmazonMarket_applicationURL {
-            get {
-                return ((string)(this["AmazonMarket_applicationURL"]));
             }
         }
         
@@ -83,6 +74,114 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Properties {
         public string ObjectDS_AccountOperations_CountParameter {
             get {
                 return ((string)(this["ObjectDS_AccountOperations_CountParameter"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int Cards_defaultCount {
+            get {
+                return ((int)(this["Cards_defaultCount"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService.ICardService")]
+        public string ObjectDS_SeeMyCards_Service {
+            get {
+                return ((string)(this["ObjectDS_SeeMyCards_Service"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ViewCardsByUser")]
+        public string ObjectDS_SeeMyCards_SelectMethod {
+            get {
+                return ((string)(this["ObjectDS_SeeMyCards_SelectMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("startIndex")]
+        public string ObjectDS_SeeMyCards_StartIndexParamete {
+            get {
+                return ((string)(this["ObjectDS_SeeMyCards_StartIndexParamete"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("count")]
+        public string ObjectDS_SeeMyCards_CountParameter {
+            get {
+                return ((string)(this["ObjectDS_SeeMyCards_CountParameter"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("GetNumberOfCardsByUser")]
+        public string ObjectDS_SeeMyCards_CountMethod {
+            get {
+                return ((string)(this["ObjectDS_SeeMyCards_CountMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int Orders_defaultCount {
+            get {
+                return ((int)(this["Orders_defaultCount"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ViewOrdersByUser")]
+        public string ObjectDS_SeeMyOrders_SelectMethod {
+            get {
+                return ((string)(this["ObjectDS_SeeMyOrders_SelectMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService.IOrderService")]
+        public string ObjectDS_SeeMyOrders_Service {
+            get {
+                return ((string)(this["ObjectDS_SeeMyOrders_Service"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("GetOrdersByUser")]
+        public string ObjectDS_SeeMyOrders_CountMethod {
+            get {
+                return ((string)(this["ObjectDS_SeeMyOrders_CountMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("count")]
+        public string ObjectDS_SeeMyOrders_CountParameter {
+            get {
+                return ((string)(this["ObjectDS_SeeMyOrders_CountParameter"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("startIndex")]
+        public string ObjectDS_SeeMyOrders_StartIndexParameter {
+            get {
+                return ((string)(this["ObjectDS_SeeMyOrders_StartIndexParameter"]));
             }
         }
     }

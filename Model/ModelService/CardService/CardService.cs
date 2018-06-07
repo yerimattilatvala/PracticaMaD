@@ -49,21 +49,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService
         }
 
         [Transactional]
-        public List<CardDetails> ViewCardsByUser(long userProfileId)
+        public List<CardDetails> ViewCardsByUser(long userProfileId, int startIndex, int count)
         {
             List<CardDetails> userCards = new List<CardDetails>();
 
             List<Card> cards = UserProfileDao.Find(userProfileId).Cards.ToList<Card>();
-
-            for (int i = 0; i < cards.Count; i++)
+            int c = 0;
+            for (int i = startIndex; i < cards.Count; i++)
             {
+                if (c == count)
+                    break;
                 string cardNumber = cards.ElementAt(i).cardNumber;
                 int cv = cards.ElementAt(i).verificationCode;
                 DateTime expirationDate = cards.ElementAt(i).expirationDate;
                 string type = cards.ElementAt(i).cardType;
                 bool defaultCard = cards.ElementAt(i).defaultCard;
                 long cardId = cards.ElementAt(i).idCard;
-                userCards.Add(new CardDetails(cardNumber, cv, expirationDate, type,cardId,defaultCard));
+                if (defaultCard)
+                    userCards.Insert(0,new CardDetails(cardNumber, cv, expirationDate, type, cardId, defaultCard));
+                else
+                    userCards.Add(new CardDetails(cardNumber, cv, expirationDate, type,cardId,defaultCard));
+                c++;
             }
             return userCards;
         }
@@ -76,11 +82,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService
             try
             {
                 userProfile = UserProfileDao.Find(userProfileId);
-#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             } catch (InstanceNotFoundException e)
-#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
-                new InstanceNotFoundException(userProfileId,"Usuario no encontrado");
+                throw new InstanceNotFoundException(userProfileId,"Usuario no encontrado");
             }
 
             List<Card> userCards = userProfile.Cards.ToList<Card>();
@@ -97,14 +101,54 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService
             {
 
                 card = CardDao.Find(cardID);
-#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             } catch(InstanceNotFoundException e)
-#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
-                new InstanceNotFoundException(cardID, "Trajeta no encontrada");
+                throw new InstanceNotFoundException(cardID, "Trajeta no encontrada");
             }
             card.defaultCard = true;
             CardDao.Update(card);
+        }
+
+        public int GetNumberOfCardsByUser(long userProfileId)
+        {
+            int n = 0;
+            try
+            {
+                n = UserProfileDao.Find(userProfileId).Cards.ToList<Card>().Count;
+            }
+            catch (InstanceNotFoundException e){
+                throw new InstanceNotFoundException(userProfileId, "Usuario no encontrado");
+            }
+            return n;
+        }
+
+        public CardDetails GetUserDefaultCard(long userProfileId)
+        {
+            CardDetails defaultCard = null;
+            UserProfile user = null;
+            try
+            {
+                user = UserProfileDao.Find(userProfileId);
+            } catch (InstanceNotFoundException e)
+            {
+                throw new InstanceNotFoundException(userProfileId,"Usuario no encontrado");
+            }
+            List<Card> userCards = user.Cards.ToList();
+
+            for(int i = 0; i< userCards.Count; i++)
+            {
+                if (userCards.ElementAt(i).defaultCard)
+                {
+                    string cardNumber = userCards.ElementAt(i).cardNumber;
+                    string cardType = userCards.ElementAt(i).cardType;
+                    int cv = userCards.ElementAt(i).verificationCode;
+                    bool defaultC = userCards.ElementAt(i).defaultCard;
+                    long cardId = userCards.ElementAt(i).idCard;
+                    DateTime date = userCards.ElementAt(i).expirationDate;
+                    defaultCard = new CardDetails(cardNumber,cv,date,cardType,cardId,defaultC);
+                }
+            }
+            return defaultCard;
         }
     }
 

@@ -5,9 +5,6 @@
     <Setting Name="AmazonMarket_defaultCount" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="AmazonMarket_applicationURL" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">/MiniBank</Value>
-    </Setting>
     <Setting Name="ObjectDS_ProductsResult_Service" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService.IProductService</Value>
     </Setting>
@@ -22,6 +19,42 @@
     </Setting>
     <Setting Name="ObjectDS_AccountOperations_CountParameter" Type="System.String" Scope="Application">
       <Value Profile="(Default)">count</Value>
+    </Setting>
+    <Setting Name="Cards_defaultCount" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="ObjectDS_SeeMyCards_Service" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService.ICardService</Value>
+    </Setting>
+    <Setting Name="ObjectDS_SeeMyCards_SelectMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ViewCardsByUser</Value>
+    </Setting>
+    <Setting Name="ObjectDS_SeeMyCards_StartIndexParamete" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">startIndex</Value>
+    </Setting>
+    <Setting Name="ObjectDS_SeeMyCards_CountParameter" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">count</Value>
+    </Setting>
+    <Setting Name="ObjectDS_SeeMyCards_CountMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">GetNumberOfCardsByUser</Value>
+    </Setting>
+    <Setting Name="Orders_defaultCount" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="ObjectDS_SeeMyOrders_SelectMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ViewOrdersByUser</Value>
+    </Setting>
+    <Setting Name="ObjectDS_SeeMyOrders_Service" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService.IOrderService</Value>
+    </Setting>
+    <Setting Name="ObjectDS_SeeMyOrders_CountMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">GetOrdersByUser</Value>
+    </Setting>
+    <Setting Name="ObjectDS_SeeMyOrders_CountParameter" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">count</Value>
+    </Setting>
+    <Setting Name="ObjectDS_SeeMyOrders_StartIndexParameter" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">startIndex</Value>
     </Setting>
   </Settings>
 </SettingsFile>

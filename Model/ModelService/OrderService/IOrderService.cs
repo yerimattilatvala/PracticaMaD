@@ -30,7 +30,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService
         long GenerateOrder(long userProfileId, long idCard, int postalAddress, List<ProductDetails> productList);
 
         [Transactional]
-        List<OrderDetails> ViewOrdersByUser(long usrId);
+        List<OrderDetails> ViewOrdersByUser(long usrId, int startIndex, int count);
+
+        [Transactional]
+        int GetOrdersByUser(long usrId);
 
         [Transactional]
         OrderDetails FindOrder(long orderId);

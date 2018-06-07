@@ -1,4 +1,5 @@
-﻿using Es.Udc.DotNet.ModelUtil.Transactions;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
@@ -60,7 +61,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService
         }
 
         [Transactional]
-        public List<OrderDetails> ViewOrdersByUser(long usrId)
+        public List<OrderDetails> ViewOrdersByUser(long usrId, int startIndex, int count)
         {
             UserProfile User = UserProfileDao.Find(usrId);
 
@@ -68,8 +69,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService
 
             List<Order> orders = User.Orders.ToList();
 
-            for (int i = 0; i < orders.Count; i++)
+            int c = 0;
+
+            for (int i = startIndex; i < orders.Count; i++)
             {
+                if (c == count)
+                    break;
                 List<OrderLine> orderLines = orders.ElementAt(i).OrderLines.ToList();
 
                 List<OrderLineDetails> orderLinesDetails = new List<OrderLineDetails>();
@@ -86,6 +91,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService
                 int postalAddress = orders.ElementAt(i).postalAddress;
                 DateTime orderDate = orders.ElementAt(i).orderDate;
                 ordersDetails.Add(new OrderDetails(orderId, usrId, cardNumber, postalAddress, orderDate, orderLinesDetails));
+                c++;
             }
             return ordersDetails;
         }
@@ -95,6 +101,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService
             Order order = OrderDao.Find(orderId);
             OrderDetails orderDetails = new OrderDetails(order.orderId,order.usrId,CardDao.Find(order.idCard).cardNumber,order.postalAddress,order.orderDate);
             return orderDetails;
+        }
+
+        public int GetOrdersByUser(long usrId)
+        {
+            int n = 0;
+            try
+            {
+                n = UserProfileDao.Find(usrId).Orders.Count;
+            } catch (InstanceNotFoundException e)
+            {
+                throw new InstanceNotFoundException(usrId, "Usuario no encontrado");
+            }
+            return n;
         }
     }
 }

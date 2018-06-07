@@ -7,6 +7,7 @@
     <form runat="server">
          <asp:GridView ID="gvOrders"  runat="server" CssClass="productsResult"
             AutoGenerateColumns="False"
+             OnPageIndexChanging="gvOrders_PageIndexChanging"
             ShowHeaderWhenEmpty="True" meta:resourcekey="gvOrdersResource1" >
             <Columns>
             <asp:HyperLinkField DataTextField="OrderId" HeaderText="<%$ Resources:, OrderId %>" DataNavigateUrlFields="OrderId" DataNavigateUrlFormatString="OrderDetail.aspx?orderId={0}" meta:resourcekey="BoundFieldResource5"/>

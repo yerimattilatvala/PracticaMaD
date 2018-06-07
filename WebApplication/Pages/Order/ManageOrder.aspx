@@ -34,17 +34,20 @@
         <br />
         <asp:GridView ID="gvAllCards"  runat="server" CssClass="productsResult"
             AutoGenerateColumns="False"
-            OnRowCreated="gvAllCards_RowCreated"
-            OnSelectedIndexChanging="gvAllCards_SelectedIndexChanging"
+            OnPageIndexChanging="gvAllCards_PageIndexChanging"
             ShowHeaderWhenEmpty="True" meta:resourcekey="gvAllCardsResource2" >
             <Columns>
-            <asp:BoundField DataField="CardNumber"  HeaderText="<%$ Resources:, CardNumber %>" meta:resourcekey="BoundFieldResource10"  />
-            <asp:BoundField DataField="CardType" HeaderText="<%$ Resources:, CardType %>" meta:resourcekey="BoundFieldResource11" />
-            <asp:BoundField DataField="ExpirateTime" HeaderText="<%$ Resources:, ExpirateTime %>" meta:resourcekey="BoundFieldResource12"  />
-            <asp:BoundField DataField="CardId" HeaderText="<%$ Resources:, CardId %>" Visible="true" meta:resourcekey="BoundFieldResource13" />
-            <asp:CheckBoxField DataField="DefaultCard" HeaderText="<%$ Resources:, DefaultCard %>" Visible="true" meta:resourcekey="CheckBoxFieldResource2"   />
-            <asp:CommandField ShowSelectButton="True" SelectText="<%$ Resources:, changeDefault %>" meta:resourcekey="CommandFieldResource2"  /> 
-        </Columns>
+                <asp:BoundField DataField="CardNumber"  HeaderText="<%$ Resources:, CardNumber %>" meta:resourcekey="BoundFieldResource10"  />
+                <asp:BoundField DataField="CardType" HeaderText="<%$ Resources:, CardType %>" meta:resourcekey="BoundFieldResource11" />
+                <asp:BoundField DataField="ExpirateTime" HeaderText="<%$ Resources:, ExpirateTime %>" meta:resourcekey="BoundFieldResource12"  />
+                <asp:BoundField DataField="CardId" HeaderText="<%$ Resources:, CardId %>" Visible="true" meta:resourcekey="BoundFieldResource13" />
+                <asp:BoundField DataField="DefaultCard"  Visible="true" />
+                <asp:TemplateField  HeaderText="<%$ Resources:, changeDefault %>" >
+                        <ItemTemplate>
+                            <asp:checkbox ID="selectPayMent" AutoPostBack="true" runat="server" OnDataBinding="selectPayMent_DataBinding" OnCheckedChanged="selectPayMent_CheckedChanged" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+            </Columns>
         </asp:GridView>
         <br />
             <div id="form">
@@ -95,17 +98,21 @@
             AutoGenerateColumns="False"
              OnRowCreated="gvProductsToPay_RowCreated"
              OnSelectedIndexChanging="gvProductsToPay_SelectedIndexChanging"
+            OnRowDataBound="gvProductsToPay_RowDataBound"
             ShowHeaderWhenEmpty="True" meta:resourcekey="gvProductsToPayResource2">
             <Columns>
             <asp:BoundField DataField="Name"  HeaderText="<%$ Resources:, productName %>" meta:resourcekey="BoundFieldResource14" />
             <asp:BoundField DataField="Prize" HeaderText="<%$ Resources:, productPrize %>" meta:resourcekey="BoundFieldResource15" />
             <asp:BoundField DataField="NumberOfUnits" HeaderText="<%$ Resources:, numberOfUnits %>" meta:resourcekey="BoundFieldResource16" />
             <asp:BoundField DataField="ProductId" HeaderText="<%$ Resources:, productId %>" Visible="true" meta:resourcekey="BoundFieldResource17" />
-            <asp:CheckBoxField DataField="ForGift" HeaderText="<%$ Resources:, ForGift %>" Visible="true" meta:resourcekey="CheckBoxFieldResource3" />     
+             <asp:TemplateField HeaderText="<%$ Resources:, ForGift %>">
+                <ItemTemplate>
+                    <asp:CheckBox ID="cbForGift" AutoPostBack="true" runat="server" OnCheckedChanged="cbForGift_CheckedChanged" />
+                </ItemTemplate>
+             </asp:TemplateField>     
             <asp:TemplateField HeaderText="<%$ Resources:, quantity %>" meta:resourcekey="TemplateFieldResource2">
                 <ItemTemplate>
                     <asp:DropDownList ID="listaCantidades"  AutoPostBack="True" runat="server"  OnSelectedIndexChanged="listaCantidades_SelectedIndexChanged" meta:resourcekey="listaCantidadesResource2">
-                        <asp:ListItem meta:resourcekey="ListItemResource7"></asp:ListItem>
                         <asp:ListItem Value="1" meta:resourcekey="ListItemResource8">1</asp:ListItem>
                         <asp:ListItem Value="2" meta:resourcekey="ListItemResource9">2</asp:ListItem>
                         <asp:ListItem  Value="3" meta:resourcekey="ListItemResource10">3</asp:ListItem>
