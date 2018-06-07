@@ -112,8 +112,6 @@ D:\Marcos\PracticaMaD\WebApplication\bin\zh-Hant\System.Spatial.resources.dll
 D:\Marcos\PracticaMaD\WebApplication\obj\Debug\WebApplication.csprojResolveAssemblyReference.cache
 D:\Marcos\PracticaMaD\WebApplication\obj\Debug\PracticaMaD.WebApplication.dll
 D:\Marcos\PracticaMaD\WebApplication\obj\Debug\PracticaMaD.WebApplication.pdb
-C:\Users\abnav\Desktop\PracticaMaD\WebApplication\obj\Debug\WebApplication.csprojResolveAssemblyReference.cache
-C:\Users\abnav\Desktop\PracticaMaD\WebApplication\obj\Debug\WebApplication.csproj.CoreCompileInputs.cache
 C:\Users\abnav\Desktop\PracticaMaD\WebApplication\bin\ApplicationInsights.config
 C:\Users\abnav\Desktop\PracticaMaD\WebApplication\bin\roslyn\csc.exe
 C:\Users\abnav\Desktop\PracticaMaD\WebApplication\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -227,6 +225,8 @@ C:\Users\abnav\Desktop\PracticaMaD\WebApplication\bin\ko\System.Spatial.resource
 C:\Users\abnav\Desktop\PracticaMaD\WebApplication\bin\ru\System.Spatial.resources.dll
 C:\Users\abnav\Desktop\PracticaMaD\WebApplication\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\abnav\Desktop\PracticaMaD\WebApplication\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\abnav\Desktop\PracticaMaD\WebApplication\obj\Debug\WebApplication.csprojResolveAssemblyReference.cache
+C:\Users\abnav\Desktop\PracticaMaD\WebApplication\obj\Debug\WebApplication.csproj.CoreCompileInputs.cache
 C:\Users\abnav\Desktop\PracticaMaD\WebApplication\obj\Debug\WebApplication.csproj.CopyComplete
 C:\Users\abnav\Desktop\PracticaMaD\WebApplication\obj\Debug\PracticaMaD.WebApplication.dll
 C:\Users\abnav\Desktop\PracticaMaD\WebApplication\obj\Debug\PracticaMaD.WebApplication.pdb

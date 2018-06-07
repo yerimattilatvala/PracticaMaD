@@ -25,9 +25,9 @@
          <asp:GridView ID="gvOrderDetails"  runat="server" CssClass="productsResult"
             AutoGenerateColumns="False"
              OnRowCreated="gvOrderDetails_RowCreated"
-            ShowHeaderWhenEmpty="True" meta:resourcekey="gvOrderDetailsResource1"  >
+            ShowHeaderWhenEmpty="True" meta:resourcekey="gvOrderDetailsResource1" OnRowCommand="gvOrderDetails_RowCommand"  >
             <Columns>
-            <asp:HyperLinkField DataTextField="Name" HeaderText="<%$ Resources:, Name %>" DataNavigateUrlFields="ProductId" DataNavigateUrlFormatString="/Product/ProductsResult.aspx?productId={0}" meta:resourcekey="HyperLinkFieldResource1" />
+            <asp:ButtonField DataTextField="Name" ButtonType="Link" HeaderText="<%$ Resources:, Name %>" commandname="ViewProduct"/>
             <asp:BoundField DataField="Category" HeaderText="<%$ Resources:, Category %>" meta:resourcekey="BoundFieldResource1" />
             <asp:BoundField DataField="Prize" HeaderText="<%$ Resources:, Prize %>" Visible="true" meta:resourcekey="BoundFieldResource2"  />
             <asp:BoundField DataField="NumberOfUnits"  HeaderText="<%$ Resources:, NumberOfUnits %>" meta:resourcekey="BoundFieldResource3"/>

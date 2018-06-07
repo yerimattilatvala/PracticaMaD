@@ -17,21 +17,14 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication
         {
             if (!SessionManager.IsUserAuthenticated(Context))
             {
-
+                if (lblDash1 != null)
+                    lblDash1.Visible = true;
                 if (lblDash2 != null)
                     lblDash2.Visible = false;
-                if (lnkUpdate != null)
-                    lnkUpdate.Visible = false;
-                if (lblDash3 != null)
-                    lblDash3.Visible = false;
                 if (lnkLogout != null)
                     lnkLogout.Visible = false;
-                if (lnlkAddCard != null)
-                    lnlkAddCard.Visible = false;
-                if (lnkCards != null)
-                    lnkCards.Visible = false;
-                if (lnlOrders != null)
-                    lnlOrders.Visible = false;
+                if (lnkMyAccount != null)
+                    lnkMyAccount.Visible = false;
             }
             else
             {
@@ -40,15 +33,13 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication
                         GetLocalResourceObject("lblWelcome.Hello.Text").ToString()
                         + " " + SessionManager.GetUserSession(Context).FirstName;
                 if (lblDash1 != null)
-                    lblDash1.Visible = false;
+                    lblDash1.Visible = true;
+                if (lblDash2 != null)
+                    lblDash2.Visible = true;
                 if (lnkAuthenticate != null)
                     lnkAuthenticate.Visible = false;
-                if (lnlkAddCard != null)
-                    lnlkAddCard.Visible = true;
-                if (lnkCards != null)
-                    lnkCards.Visible = true;
-                if (lnlOrders != null)
-                    lnlOrders.Visible = true;
+                if (lnkMyAccount != null)
+                    lnkMyAccount.Visible = true;
             }
             if (SessionManager.shoppingCart == null)
             {

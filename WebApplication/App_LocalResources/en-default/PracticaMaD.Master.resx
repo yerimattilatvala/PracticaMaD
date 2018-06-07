@@ -180,4 +180,7 @@
   <data name="lnlOrders.Text" xml:space="preserve">
     <value>Orders</value>
   </data>
+  <data name="lnkMyAccount.Text" xml:space="preserve">
+    <value>My account</value>
+  </data>
 </root>

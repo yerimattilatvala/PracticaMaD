@@ -41,5 +41,37 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order
         {
             e.Row.Cells[4].Visible = false;
         }
+
+
+        protected void gvOrderDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "ViewProduct")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvOrderDetails.Rows[index];
+                long productId = Convert.ToInt32(row.Cells[4].Text);
+                Model.ProductDao.ProductDetails product = SessionManager.ProductService.FindProduct(productId);
+                //Que pasa si se borra el producto de bd??
+                String url;
+                if (product is Model.ProductDao.MovieDetails)
+                {
+                    url = String.Format("~/Pages/Product/MovieDetails.aspx?productId={0}", productId);
+                }
+                else if (product is Model.ProductDao.BookDetails)
+                {
+                    url = String.Format("~/Pages/Product/BookDetails.aspx?productId={0}", productId);
+
+                }
+                else if (product is Model.ProductDao.CDDetails)
+                {
+                    url = String.Format("~/Pages/Product/CDDetails.aspx?productId={0}", productId);
+                }
+                else
+                {
+                    url = String.Format("~/Pages/Product/ProductDetails.aspx?productId={0}", productId);
+                }
+                Response.Redirect(Response.ApplyAppPathModifier(url));
+            }
+        }
     }
 }

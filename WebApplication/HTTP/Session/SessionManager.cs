@@ -197,14 +197,14 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
             }
             return value;
         }
-
-        public static void WrappedProductForGift(long productId)
+        public static ProductDetails GetProductFromCart(long productId)
         {
             for (int i = 0; i < shoppingCart.Count; i++)
             {
                 if (shoppingCart.ElementAt(i).productId == productId)
-                    shoppingCart.ElementAt(i).forGift = true;
+                    return shoppingCart.ElementAt(i);
             }
+            return null;
         }
 
         public static double GetTotalPrize()

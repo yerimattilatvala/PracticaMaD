@@ -124,7 +124,7 @@
     <value />
   </data>
   <data name="lclNumberOfElements.Text" xml:space="preserve">
-    <value />
+    <value>Quantity: </value>
   </data>
   <data name="listaCantidadesResource2.ToolTip" xml:space="preserve">
     <value />
@@ -199,10 +199,10 @@
     <value>Create Tag</value>
   </data>
   <data name="lclCreateTag.Text" xml:space="preserve">
-    <value>Create your own tag</value>
+    <value>Create your own tag: </value>
   </data>
   <data name="lclTag.Text" xml:space="preserve">
-    <value>Select a tag</value>
+    <value>Select a tag: </value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Tag name</value>

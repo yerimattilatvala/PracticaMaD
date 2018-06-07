@@ -19,26 +19,28 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order
         {
             if (!Page.IsPostBack)
             {
-                gvProductsToPay.DataSource = SessionManager.shoppingCart;
-                gvProductsToPay.DataBind();
-                IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
-                ICardService cardService = (ICardService)iocManager.Resolve<ICardService>();
-                List<CardDetails> cards = cardService.ViewCardsByUser(SessionManager.GetUserSession(Context).UserProfileId);
-                gvAllCards.DataSource = cards;
-                gvAllCards.DataBind();
-                txtPostalAddress.Text = SessionManager.FindUserProfileDetails(Context).PostalAddress.ToString();
-                for (int i = 0; i < cards.Count; i++)
-                {
-                    if (cards.ElementAt(i).DefaultCard == true)
+
+                    gvProductsToPay.DataSource = SessionManager.shoppingCart;
+                    gvProductsToPay.DataBind();
+                    IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+                    ICardService cardService = (ICardService)iocManager.Resolve<ICardService>();
+                    List<CardDetails> cards = cardService.ViewCardsByUser(SessionManager.GetUserSession(Context).UserProfileId);
+                    gvAllCards.DataSource = cards;
+                    gvAllCards.DataBind();
+                    txtPostalAddress.Text = SessionManager.FindUserProfileDetails(Context).PostalAddress.ToString();
+                    for (int i = 0; i < cards.Count; i++)
                     {
-                        txtCardNumber.Text = cards.ElementAt(i).CardNumber;
-                        txtExpirationTime.Text = cards.ElementAt(i).ExpirateTime.ToString();
-                        txtType.Text = cards.ElementAt(i).CardType;
-                        txtId.Text = cards.ElementAt(i).CardId.ToString();
-                        break;
+                        if (cards.ElementAt(i).DefaultCard == true)
+                        {
+                            txtCardNumber.Text = cards.ElementAt(i).CardNumber;
+                            txtExpirationTime.Text = cards.ElementAt(i).ExpirateTime.ToString();
+                            txtType.Text = cards.ElementAt(i).CardType;
+                            txtId.Text = cards.ElementAt(i).CardId.ToString();
+                            break;
+                        }
                     }
-                }
-                txtPrizeTotal.Text = SessionManager.GetTotalPrize().ToString();
+                    txtPrizeTotal.Text = SessionManager.GetTotalPrize().ToString();
+                
             }
         }
 

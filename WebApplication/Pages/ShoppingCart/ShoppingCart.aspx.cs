@@ -1,4 +1,5 @@
-﻿using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,18 +18,20 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.ShoppingCart
                 if (SessionManager.shoppingCart.Count ==0)
                     btnPay.Visible = false;
                 gvProductsInCard.DataSource = SessionManager.shoppingCart;
+                
                 gvProductsInCard.DataBind();
+
             }
         }
         protected void BtnPayClick(object sender, EventArgs e) {
             if (Page.IsValid)
             {
-                if (!SessionManager.IsUserAuthenticated(Context))
+                /*if (!SessionManager.IsUserAuthenticated(Context))
                     Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/User/Authentication.aspx"));
-                else
-                    Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/Order/ManageOrder.aspx"));
+                        ApplyAppPathModifier("~/Pages/User/Authentication.aspx"));*/
+                //else
+                //No habria que comprobar si está autenticado ya que eso se indica en el web.config
+                Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Order/ManageOrder.aspx"));
             }
         }
         protected void gvProductsInCard_changing(object sender, GridViewSelectEventArgs e)
@@ -44,8 +47,6 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.ShoppingCart
             int units = Convert.ToInt32(drop.SelectedItem.Text);
             GridViewRow row = drop.NamingContainer as GridViewRow;
             long idProduct = (long)Convert.ToInt32(row.Cells[3].Text);
-            // forma chapuza de comprobar que detecta que é envolto para regalo
-            SessionManager.WrappedProductForGift(idProduct);
             SessionManager.IncrementProductUnits(idProduct, units);
             Response.Redirect(Request.RawUrl.ToString());
         }
@@ -53,6 +54,41 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.ShoppingCart
         protected void gvProductsInCard_RowCreated(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[3].Visible = false;
+        }
+
+        protected void gvProductsInCard_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            var dd = e.Row.Cells[5].FindControl("listaCantidades") as DropDownList;
+            if (dd != null)
+            {
+                //Si el numero original del carrito es menor que 10 (que es lo maximo que permite el combo box) se inicializa a ese numero, sino se pone a 1
+                if (Convert.ToInt32(e.Row.Cells[2].Text) <= 10)
+                {
+                    dd.SelectedValue = e.Row.Cells[2].Text;
+                }
+                else
+                {
+                    dd.SelectedValue = "1";
+                }
+            }
+
+            var dd2 = e.Row.Cells[4].FindControl("cbForGift") as CheckBox;
+            if (dd2 != null)
+            {
+                long productId = Convert.ToInt32(e.Row.Cells[3].Text);
+                ProductDetails productDetails = SessionManager.GetProductFromCart(productId);
+                dd2.Checked = productDetails.forGift;
+            }
+        }
+
+        protected void cbForGift_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+            GridViewRow row = checkBox.NamingContainer as GridViewRow;
+            long productId = (long)Convert.ToInt32(row.Cells[3].Text);
+            ProductDetails productDetails = SessionManager.GetProductFromCart(productId);
+            productDetails.forGift = checkBox.Checked;
+
         }
     }
 }

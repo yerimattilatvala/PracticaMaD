@@ -7,23 +7,7 @@
     </div>
          <asp:panel runat="server" id="tagPanel" backcolor="pink">
       </asp:panel>
-        <span class="label">
-            <asp:Localize ID="lclCategory" runat="server" meta:resourcekey="lclNumberOfElements" />
-        </span>
-        <asp:DropDownList ID="listaCantidades" AutoPostBack="True" OnSelectedIndexChanged="listaCantidades_SelectedIndexChanged" runat="server" meta:resourcekey="listaCantidadesResource2">
-            <asp:ListItem Value="1" meta:resourcekey="ListItemResource8">1</asp:ListItem>
-            <asp:ListItem Value="2" meta:resourcekey="ListItemResource9">2</asp:ListItem>
-            <asp:ListItem  Value="3" meta:resourcekey="ListItemResource10">3</asp:ListItem>
-            <asp:ListItem  Value="4" meta:resourcekey="ListItemResource11">4</asp:ListItem>
-            <asp:ListItem value="5" meta:resourcekey="ListItemResource12">5</asp:ListItem>
-            <asp:ListItem Value="6" meta:resourcekey="ListItemResource13">6</asp:ListItem>
-            <asp:ListItem Value="7" meta:resourcekey="ListItemResource14">7</asp:ListItem>
-            <asp:ListItem Value="8" meta:resourcekey="ListItemResource15">8</asp:ListItem>
-            <asp:ListItem Value="9" meta:resourcekey="ListItemResource16">9</asp:ListItem>
-            <asp:ListItem Value="10" meta:resourcekey="ListItemResource17">10</asp:ListItem>
-        </asp:DropDownList>
-         <br />
-         <br /> 
+    
          <br />
          <div class="field">
               <span class="label">
@@ -48,6 +32,26 @@
             </span>
          </div>
          <br />
+
+         <div class="field">
+        <span class="label">
+            <asp:Localize ID="lclCategory" runat="server" meta:resourcekey="lclNumberOfElements" />
+        </span>
+        <span class="entry">
+        <asp:DropDownList ID="listaCantidades" AutoPostBack="True" OnSelectedIndexChanged="listaCantidades_SelectedIndexChanged" runat="server" meta:resourcekey="listaCantidadesResource2">
+            <asp:ListItem Value="1" meta:resourcekey="ListItemResource8">1</asp:ListItem>
+            <asp:ListItem Value="2" meta:resourcekey="ListItemResource9">2</asp:ListItem>
+            <asp:ListItem  Value="3" meta:resourcekey="ListItemResource10">3</asp:ListItem>
+            <asp:ListItem  Value="4" meta:resourcekey="ListItemResource11">4</asp:ListItem>
+            <asp:ListItem value="5" meta:resourcekey="ListItemResource12">5</asp:ListItem>
+            <asp:ListItem Value="6" meta:resourcekey="ListItemResource13">6</asp:ListItem>
+            <asp:ListItem Value="7" meta:resourcekey="ListItemResource14">7</asp:ListItem>
+            <asp:ListItem Value="8" meta:resourcekey="ListItemResource15">8</asp:ListItem>
+            <asp:ListItem Value="9" meta:resourcekey="ListItemResource16">9</asp:ListItem>
+            <asp:ListItem Value="10" meta:resourcekey="ListItemResource17">10</asp:ListItem>
+        </asp:DropDownList>
+        </span>
+    </div>
         <div class="button">
             <asp:Button ID="btnAddToCart" runat="server" OnClick="BtnAddToCartClick" meta:resourcekey="btnAddToCart" />
         </div>

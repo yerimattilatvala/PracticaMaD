@@ -8,21 +8,25 @@
             AutoGenerateColumns="False"
             OnSelectedIndexChanging="gvProductsInCard_changing"
             OnRowCreated="gvProductsInCard_RowCreated"
-            ShowHeaderWhenEmpty="True"  meta:resourcekey="gvProductsInCard">
+            ShowHeaderWhenEmpty="True"  meta:resourcekey="gvProductsInCard" OnRowDataBound="gvProductsInCard_RowDataBound">
             <Columns>
             <asp:HyperLinkField DataTextField="Name" HeaderText="<%$ Resources:, productName %>" meta:resourcekey="BoundFieldResource1" DataNavigateUrlFields="ProductId" DataNavigateUrlFormatString="~/Pages/Product/ProductDetails.aspx?productId={0}" />
             <asp:BoundField DataField="Prize" HeaderText="<%$ Resources:, productPrize %>" meta:resourcekey="BoundFieldResource2"/>
             <asp:BoundField DataField="NumberOfUnits" HeaderText="<%$ Resources:, numberOfUnits %>" meta:resourcekey="BoundFieldResource3"/>
             <asp:BoundField DataField="ProductId" HeaderText="<%$ Resources:, productId %>" Visible="true"  meta:resourcekey="BoundFieldResource4" />
-            <asp:CheckBoxField DataField="ForGift" HeaderText="<%$ Resources:, ForGift %>" Visible="true"  meta:resourcekey="BoundFieldResource4" />     
+            <asp:TemplateField HeaderText="<%$ Resources:, ForGift %>" meta:resourcekey="TemplateFieldResource2">
+            <ItemTemplate>
+                <asp:CheckBox ID="cbForGift" AutoPostBack="true" runat="server" OnCheckedChanged="cbForGift_CheckedChanged" />
+            </ItemTemplate>
+            </asp:TemplateField>
+
             <asp:TemplateField HeaderText="<%$ Resources:, quantity %>" meta:resourcekey="TemplateFieldResource2">
                 <ItemTemplate>
                     <asp:DropDownList ID="listaCantidades" AutoPostBack="true" OnSelectedIndexChanged="listaCantidades_SelectedIndexChanged" runat="server" meta:resourcekey="listaCantidadesResource2">
-                        <asp:ListItem meta:resourcekey="ListItemResource7"></asp:ListItem>
                         <asp:ListItem Value="1" meta:resourcekey="ListItemResource8">1</asp:ListItem>
                         <asp:ListItem Value="2" meta:resourcekey="ListItemResource9">2</asp:ListItem>
-                        <asp:ListItem  Value="3" meta:resourcekey="ListItemResource10">3</asp:ListItem>
-                        <asp:ListItem  Value="4" meta:resourcekey="ListItemResource11">4</asp:ListItem>
+                        <asp:ListItem Value="3" meta:resourcekey="ListItemResource10">3</asp:ListItem>
+                        <asp:ListItem Value="4" meta:resourcekey="ListItemResource11">4</asp:ListItem>
                         <asp:ListItem value="5" meta:resourcekey="ListItemResource12">5</asp:ListItem>
                         <asp:ListItem Value="6" meta:resourcekey="ListItemResource13">6</asp:ListItem>
                         <asp:ListItem Value="7" meta:resourcekey="ListItemResource14">7</asp:ListItem>
@@ -43,4 +47,5 @@
     <asp:label id="MessageLabel"
         forecolor="Red"
         runat="server" meta:resourcekey="MessageLabelResource1"/>
+
 </asp:Content>
