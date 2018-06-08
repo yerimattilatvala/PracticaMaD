@@ -33,7 +33,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
         List<ProductDetails> FindByKeywords(String keywords,long categoryId,int startIndex, int count);
 
         [Transactional]
-        List<ProductDetails> FindByTag(long tagId);
+        List<ProductDetails> FindByTag(long tagId, int startIndex, int count);
+
+        [Transactional]
+        int GetNumberOfProductsByTag(long tagId);
 
         [Transactional]
         int getNumberOfProductsByKeywords(String keywords);

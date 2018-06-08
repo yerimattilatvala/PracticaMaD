@@ -108,5 +108,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService
 
             return tagId;
         }
+
+        public TagDetails FinTagById(long tagId)
+        {
+            Tag tag = null;
+            TagDetails tagDetail = null;
+            try
+            {
+                tag = TagDao.Find(tagId);
+                tagDetail = new TagDetails(tag.tagId,tag.name,tag.timesUsed);
+            } catch(InstanceNotFoundException e)
+            {
+                throw new InstanceNotFoundException(tagId, "Tag no encontrada");
+            }
+
+            return tagDetail;
+        }
     }
 }

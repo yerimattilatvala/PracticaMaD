@@ -195,6 +195,7 @@
     <Content Include="Pages\Product\CDDetails.aspx" />
     <Content Include="Pages\Product\MovieDetails.aspx" />
     <Content Include="Pages\Product\ProductDetails.aspx" />
+    <Content Include="Pages\Product\ProductsByTag.aspx" />
     <Content Include="Pages\Product\ProductsResult.aspx" />
     <Content Include="Pages\ShoppingCart\ShoppingCart.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
@@ -325,6 +326,13 @@
     </Compile>
     <Compile Include="Pages\Product\ProductMasterPage.master.designer.cs">
       <DependentUpon>ProductMasterPage.master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\ProductsByTag.aspx.cs">
+      <DependentUpon>ProductsByTag.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\ProductsByTag.aspx.designer.cs">
+      <DependentUpon>ProductsByTag.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Product\ProductsResult.aspx.cs">
       <DependentUpon>ProductsResult.aspx</DependentUpon>
@@ -464,6 +472,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\User\App_LocalResources\MyAccount.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\ProductsByTag.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

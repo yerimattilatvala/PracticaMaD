@@ -96,7 +96,8 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                 } else
                     tagLink.Font.Size = 6;
                 tagLink.Text = tag.name + " ";
-                tagLink.NavigateUrl = "~/Pages/MainPage.aspx";
+                string url = String.Format("~/Pages/Product/ProductsByTag.aspx?tagId={0}",tag.tagId);
+                tagLink.NavigateUrl = url;
                 tagPanel.Controls.Add(tagLink);
             }
         }

@@ -47,9 +47,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
                     int numberOfUnits = productList.ElementAt(i).numberOfUnits;
                     products.Add(new ProductDetails(name, categoryId,categoryName, registerDate, prize, productId, numberOfUnits,false));
                 }
-#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             }catch (InstanceNotFoundException e)
-#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
 
             }
@@ -83,14 +81,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
         }
 
         [Transactional]
-        public List<ProductDetails> FindByTag(long tagId)
+        public List<ProductDetails> FindByTag(long tagId, int startIndex, int count)
         {
             List<ProductDetails> products = new List<ProductDetails>();
 
             List<Product> productList = TagDao.Find(tagId).Products.ToList<Product>();
 
-            for (int i = 0; i < productList.Count; i++)
+            int c = 0;
+
+            for (int i = startIndex; i < productList.Count; i++)
             {
+                if (c == count)
+                    break;
                 long productId = productList.ElementAt(i).productId;
                 string name = productList.ElementAt(i).name;
                 long categoryId = productList.ElementAt(i).categoryId;
@@ -98,11 +100,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
                 DateTime registerDate = productList.ElementAt(i).registerDate;
                 double prize = productList.ElementAt(i).prize;
                 int numberOfUnits = productList.ElementAt(i).numberOfUnits;
-
                 products.Add(new ProductDetails(name, categoryId,categoryName, registerDate, prize,productId,numberOfUnits,false));
+                c++;
             }
             return products;
         }
+        
         [Transactional]
         public ProductDetails FindProduct(long id)
         {
@@ -140,9 +143,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
             try
             {
                 result = ProductDao.GetNumberOfProductsByKeywords(keywords, -1);
-#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             }catch(InstanceNotFoundException e)
-#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
 
             }
@@ -155,9 +156,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
             try
             {
                 return ProductDao.GetNumberOfProductsByKeywords(keywords, categoryId);
-#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             }catch(InstanceNotFoundException e)
-#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
 
             }
@@ -181,5 +180,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
             return productsDetails;
         }
 
+        public int GetNumberOfProductsByTag(long tagId)
+        {
+            List<Product> productList = null;
+            try
+            {
+                productList = TagDao.Find(tagId).Products.ToList<Product>();
+            } catch (InstanceNotFoundException e)
+            {
+                throw new InstanceNotFoundException(tagId,"Tag no encontrada");
+            }
+
+            return productList.Count;
+        }
     }
 }

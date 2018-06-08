@@ -32,5 +32,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService
 
         [Transactional]
         long AddNewTag(TagDetails newTag);
+
+        [Transactional]
+        TagDetails FinTagById(long tagId);
     }
 }

@@ -184,5 +184,59 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Properties {
                 return ((string)(this["ObjectDS_SeeMyOrders_StartIndexParameter"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int Tags_defaultCount {
+            get {
+                return ((int)(this["Tags_defaultCount"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService.IProductService")]
+        public string ObjectDS_ProductsByTag_Service {
+            get {
+                return ((string)(this["ObjectDS_ProductsByTag_Service"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("FindByTag")]
+        public string ObjectDS_ProductsByTag_SelectMethod {
+            get {
+                return ((string)(this["ObjectDS_ProductsByTag_SelectMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("GetNumberOfProductsByTag")]
+        public string ObjectDS_ProductsByTag_CountMethod {
+            get {
+                return ((string)(this["ObjectDS_ProductsByTag_CountMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("count")]
+        public string ObjectDS_ProductsByTag_CountParameter {
+            get {
+                return ((string)(this["ObjectDS_ProductsByTag_CountParameter"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("startIndex")]
+        public string ObjectDS_ProductsByTag_StartIndexParameter {
+            get {
+                return ((string)(this["ObjectDS_ProductsByTag_StartIndexParameter"]));
+            }
+        }
     }
 }
