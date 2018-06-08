@@ -81,6 +81,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order
             int postalAddress = Convert.ToInt32(txtPostalAddress.Text);
             orderService.GenerateOrder(usrId,cardId,postalAddress,products);
             SessionManager.shoppingCart.Clear();
+            paymentMethod = false;
             Response.Redirect(Response.
                         ApplyAppPathModifier("~/Pages/MainPage.aspx"));
         }
@@ -216,8 +217,9 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order
                 txtType.Text = gvRow.Cells[1].Text;
                 txtExpirationTime.Text = gvRow.Cells[2].Text;
                 txtId.Text = gvRow.Cells[3].Text;
-            } else if(paymentMethod == true)
+            } else if(paymentMethod == true && cardId == (Convert.ToInt32(gvRow.Cells[3].Text)))
             {
+                chB.Checked = true;
                 txtCardNumber.Text = cardNumber;
                 txtType.Text = cardType;
                 txtExpirationTime.Text = expirateTime;
