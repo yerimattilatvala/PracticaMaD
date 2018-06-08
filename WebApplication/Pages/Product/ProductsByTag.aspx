@@ -2,10 +2,9 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <form runat="server">
-        <br />
         <div class="button">
-            <span class="field">
-                <asp:Localize ID="lclTagName" runat="server" meta:resourcekey="lclTagNameResource1" />
+            <span>
+                <asp:Label ID="lclTagName" Font-Size="X-Large" Font-Bold="true" runat="server" meta:resourcekey="lclTagNameResource1" />
             </span>
         </div>
         <br />
@@ -25,5 +24,6 @@
             <asp:CommandField ShowSelectButton="True" SelectText="<%$ Resources:, addToCart %>" meta:resourcekey="CommandFieldResource1" />
         </Columns>
     </asp:GridView>
+    <br />
     </form>
 </asp:Content>

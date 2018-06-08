@@ -5,10 +5,6 @@
     <div id="content">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder_ProductDetails_BodyContent" runat="server" />
     </div>
-         <asp:panel runat="server" id="tagPanel" backcolor="pink">
-      </asp:panel>
-    
-         <br />
          <div class="field">
               <span class="label">
                 <asp:Localize ID="lclTag" runat="server" meta:resourcekey="lclTag" />
@@ -52,6 +48,11 @@
         </asp:DropDownList>
         </span>
     </div>
+         <br />
+         <br />
+         <asp:panel runat="server" id="tagPanel" backcolor="WhiteSmoke">
+         </asp:panel>
+         <br />
         <div class="button">
             <asp:Button ID="btnAddToCart" runat="server" OnClick="BtnAddToCartClick" meta:resourcekey="btnAddToCart" />
         </div>

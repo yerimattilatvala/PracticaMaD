@@ -19,7 +19,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclTagName;
+        protected global::System.Web.UI.WebControls.Label lclTagName;
         
         /// <summary>
         /// Control gvProductsTag.

@@ -12,6 +12,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.ModelService.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Card
 {
+
     public partial class AddCard : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -69,8 +70,10 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Card
                         DateTime expirationTime = new DateTime(dd2, dd1, 1);
                         CardDetails newCard = new CardDetails(cardNumber, cv, expirationTime, cardType);
                         cardService.AddCard(SessionManager.GetUserSession(Context).UserProfileId, newCard);
-                        Response.Redirect(Response.
-                            ApplyAppPathModifier("~/Pages/Card/SeeMyCards.aspx"));
+                        /*if(redirect)
+                            Response.Redirect(Request.UrlReferrer.ToString());
+                        else*/
+                            Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Card/SeeMyCards.aspx"));
                     }
                     else
                     {

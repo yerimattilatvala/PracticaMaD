@@ -40,8 +40,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.UserService
                 userProfile.language = userProfileDetails.Language;
                 userProfile.country = userProfileDetails.Country;
                 userProfile.postalAddress = userProfileDetails.PostalAddress;
-
-                UserProfileDao.Create(userProfile);
+                try
+                {
+                    UserProfileDao.Create(userProfile);
+                } catch (SqlException)
+                {
+                    throw new SqlException("");
+                }
 
                 return userProfile.usrId;
 

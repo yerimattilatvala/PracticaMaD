@@ -19,7 +19,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclName;
+        protected global::System.Web.UI.WebControls.Label lclName;
         
         /// <summary>
         /// Control lclNameValue.
@@ -28,7 +28,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclNameValue;
+        protected global::System.Web.UI.WebControls.Label lclNameValue;
         
         /// <summary>
         /// Control lclCategory.
@@ -37,7 +37,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclCategory;
+        protected global::System.Web.UI.WebControls.Label lclCategory;
         
         /// <summary>
         /// Control lclCategoryValue.
@@ -46,6 +46,6 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclCategoryValue;
+        protected global::System.Web.UI.WebControls.Label lclCategoryValue;
     }
 }

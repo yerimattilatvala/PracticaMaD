@@ -12,7 +12,7 @@
         <br />
         <div>
         <span>
-            <asp:Localize ID="lclIntroducePostalAddress" runat="server" meta:resourcekey="lclIntroducePostalAddressResource1"/>
+            <asp:Label ID="lclIntroducePostalAddress" Font-Bold="true" Font-Size="Medium" runat="server" meta:resourcekey="lclIntroducePostalAddressResource1"/>
         </span>
         </div>
             <div class="field">
@@ -26,9 +26,9 @@
                          Operator="DataTypeCheck" ErrorMessage="<%$ Resources:Common, integerField %>" meta:resourcekey="cvPostalAddressResource2"  /></span>
         </div>
         <br />
-        <div>
+        <div class="button">
         <span>
-            <asp:Label ID="lclSelectPayMethod" runat="server" meta:resourcekey="lclSelectPayMethodResource1"  />
+            <asp:Label ID="lclSelectPayMethod" Font-Bold="true" Font-Size="Medium" runat="server" meta:resourcekey="lclSelectPayMethodResource1"  />
         </span>
         </div>
         <br />
@@ -49,6 +49,12 @@
                     </asp:TemplateField>
             </Columns>
         </asp:GridView>
+        <br />
+        <div class="button">
+            <span>
+                <asp:HyperLink runat="server" Text="<%$ Resources:, addPaymentMethod %>"  NavigateUrl="~/Pages/Card/AddCard.aspx">
+                </asp:HyperLink>
+            </span>
         <br />
             <div id="form">
                 <div class="field">
@@ -88,9 +94,9 @@
     </div>
         <br />
         
-        <div>
+        <div class="button">
         <span>
-            <asp:Label ID="lclProductsToPay" runat="server" meta:resourcekey="lclProductsToPayResource1" />
+            <asp:Label ID="lclProductsToPay" Font-Bold="true" Font-Size="Medium" runat="server" meta:resourcekey="lclProductsToPayResource1" />
         </span>
         </div>
         <br />
@@ -129,10 +135,11 @@
         <asp:CommandField ShowSelectButton="True" SelectText="<%$ Resources:, deleteProduct %>" meta:resourcekey="CommandFieldResource3"/>           
         </Columns>
         </asp:GridView>
+        </div>
         <br />
             <div class="field">
-                <span class ="field">
-                    <asp:Localize ID="lclPrize" runat="server" meta:resourcekey="lclPrizeResource1" /></span>
+                <span>
+                    <asp:Label ID="lclPrize" Font-Bold="true" runat="server" meta:resourcekey="lclPrizeResource1" /></span>
                 <asp:TextBox ID="txtPrizeTotal" ReadOnly="True" runat="server" meta:resourcekey="txtPrizeTotalResource2"></asp:TextBox>
             </div>
         <br />

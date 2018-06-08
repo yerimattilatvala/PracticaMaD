@@ -486,4 +486,7 @@
   <data name="txtIdResource2.Text" xml:space="preserve">
     <value />
   </data>
+  <data name="addPaymentMethod" xml:space="preserve">
+    <value>Add a new payment method</value>
+  </data>
 </root>

@@ -28,7 +28,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclIntroducePostalAddress;
+        protected global::System.Web.UI.WebControls.Label lclIntroducePostalAddress;
         
         /// <summary>
         /// Control lclPostalAddress.
@@ -208,7 +208,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclPrize;
+        protected global::System.Web.UI.WebControls.Label lclPrize;
         
         /// <summary>
         /// Control txtPrizeTotal.

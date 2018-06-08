@@ -18,6 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.User
         protected void Page_Load(object sender, EventArgs e)
         {
             lblLoginError.Visible = false;
+            lblEmailError.Visible = false;
             if (!IsPostBack)
             {
 
@@ -128,6 +129,10 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.User
                 catch (DuplicateInstanceException)
                 {
                     lblLoginError.Visible = true;
+                }
+                catch (System.Data.SqlClient.SqlException)
+                {
+                    lblEmailError.Visible = true;
                 }
 
             }
