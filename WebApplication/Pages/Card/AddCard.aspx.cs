@@ -12,13 +12,14 @@ using Es.Udc.DotNet.PracticaMaD.Model.ModelService.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Card
 {
-
     public partial class AddCard : SpecificCulturePage
     {
+        static Boolean redirect = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                redirect = Convert.ToBoolean(Request.Params.Get("addNew"));
                 for (int i = 1; i < 13; i++)
                 {
                     dropMonth.Items.Add(i.ToString());
@@ -70,9 +71,9 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Card
                         DateTime expirationTime = new DateTime(dd2, dd1, 1);
                         CardDetails newCard = new CardDetails(cardNumber, cv, expirationTime, cardType);
                         cardService.AddCard(SessionManager.GetUserSession(Context).UserProfileId, newCard);
-                        /*if(redirect)
+                        if(redirect)
                             Response.Redirect(Request.UrlReferrer.ToString());
-                        else*/
+                        else
                             Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Card/SeeMyCards.aspx"));
                     }
                     else

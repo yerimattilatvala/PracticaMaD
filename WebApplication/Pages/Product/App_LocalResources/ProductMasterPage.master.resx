@@ -213,4 +213,7 @@
   <data name="lblTagError.Text" xml:space="preserve">
     <value>You must enter a valid tag</value>
   </data>
+  <data name="noUnits" xml:space="preserve">
+    <value>There are no units</value>
+  </data>
 </root>

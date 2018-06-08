@@ -18,6 +18,12 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
 
             if (!IsPostBack)
             {
+                Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));
+                if (SessionManager.ProductService.FindProduct(productId).numberOfUnits == 0)
+                {
+                    btnAddToCart.Visible = false;
+                    lblNoUnits.Visible = true;
+                }
                 LoadTags();
                 listaCantidades.SelectedValue = "1";
                 lblTagError.Visible = false;

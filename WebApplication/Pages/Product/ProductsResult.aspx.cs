@@ -22,7 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
 
             try
             {
-                
+                lblNoUnits.Visible = false;
                 pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
                 //Esto lo deberia de coger desde settings.settigns pero me daba error , CAMBIARLO LUEGO
                 Type type = typeof(IProductService);
@@ -56,49 +56,45 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                 gvProductsResult.DataBind();
                 //Luego ya se pone a false.
                 gvProductsResult.Columns[4].Visible = false;
-
-
             }
             catch (TargetInvocationException)
             {
 
             }
-
-
-
         }
 
         protected void GvAccOperationsPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvProductsResult.PageIndex = e.NewPageIndex;
             gvProductsResult.DataBind();
+            lblNoUnits.Visible = false;
         }
 
         protected void PbpDataSource_ObjectCreating(object sender, ObjectDataSourceEventArgs e)
         {
-
             /* Get the Service */
             IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
             IProductService productService = (IProductService)iocManager.Resolve<IProductService>();
-
             e.ObjectInstance = (IProductService)productService;
         }
 
         protected void gvProductsResult_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-   
-              GridViewRow row = gvProductsResult.Rows[e.NewSelectedIndex];
-
-            // You can cancel the select operation by using the Cancel
-            // property. For this example, if the user selects a customer with 
-            // the ID "ANATR", the select operation is canceled and an error message
-            // is displayed.
+            GridViewRow row = gvProductsResult.Rows[e.NewSelectedIndex];
             long idProduct = Convert.ToInt32(row.Cells[4].Text);
-            //Si seleccionamos desde la pagina de resultados siempre añadimos de 1 en 1
             int numberOfElements = 1;
-            SessionManager.AddToShoppingCart(idProduct, numberOfElements);
-            //Para actualizar el texto del carrito. Creo que se puede acceder al elemento de la Master Page pero no se como, asi que recarga la pagina.
-            Response.Redirect(Request.RawUrl.ToString());
+            int units = Convert.ToInt32(row.Cells[3].Text);
+            string name = row.Cells[0].Text;
+            if (units == 0)
+            {
+                lblNoUnits.Visible = true;
+            }
+            else
+            {
+                lblNoUnits.Visible = false;
+                SessionManager.AddToShoppingCart(idProduct, numberOfElements);
+                Response.Redirect(Request.RawUrl.ToString());
+            }
         }
 
         protected void OnProductNameClick(object sender, GridViewCommandEventArgs e)

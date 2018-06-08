@@ -35,7 +35,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
 
             try
             {
-
+                lblNoUnits.Visible = false;
                 pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
                 //Esto lo deberia de coger desde settings.settigns pero me daba error , CAMBIARLO LUEGO
                 Type type = typeof(IProductService);
@@ -79,8 +79,18 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
             GridViewRow row = gvProductsTag.Rows[e.NewSelectedIndex];
             long idProduct = Convert.ToInt32(row.Cells[4].Text);
             int numberOfElements = 1;
-            SessionManager.AddToShoppingCart(idProduct, numberOfElements);
-            Response.Redirect(Request.RawUrl.ToString());
+            int units = Convert.ToInt32(row.Cells[3].Text);
+            string name = row.Cells[0].Text;
+            if (units == 0)
+            {
+                lblNoUnits.Visible = true;
+            }
+            else
+            {
+                lblNoUnits.Visible = false;
+                SessionManager.AddToShoppingCart(idProduct, numberOfElements);
+                Response.Redirect(Request.RawUrl.ToString());
+            }
         }
 
         protected void PbpDataSource_ObjectCreating(object sender, ObjectDataSourceEventArgs e)

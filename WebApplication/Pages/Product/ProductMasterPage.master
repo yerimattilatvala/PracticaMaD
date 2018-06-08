@@ -55,6 +55,12 @@
          <br />
         <div class="button">
             <asp:Button ID="btnAddToCart" runat="server" OnClick="BtnAddToCartClick" meta:resourcekey="btnAddToCart" />
+            <span>
+                <asp:Label ID="lblNoUnits" Text="<%$ Resources:, noUnits%>" Visible="false" runat="server">
+
+                </asp:Label>
+            </span>
         </div>
+         <br />
     </form>
 </asp:Content>

@@ -50,12 +50,6 @@
             </Columns>
         </asp:GridView>
         <br />
-        <div class="button">
-            <span>
-                <asp:HyperLink runat="server" Text="<%$ Resources:, addPaymentMethod %>"  NavigateUrl="~/Pages/Card/AddCard.aspx">
-                </asp:HyperLink>
-            </span>
-        <br />
             <div id="form">
                 <div class="field">
                 <span class="label">
@@ -137,7 +131,12 @@
         </asp:GridView>
         </div>
         <br />
-            <div class="field">
+        <div class="button">
+                <span>
+                    <asp:Label ID="lblError" Font-Bold="true" ForeColor="Red" runat="server" meta:resourcekey="lblError" /></span>
+            </div>
+        <br />
+            <div class="button">
                 <span>
                     <asp:Label ID="lclPrize" Font-Bold="true" runat="server" meta:resourcekey="lclPrizeResource1" /></span>
                 <asp:TextBox ID="txtPrizeTotal" ReadOnly="True" runat="server" meta:resourcekey="txtPrizeTotalResource2"></asp:TextBox>

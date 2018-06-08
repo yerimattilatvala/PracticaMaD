@@ -19,13 +19,14 @@
             <asp:CommandField ShowSelectButton="True" SelectText="<%$ Resources:, addToCart %>" />
         </Columns>
     </asp:GridView>
-        
+     <div class="button">
+         <span>
+             <asp:Label ID="lblNoUnits" runat="server" Visible="false" meta:resourcekey="lblNoUnits" ></asp:Label>
+         </span>
+     </div>
+        <br />
     <!-- "Previous" and "Next" links. -->
     </form>
-    <br/>
-      <asp:label id="MessageLabel"
-        forecolor="Red"
-        runat="server"/>
 
 </asp:Content>
 

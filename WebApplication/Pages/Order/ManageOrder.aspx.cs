@@ -1,6 +1,7 @@
 ﻿using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.CardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService;
+using Es.Udc.DotNet.PracticaMaD.Model.ModelService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
@@ -28,6 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order
         {
             if (!Page.IsPostBack)
             {
+                lblError.Visible = false;
                 ChangeDefault();
                 gvProductsToPay.DataSource = SessionManager.shoppingCart;
                 gvProductsToPay.DataBind();
@@ -82,11 +84,20 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order
             List<ProductDetails> products = SessionManager.shoppingCart;
             long cardId = (long)Convert.ToInt32(txtId.Text);
             int postalAddress = Convert.ToInt32(txtPostalAddress.Text);
-            orderService.GenerateOrder(usrId,cardId,postalAddress,products);
-            SessionManager.shoppingCart.Clear();
-            paymentMethod = false;
-            Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/MainPage.aspx"));
+            try
+            {
+                orderService.GenerateOrder(usrId, cardId, postalAddress, products);
+                SessionManager.shoppingCart.Clear();
+                paymentMethod = false;
+                Response.Redirect(Response.
+                            ApplyAppPathModifier("~/Pages/MainPage.aspx"));
+            }
+            catch (InsuficientNumberOfUnitsException w)
+            {
+                lblError.Visible = true;
+                lblError.Text = w.Message.ToString();
+            }
+            
         }
 
         protected void listaCantidades_SelectedIndexChanged(object sender, EventArgs e)

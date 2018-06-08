@@ -24,6 +24,11 @@
             <asp:CommandField ShowSelectButton="True" SelectText="<%$ Resources:, addToCart %>" meta:resourcekey="CommandFieldResource1" />
         </Columns>
     </asp:GridView>
+    <div class="button">
+        <span>
+            <asp:Label ID="lblNoUnits" runat="server" Visible="false" meta:resourcekey="lblNoUnits" ></asp:Label>
+        </span>
+    </div>
     <br />
     </form>
 </asp:Content>

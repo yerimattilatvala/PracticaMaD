@@ -210,4 +210,7 @@
   <data name="productPrize" xml:space="preserve">
     <value>Prize</value>
   </data>
+  <data name="lblNoUnits.Text" xml:space="preserve">
+    <value>There are no units for this product</value>
+  </data>
 </root>
