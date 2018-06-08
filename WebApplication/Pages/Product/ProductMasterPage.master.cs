@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
+using System.Drawing;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
 {
@@ -66,11 +67,13 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                 lblTagError.Visible = true;
             else
             {
+                lblTagError.Visible = false;
                 Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));
                 TagDetails newTag = new TagDetails(txtTag.Text);
                 long tagId = SessionManager.TagService.AddNewTag(newTag);
                 SessionManager.TagService.TagProduct(productId,tagId);
                 InitializeProductTags();
+                txtTag.Text = null;
                 LoadTags();
             }
         }
@@ -80,9 +83,18 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
             tagPanel.Controls.Clear();
             Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));
             List<TagDetails> tagDetails = SessionManager.TagService.GetTagsByProduct(productId);
-            foreach(TagDetails tag in tagDetails)
+
+            foreach (TagDetails tag in tagDetails)
             {
                 HyperLink tagLink = new HyperLink();
+                if (IsPopular(tag) == 1)
+                {
+                    tagLink.Font.Size = 16;
+                } else if (IsPopular(tag) == 2)
+                {
+                    tagLink.Font.Size = 10;
+                } else
+                    tagLink.Font.Size = 6;
                 tagLink.Text = tag.name + " ";
                 tagLink.NavigateUrl = "~/Pages/MainPage.aspx";
                 tagPanel.Controls.Add(tagLink);
@@ -92,6 +104,30 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
         protected void gvTags_RowCreated(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[1].Visible = false;
+        }
+
+        private int IsPopular(TagDetails tagD){
+            int pos = -1;
+
+            List<TagDetails> tagDetails = SessionManager.TagService.GetMostPopularTags(8);
+            int count = 0;
+
+            foreach(TagDetails tag in tagDetails)
+            {
+                if (tag.tagId == tagD.tagId && count < 3)
+                {
+                    pos = 1;
+                    break;
+                }
+                else if (tag.tagId == tagD.tagId && count > 2)
+                {
+                    pos = 2;
+                    break;
+                }
+                count++;
+            }
+
+            return pos;
         }
     }
 }
