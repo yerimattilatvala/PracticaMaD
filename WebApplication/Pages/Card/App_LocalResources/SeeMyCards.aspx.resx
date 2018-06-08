@@ -186,4 +186,7 @@
   <data name="changeDefault" xml:space="preserve">
     <value>Change to a default card</value>
   </data>
+  <data name="deleteCard" xml:space="preserve">
+    <value>Delete this card</value>
+  </data>
 </root>

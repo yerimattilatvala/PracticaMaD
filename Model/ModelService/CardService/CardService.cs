@@ -1,6 +1,7 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CardDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ModelService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Ninject;
 using System;
@@ -32,6 +33,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService
 
             } catch (InstanceNotFoundException)
             {
+                long number1 = 0;
+                bool canConvert = long.TryParse(newCard.CardNumber, out number1);
+                if (!canConvert)
+                    throw new IncorrectCardNumberFormatException(newCard.CardNumber);
                 Card creditCard = new Card();
                 creditCard.usrId = UserProfile.usrId;
                 creditCard.cardNumber = newCard.CardNumber;
@@ -53,7 +58,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService
         {
             List<CardDetails> userCards = new List<CardDetails>();
 
-            List<Card> cards = UserProfileDao.Find(userProfileId).Cards.ToList<Card>();
+            List<Card> cards = null;
+            UserProfile user = null;
+            try
+            {
+                user = UserProfileDao.Find(userProfileId);
+            }
+            catch (InstanceNotFoundException)
+            {
+                throw new InstanceNotFoundException(userProfileId,"User not found");
+            }
+
+            cards = user.Cards.ToList<Card>();
             int c = 0;
             for (int i = startIndex; i < cards.Count; i++)
             {
@@ -65,10 +81,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService
                 string type = cards.ElementAt(i).cardType;
                 bool defaultCard = cards.ElementAt(i).defaultCard;
                 long cardId = cards.ElementAt(i).idCard;
-                if (defaultCard)
-                    userCards.Insert(0,new CardDetails(cardNumber, cv, expirationDate, type, cardId, defaultCard));
-                else
-                    userCards.Add(new CardDetails(cardNumber, cv, expirationDate, type,cardId,defaultCard));
+                userCards.Add(new CardDetails(cardNumber, cv, expirationDate, type,cardId,defaultCard));
                 c++;
             }
             return userCards;
@@ -84,7 +97,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService
                 userProfile = UserProfileDao.Find(userProfileId);
             } catch (InstanceNotFoundException e)
             {
-                throw new InstanceNotFoundException(userProfileId,"Usuario no encontrado");
+                throw new InstanceNotFoundException(userProfileId,"User not found");
             }
 
             List<Card> userCards = userProfile.Cards.ToList<Card>();

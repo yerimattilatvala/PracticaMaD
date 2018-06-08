@@ -1,5 +1,6 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model.CardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.Properties;
@@ -92,6 +93,16 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Card
             GridViewRow gvRow = chB.NamingContainer as GridViewRow;
             if (chB != null && gvRow.Cells[4].Text.Equals("True"))
                 chB.Checked = true;
+        }
+
+        protected void gvAllCards_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            GridViewRow row = gvAllCards.Rows[e.NewSelectedIndex];
+            long cardId = (long)Convert.ToInt32(row.Cells[3].Text);
+            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+            ICardDao cardDao = (ICardDao)iocManager.Resolve<ICardDao>();
+            cardDao.Remove(cardId);
+            Response.Redirect(Request.RawUrl.ToString());
         }
     }
 }

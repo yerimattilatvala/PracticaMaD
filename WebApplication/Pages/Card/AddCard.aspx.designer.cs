@@ -58,6 +58,15 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Card {
         protected global::System.Web.UI.WebControls.Label lblCardNumberError;
         
         /// <summary>
+        /// Control lblCardNumberFormat.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCardNumberFormat;
+        
+        /// <summary>
         /// Control lclCardType.
         /// </summary>
         /// <remarks>
@@ -67,22 +76,31 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Card {
         protected global::System.Web.UI.WebControls.Localize lclCardType;
         
         /// <summary>
-        /// Control txtType.
+        /// Control chBCredit.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtType;
+        protected global::System.Web.UI.WebControls.CheckBox chBCredit;
         
         /// <summary>
-        /// Control rfvType.
+        /// Control chBDebit.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvType;
+        protected global::System.Web.UI.WebControls.CheckBox chBDebit;
+        
+        /// <summary>
+        /// Control lblCardTypeError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCardTypeError;
         
         /// <summary>
         /// Control lclExpirationTime.
@@ -94,22 +112,22 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Card {
         protected global::System.Web.UI.WebControls.Localize lclExpirationTime;
         
         /// <summary>
-        /// Control txtExpirationTime.
+        /// Control dropMonth.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtExpirationTime;
+        protected global::System.Web.UI.WebControls.DropDownList dropMonth;
         
         /// <summary>
-        /// Control rfvExpirationTime.
+        /// Control dropYear.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvExpirationTime;
+        protected global::System.Web.UI.WebControls.DropDownList dropYear;
         
         /// <summary>
         /// Control lclCV.
@@ -137,6 +155,15 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Card {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCV;
+        
+        /// <summary>
+        /// Control lblCVError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCVError;
         
         /// <summary>
         /// Control btnAddCard.

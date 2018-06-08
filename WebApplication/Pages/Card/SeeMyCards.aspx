@@ -10,6 +10,7 @@
         <asp:GridView ID="gvAllCards"  runat="server" CssClass="productsResult"
             AutoGenerateColumns="False"
             OnPageIndexChanging="gvAllCards_PageIndexChanging"
+            OnSelectedIndexChanging="gvAllCards_SelectedIndexChanging"
             ShowHeaderWhenEmpty="True" meta:resourcekey="gvAllCardsResource1">
             <Columns>
                 <asp:BoundField DataField="CardNumber"  HeaderText="<%$ Resources:, CardNumber %>" meta:resourcekey="BoundFieldResource1" />
@@ -22,6 +23,7 @@
                         <asp:checkbox ID="changeDefaultCard" AutoPostBack="true" OnDataBinding="changeDefaultCard_DataBinding" runat="server" OnCheckedChanged="changeDefaultCard_CheckedChanged" />
                     </ItemTemplate>
                 </asp:TemplateField>
+                <asp:CommandField ShowSelectButton="true" SelectText="<%$ Resources:, deleteCard %>" />
             </Columns>
         </asp:GridView>
     </form>

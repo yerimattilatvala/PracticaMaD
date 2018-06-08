@@ -43,14 +43,17 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order
                 IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
                 ICardService cardService = (ICardService)iocManager.Resolve<ICardService>();
                 CardDetails card = cardService.GetUserDefaultCard(SessionManager.GetUserSession(Context).UserProfileId);
-                cardId = card.CardId;
-                cardNumber = card.CardNumber;
-                cardType = card.CardType;
-                expirateTime = card.ExpirateTime.ToString();
-                txtId.Text = cardId.ToString();
-                txtCardNumber.Text = cardNumber.ToString();
-                txtType.Text = cardType;
-                txtExpirationTime.Text = expirateTime;
+                if (card != null)
+                {
+                    cardId = card.CardId;
+                    cardNumber = card.CardNumber;
+                    cardType = card.CardType;
+                    expirateTime = card.ExpirateTime.ToString();
+                    txtId.Text = cardId.ToString();
+                    txtCardNumber.Text = cardNumber.ToString();
+                    txtType.Text = cardType;
+                    txtExpirationTime.Text = expirateTime;
+                }
             }
         }
 

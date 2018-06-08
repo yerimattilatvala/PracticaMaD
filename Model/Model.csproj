@@ -120,6 +120,7 @@
     <Compile Include="ModelService\CardService\ICardService.cs" />
     <Compile Include="ModelService\CategoryService\CategoryService.cs" />
     <Compile Include="ModelService\CategoryService\ICategoryService.cs" />
+    <Compile Include="ModelService\Exceptions\IncorrectCardNumberFormatException.cs" />
     <Compile Include="ModelService\Exceptions\IncorrectPasswordException.cs" />
     <Compile Include="ModelService\Exceptions\InsuficientNumberOfUnitsException.cs" />
     <Compile Include="ModelService\OrderService\IOrderService.cs" />

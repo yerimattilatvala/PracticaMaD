@@ -195,4 +195,19 @@
   <data name="txtTypeResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="lblCardNumberFormat.Text" xml:space="preserve">
+    <value>The format of the card number is not correct</value>
+  </data>
+  <data name="Credit" xml:space="preserve">
+    <value>Credit</value>
+  </data>
+  <data name="Debit" xml:space="preserve">
+    <value>Debit</value>
+  </data>
+  <data name="lblCardTypeError.Text" xml:space="preserve">
+    <value>Wrong type</value>
+  </data>
+  <data name="lblCVError.Text" xml:space="preserve">
+    <value>Wrong verification code format</value>
+  </data>
 </root>
