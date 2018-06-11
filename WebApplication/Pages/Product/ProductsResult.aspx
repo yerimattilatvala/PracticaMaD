@@ -4,13 +4,18 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <br />
     <form runat="server">
+        <br />
+        <div class="button">
+         <span>
+             <asp:Label ID="lblAreProducts" runat="server" Visible="false" meta:resourcekey="lblAreProducts" ></asp:Label>
+         </span>
+        <br />
     <asp:GridView ID="gvProductsResult"  CssClass="productsResult"
         AutoGenerateColumns="False"
         AllowPaging="true"
          onpageindexchanging="GvAccOperationsPageIndexChanging"
         OnSelectedIndexChanging="gvProductsResult_SelectedIndexChanging"
-        runat="server"
-        ShowHeaderWhenEmpty="True" meta:resourcekey="gvProductsResultResource1" OnRowCommand="OnProductNameClick" PageSize="2">
+        runat="server" meta:resourcekey="gvProductsResultResource1" OnRowCommand="OnProductNameClick" PageSize="2">
         <Columns>
             <asp:ButtonField DataTextField="name" ButtonType="Link" HeaderText="<%$ Resources:, productName %>" commandname="ViewProduct"/>
             <asp:BoundField DataField="Category" HeaderText="<%$ Resources:, productCategory %>"/>

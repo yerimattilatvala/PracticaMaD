@@ -210,4 +210,7 @@
   <data name="lblCVError.Text" xml:space="preserve">
     <value>Wrong verification code format</value>
   </data>
+  <data name="messageCard.Text" xml:space="preserve">
+    <value>Card added successfully.</value>
+  </data>
 </root>

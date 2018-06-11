@@ -25,13 +25,14 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
             {
                 first = false;
                 inCache = false;
+                lblAreProducts.Visible = false;
+                lblNoUnits.Visible = false;
                 LoadGrid(true);
             }
         }
 
         private void LoadGrid(bool isPostBack)
         {
-            lblNoUnits.Visible = false;
             //Cogemos los keywords
             String keywords = Request.Params.Get("keywords");
             Int32 category = Convert.ToInt32(Request.Params.Get("category"));
@@ -77,6 +78,8 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                     gvProductsResult.Columns[4].Visible = true;
                     gvProductsResult.Columns[3].Visible = true;
                     gvProductsResult.DataBind();
+                    if (gvProductsResult.Rows.Count == 0)
+                        lblAreProducts.Visible = true;
                     //Luego ya se pone a false.
                     gvProductsResult.Columns[4].Visible = false;
                     gvProductsResult.Columns[3].Visible = false;
@@ -162,6 +165,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                 lblNoUnits.Visible = false;
                 SessionManager.AddToShoppingCart(idProduct, numberOfElements);
                 Response.Redirect(Request.RawUrl.ToString());
+                //Response.Write("<script language=javascript>if(confirm('Desea imprimir el reporte?')==true){ location.href=Request.RawUrl.ToString();}else { location.href=Request.RawUrl.ToString();}</script>");
             }
         }
 

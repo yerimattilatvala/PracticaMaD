@@ -89,8 +89,10 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order
                 orderService.GenerateOrder(usrId, cardId, postalAddress, products);
                 SessionManager.shoppingCart.Clear();
                 paymentMethod = false;
-                Response.Redirect(Response.
-                            ApplyAppPathModifier("~/Pages/MainPage.aspx"));
+                //Page.ClientScript.RegisterStartupScript(this.GetType(),"Script","<script>alert('This is a alert.');</script>");
+                //Response.Redirect(Response.ApplyAppPathModifier("~/Pages/MainPage.aspx"));
+                string message = GetLocalResourceObject("message.Text").ToString();
+                Response.Write("<script language=javascript>alert('"+message+"'); location.href='/Pages/MainPage.aspx';</script>");
             }
             catch (InsuficientNumberOfUnitsException w)
             {

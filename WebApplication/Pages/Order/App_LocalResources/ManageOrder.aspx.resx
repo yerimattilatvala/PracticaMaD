@@ -492,4 +492,7 @@
   <data name="lblError.Text" xml:space="preserve">
     <value />
   </data>
+  <data name="message.Text" xml:space="preserve">
+    <value>Successful order.</value>
+  </data>
 </root>

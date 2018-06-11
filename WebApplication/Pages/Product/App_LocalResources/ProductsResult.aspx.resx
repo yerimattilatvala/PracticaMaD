@@ -120,6 +120,9 @@
   <data name="addToCart" xml:space="preserve">
     <value>Add to Cart</value>
   </data>
+  <data name="lblAreProducts.Text" xml:space="preserve">
+    <value>There are no products that match your search.</value>
+  </data>
   <data name="lblNoUnits.Text" xml:space="preserve">
     <value>There are no units for this product</value>
   </data>
