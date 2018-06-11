@@ -35,10 +35,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.ICardServiceTest
         private static ICardService cardService;
         private static IUserService userService;
 
-#pragma warning disable CS0169 // El campo 'ICardServiceTest.transaction' nunca se usa
         TransactionScope transaction;
-#pragma warning restore CS0169 // El campo 'ICardServiceTest.transaction' nunca se usa
-
         private TestContext testContextInstance;
 
         /// <summary>
@@ -177,7 +174,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.ICardServiceTest
 
 
                 // Extract all cards
-                List<CardDetails> cards = cardService.ViewCardsByUser(userId);
+                List<CardDetails> cards = cardService.ViewCardsByUser(userId,0,2);
                 // Check data
                 Assert.AreEqual(cardNumber, cards[0].CardNumber);
                 Assert.AreEqual(verficationCode, cards[0].VerificationCode);
@@ -250,6 +247,83 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.ICardServiceTest
 
                 userProfileDao.Remove(userId);
                 //transaction.Complete() is not called, so Rollback is executed.
+            }
+        }
+
+        /// <summary>
+        ///A test for GetNumberOfCardsByUserTest
+        ///</summary>
+        [TestMethod()]
+        public void GetNumberOfCardsByUserTest()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                // Register user and find profile
+                long userId =
+                userService.RegisterUser(loginName, clearPassword,
+                new UserProfileDetails(firstName, lastName, email, language, country, address));
+
+                UserProfile userProfile = userProfileDao.Find(userId);
+
+                // Add a cards
+                string cardNumber = "11111";
+                int verficationCode = 222;
+                DateTime expirationDate = DateTime.Now;
+                string type = "Credit";
+                CardDetails cardDetails = new CardDetails(cardNumber, verficationCode, expirationDate, type);
+                cardService.AddCard(userId, cardDetails);
+
+                string cardNumber1 = "22222";
+                int verficationCode1 = 333;
+                DateTime expirationDate1 = DateTime.Now;
+                string type1 = "Debit";
+                CardDetails cardDetails2 = new CardDetails(cardNumber1, verficationCode1, expirationDate1, type1);
+                cardService.AddCard(userId, cardDetails2);
+
+                int userCards = cardService.GetNumberOfCardsByUser(userId);
+
+                // Check the data
+                Assert.AreEqual(userCards, 2);
+            }
+        }
+
+        /// <summary>
+        ///A test for GetUserDefaultCardTest
+        ///</summary>
+        [TestMethod()]
+        public void GetUserDefaultCardTest()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                // Register user and find profile
+                long userId =
+                userService.RegisterUser(loginName, clearPassword,
+                new UserProfileDetails(firstName, lastName, email, language, country, address));
+
+                UserProfile userProfile = userProfileDao.Find(userId);
+
+                // Add a cards
+                string cardNumber = "11111";
+                int verficationCode = 222;
+                DateTime expirationDate = DateTime.Now;
+                string type = "Credit";
+                CardDetails cardDetails = new CardDetails(cardNumber, verficationCode, expirationDate, type);
+                cardService.AddCard(userId, cardDetails);
+
+                string cardNumber1 = "22222";
+                int verficationCode1 = 333;
+                DateTime expirationDate1 = DateTime.Now;
+                string type1 = "Debit";
+                CardDetails cardDetails2 = new CardDetails(cardNumber1, verficationCode1, expirationDate1, type1);
+                cardService.AddCard(userId, cardDetails2);
+
+                CardDetails userDefaultCard = cardService.GetUserDefaultCard(userId);
+
+                // Check the data
+                Assert.AreEqual(userDefaultCard.CardNumber, cardNumber);
+                Assert.AreEqual(userDefaultCard.ExpirateTime, expirationDate);
+                Assert.AreEqual(userDefaultCard.VerificationCode, verficationCode);
+                Assert.AreEqual(userDefaultCard.CardType, type);
             }
         }
     }

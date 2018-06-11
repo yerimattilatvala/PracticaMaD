@@ -203,7 +203,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.IProductServiceTest
                 tagService.TagProduct(productId,tagId);
 
                 // Find by keywords
-                List<ProductDetails> products = productService.FindByTag(tagId);
+                List<ProductDetails> products = productService.FindByTag(tagId,0,2);
 
                 Product product = productDao.Find(productId);
                 // Check the data
@@ -305,6 +305,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.IProductServiceTest
 
                 // Check the data
                 Assert.AreEqual(productId,products[0].productId);
+            }
+        }
+
+        // <summary>
+        ///A test for GetNumberOfProductsByTag
+        ///</summary>
+        [TestMethod()]
+        public void GetNumberOfProductsByTagTest()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                // Create a category
+                long categoryId = CreateCategory("Music");
+
+                // Create a product
+                long productId = CreateProduct(categoryId, "Dire Straits", 10, (float)8.65);
+                long product2Id = CreateProduct(categoryId, "ACDC", 10, (float)8.65);
+                // Create a tag
+                long tagId = CreateTag("Rock", 0);
+
+                // Tag a product
+                tagService.TagProduct(productId, tagId);
+                tagService.TagProduct(product2Id, tagId);
+
+                int productsByTag = productService.GetNumberOfProductsByTag(tagId);
+
+                // Check the data
+                Assert.AreEqual(2,productsByTag);
             }
         }
     }

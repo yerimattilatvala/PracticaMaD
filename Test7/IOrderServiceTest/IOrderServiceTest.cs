@@ -258,7 +258,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.IOrderServiceTest
                 long orderId = orderService.GenerateOrder(usrId, cardId, 12345, shoppingCart);
 
                 // FinOrder
-                List<OrderDetails> orders = orderService.ViewOrdersByUser(usrId);
+                List<OrderDetails> orders = orderService.ViewOrdersByUser(usrId,0,2);
 
                 Order order = orderDao.Find(orderId);
 
@@ -266,6 +266,48 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.IOrderServiceTest
                 Assert.AreEqual(order.usrId, orders.ElementAt(0).UsrId);
                 Assert.AreEqual(orders.ElementAt(0).CardNumber, cardDao.Find(order.idCard).cardNumber);
                 Assert.AreEqual(orders.ElementAt(0).PostalAddress, order.postalAddress);
+            }
+        }
+
+        // <summary>
+        ///A test for GetOrdersByUser
+        ///</summary>
+        [TestMethod()]
+        public void GetOrdersByUserTest()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                // Create a category
+                long categoryId = CreateCategory("Music");
+
+                // Create a product
+                long productId = CreateProduct(categoryId, "Dire Straits", 10, (float)8.65);
+                long product2Id = CreateProduct(categoryId, "ACDC", 10, (float)8.65);
+
+                // Register User
+                UserProfileDetails user = new UserProfileDetails("pepito", "delospalotes", "pepito@udc.es", "es", "ES", 12345);
+                long usrId = userService.RegisterUser("pepito07", "abcbd1234", user);
+
+                // Get Products
+                List<ProductDetails> shoppingCart = new List<ProductDetails>();
+                ProductDetails p1 = productService.FindProduct(productId);
+                p1.numberOfUnits = 1;
+                ProductDetails p2 = productService.FindProduct(product2Id);
+                shoppingCart.Add(p1);
+                shoppingCart.Add(p2);
+
+                // Add card
+                CardDetails card = new CardDetails("123456789", 123, DateTime.Now, "Credit");
+                cardService.AddCard(usrId, card);
+                long cardId = userDao.Find(usrId).Cards.ElementAt(0).idCard;
+
+                // Generate order
+                long orderId = orderService.GenerateOrder(usrId, cardId, 12345, shoppingCart);
+
+                int ordersByUser = orderService.GetOrdersByUser(usrId);
+
+                // Check the data
+                Assert.AreEqual(1, ordersByUser);
             }
         }
     }
