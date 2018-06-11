@@ -97,7 +97,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.ShoppingCart
             {
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvProductsInCard.Rows[index];
-                long productId = Convert.ToInt32(row.Cells[4].Text);
+                long productId = Convert.ToInt32(row.Cells[3].Text);
                 Model.ProductDao.ProductDetails product = SessionManager.ProductService.FindProduct(productId);
                 String url;
                 if (product is Model.ProductDao.MovieDetails)

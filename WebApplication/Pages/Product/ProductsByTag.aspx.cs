@@ -58,9 +58,11 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                 gvProductsTag.DataSource = pbpDataSource;
                 //Antes de hacer el databind hay que poner la columna de id a visible para luego poder acceder a ella
                 gvProductsTag.Columns[4].Visible = true;
+                gvProductsTag.Columns[3].Visible = true;
                 gvProductsTag.DataBind();
                 //Luego ya se pone a false.
                 gvProductsTag.Columns[4].Visible = false;
+                gvProductsTag.Columns[3].Visible = false;
             }
             catch (TargetInvocationException)
             {

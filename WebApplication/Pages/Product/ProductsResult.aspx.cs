@@ -75,9 +75,11 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                     gvProductsResult.DataSource = pbpDataSource;
                     //Antes de hacer el databind hay que poner la columna de id a visible para luego poder acceder a ella
                     gvProductsResult.Columns[4].Visible = true;
+                    gvProductsResult.Columns[3].Visible = true;
                     gvProductsResult.DataBind();
                     //Luego ya se pone a false.
                     gvProductsResult.Columns[4].Visible = false;
+                    gvProductsResult.Columns[3].Visible = false;
                 }
                 catch (TargetInvocationException)
                 {
@@ -93,9 +95,11 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                 //gvProductsResult.DataSource = productsOfPage;
                 //Antes de hacer el databind hay que poner la columna de id a visible para luego poder acceder a ella
                 gvProductsResult.Columns[4].Visible = true;
+                gvProductsResult.Columns[3].Visible = true;
                 gvProductsResult.DataBind();
                 //Luego ya se pone a false.
                 gvProductsResult.Columns[4].Visible = false;
+                gvProductsResult.Columns[3].Visible = false;
             }
             
         }
@@ -110,10 +114,6 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                 numberOfProducts = SessionManager.ProductService.getNumberOfProductsByKeywords(keywords,categoryId);
             else
                 numberOfProducts = SessionManager.ProductService.getNumberOfProductsByKeywords(keywords);
-            /*if (numberOfProducts % productsByRow == 0)
-                end = numberOfProducts / productsByRow;
-            else
-                end = (int)Math.Ceiling((double)numberOfProducts / (double)productsByRow);*/
 
             for (int i = 0; i< numberOfProducts; i++)
             {
