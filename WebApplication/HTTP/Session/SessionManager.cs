@@ -436,6 +436,10 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
         /// <param name="context">Http Context includes request, response, etc.</param>
         public static void Logout(HttpContext context)
         {
+            /* Clean shopping cart*/
+            if (shoppingCart.Count() > 0)
+                shoppingCart.Clear();
+
             /* Remove cookies. */
             CookiesManager.RemoveCookies(context);
 
