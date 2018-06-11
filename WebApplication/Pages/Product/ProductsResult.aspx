@@ -6,10 +6,11 @@
     <form runat="server">
     <asp:GridView ID="gvProductsResult"  CssClass="productsResult"
         AutoGenerateColumns="False"
+        AllowPaging="true"
          onpageindexchanging="GvAccOperationsPageIndexChanging"
         OnSelectedIndexChanging="gvProductsResult_SelectedIndexChanging"
         runat="server"
-        ShowHeaderWhenEmpty="True" meta:resourcekey="gvProductsResultResource1" OnRowCommand="OnProductNameClick">
+        ShowHeaderWhenEmpty="True" meta:resourcekey="gvProductsResultResource1" OnRowCommand="OnProductNameClick" PageSize="2">
         <Columns>
             <asp:ButtonField DataTextField="name" ButtonType="Link" HeaderText="<%$ Resources:, productName %>" commandname="ViewProduct"/>
             <asp:BoundField DataField="Category" HeaderText="<%$ Resources:, productCategory %>"/>
@@ -26,6 +27,12 @@
      </div>
         <br />
     <!-- "Previous" and "Next" links. -->
+         <div class="button">
+         <span>
+             <asp:Label ID="lblCache" runat="server" Visible="false" ></asp:Label>
+         </span>
+     </div>
+        <br />
     </form>
 
 </asp:Content>

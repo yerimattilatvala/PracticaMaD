@@ -6,67 +6,135 @@ using Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.Properties;
 using System.Data;
 using System.Reflection;
-
 using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
-using System.Security.Policy;
-using Es.Udc.DotNet.PracticaMaD.Model;
+using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Cache;
+using System.Collections.Generic;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
 {
     public partial class ProductsResult : SpecificCulturePage
     {
         ObjectDataSource pbpDataSource = new ObjectDataSource();
+        private static bool first;
+        private static bool inCache;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            try
+            if (!Page.IsPostBack)
             {
-                lblNoUnits.Visible = false;
-                pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
-                //Esto lo deberia de coger desde settings.settigns pero me daba error , CAMBIARLO LUEGO
-                Type type = typeof(IProductService);
-                string assemblyQualifiedName = type.AssemblyQualifiedName;
-                pbpDataSource.TypeName = assemblyQualifiedName;
+                first = false;
+                inCache = false;
+                LoadGrid(true);
+            }
+        }
 
+        private void LoadGrid(bool isPostBack)
+        {
+            lblNoUnits.Visible = false;
+            //Cogemos los keywords
+            String keywords = Request.Params.Get("keywords");
+            Int32 category = Convert.ToInt32(Request.Params.Get("category"));
+            string key = keywords + Request.Params.Get("category");
+            if (isPostBack == true && CacheApplication.IsContainKey(key) == false)
+                first = true;
+            else if (isPostBack == true && CacheApplication.IsContainKey(key) == true)
+                inCache = true;
 
-                pbpDataSource.EnablePaging = true;
-                pbpDataSource.SelectMethod = Settings.Default.ObjectDS_ProductsResult_SelectMethod;
+            if (first)
+            {
+                try
+                {
+                    if (isPostBack)
+                    {
+                        AddDataInCache(category,keywords,key);
+                    }
 
-                //Cogemos los keywords
-                String keywords = Request.Params.Get("keywords");
-                Int32 category = Convert.ToInt32(Request.Params.Get("category"));
+                    gvProductsResult.AllowPaging = true;
+                    gvProductsResult.PageSize = Settings.Default.AmazonMarket_defaultCount;
+                    pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
+                    //Esto lo deberia de coger desde settings.settigns pero me daba error , CAMBIARLO LUEGO
+                    Type type = typeof(IProductService);
+                    string assemblyQualifiedName = type.AssemblyQualifiedName;
+                    pbpDataSource.TypeName = assemblyQualifiedName;
+                    pbpDataSource.EnablePaging = true;
+                    pbpDataSource.SelectMethod = Settings.Default.ObjectDS_ProductsResult_SelectMethod;
+                    //Añadimos el parametro keywords
+                    pbpDataSource.SelectParameters.Add("keywords", DbType.String, keywords);
+                    //Depende de si la categoria es all (-1) o una definida en la bd.
+                    if (category != -1)
+                    {
+                        pbpDataSource.SelectParameters.Add("categoryId", DbType.Int32, category.ToString());
+                    }
 
-                //Añadimos el parametro keywords
-                pbpDataSource.SelectParameters.Add("keywords", DbType.String, keywords);
-                //Depende de si la categoria es all (-1) o una definida en la bd.
-                 if (category !=-1)
-                 {
-                    pbpDataSource.SelectParameters.Add("categoryId", DbType.Int32,category.ToString());
-                 }
+                    pbpDataSource.SelectCountMethod = Settings.Default.ObjectDS_ProductsResult_CountMethod;
+                    pbpDataSource.StartRowIndexParameterName = Settings.Default.ObjectDS_ProductsResult_StartIndexParameter;
+                    pbpDataSource.MaximumRowsParameterName = Settings.Default.ObjectDS_AccountOperations_CountParameter;
+                    /*gvProductsResult.AllowPaging = true;
+                    gvProductsResult.PageSize = Settings.Default.AmazonMarket_defaultCount;*/
+                    gvProductsResult.DataSource = pbpDataSource;
+                    //Antes de hacer el databind hay que poner la columna de id a visible para luego poder acceder a ella
+                    gvProductsResult.Columns[4].Visible = true;
+                    gvProductsResult.DataBind();
+                    //Luego ya se pone a false.
+                    gvProductsResult.Columns[4].Visible = false;
+                }
+                catch (TargetInvocationException)
+                {
 
-                pbpDataSource.SelectCountMethod = Settings.Default.ObjectDS_ProductsResult_CountMethod;
-                pbpDataSource.StartRowIndexParameterName = Settings.Default.ObjectDS_ProductsResult_StartIndexParameter;
-                pbpDataSource.MaximumRowsParameterName = Settings.Default.ObjectDS_AccountOperations_CountParameter;
+                }
+            } else if (inCache)
+            {
+                lblCache.Visible = true;
+                lblCache.Text = "CACHE : " + CacheApplication.cache.GetCount().ToString();
                 gvProductsResult.AllowPaging = true;
                 gvProductsResult.PageSize = Settings.Default.AmazonMarket_defaultCount;
-                gvProductsResult.DataSource = pbpDataSource;
+                gvProductsResult.DataSource = CacheApplication.GetCacheItem(key);
+                //gvProductsResult.DataSource = productsOfPage;
                 //Antes de hacer el databind hay que poner la columna de id a visible para luego poder acceder a ella
                 gvProductsResult.Columns[4].Visible = true;
                 gvProductsResult.DataBind();
                 //Luego ya se pone a false.
                 gvProductsResult.Columns[4].Visible = false;
             }
-            catch (TargetInvocationException)
-            {
+            
+        }
 
+        private void AddDataInCache(long categoryId, string keywords, string key)
+        {
+            List<ProductDetails> products = null;
+            List<ProductDetails> searchProducts = new List<ProductDetails>() ;
+            int numberOfProducts = 0;
+            int productsByRow = Settings.Default.AmazonMarket_defaultCount;
+            if (categoryId > 0)
+                numberOfProducts = SessionManager.ProductService.getNumberOfProductsByKeywords(keywords,categoryId);
+            else
+                numberOfProducts = SessionManager.ProductService.getNumberOfProductsByKeywords(keywords);
+            /*if (numberOfProducts % productsByRow == 0)
+                end = numberOfProducts / productsByRow;
+            else
+                end = (int)Math.Ceiling((double)numberOfProducts / (double)productsByRow);*/
+
+            for (int i = 0; i< numberOfProducts; i++)
+            {
+                if (categoryId > 0)
+                    products = SessionManager.ProductService.FindByKeywords(keywords,categoryId, i, productsByRow);
+                else
+                    products = SessionManager.ProductService.FindByKeywords(keywords, i, productsByRow);
+                for(int j = 0; j < products.Count; j++)
+                {
+                    if(!searchProducts.Contains(products[j]))
+                        searchProducts.Add(products[j]);
+                }
             }
+            CacheApplication.StoreItemsCache(key,searchProducts);
         }
 
         protected void GvAccOperationsPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvProductsResult.PageIndex = e.NewPageIndex;
-            gvProductsResult.DataBind();
+            //gvProductsResult.DataBind();
+            LoadGrid(false);
             lblNoUnits.Visible = false;
         }
 
@@ -120,7 +188,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                 }
                 else
                 {
-                    url = String.Format("~/Pages/Product/ProductDetails.aspx?productId={0}", productId);
+                    url = String.Format("~/Pages/Product/ProductDetail.aspx?productId={0}", productId);
                 }
                 Response.Redirect(Response.ApplyAppPathModifier(url));
             }

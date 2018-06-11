@@ -18,6 +18,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using System.Runtime.Caching;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
 {
@@ -90,7 +91,6 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session
     /// </summary>
     public class SessionManager
     {
-
         public static List<ProductDetails> shoppingCart;
 
         public static readonly String LOCALE_SESSION_ATTRIBUTE = "locale";

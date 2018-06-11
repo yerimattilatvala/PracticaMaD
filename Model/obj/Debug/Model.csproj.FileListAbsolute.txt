@@ -43,4 +43,3 @@ D:\Marcos\PracticaMaD\Model\bin\Debug\Ninject.Extensions.Xml.xml
 D:\Marcos\PracticaMaD\Model\obj\Debug\Model.csproj.PracticaMaD.Model.exe.config
 D:\Marcos\PracticaMaD\Model\obj\Debug\PracticaMaD.Model.exe
 D:\Marcos\PracticaMaD\Model\obj\Debug\PracticaMaD.Model.pdb
-D:\Marcos\PracticaMaD\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

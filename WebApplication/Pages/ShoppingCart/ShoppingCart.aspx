@@ -8,9 +8,10 @@
             AutoGenerateColumns="False"
             OnSelectedIndexChanging="gvProductsInCard_changing"
             OnRowCreated="gvProductsInCard_RowCreated"
+            OnRowCommand="gvProductsInCard_RowCommand"
             ShowHeaderWhenEmpty="True"  meta:resourcekey="gvProductsInCard" OnRowDataBound="gvProductsInCard_RowDataBound">
             <Columns>
-            <asp:HyperLinkField DataTextField="Name" HeaderText="<%$ Resources:, productName %>" meta:resourcekey="BoundFieldResource1" DataNavigateUrlFields="ProductId" DataNavigateUrlFormatString="~/Pages/Product/ProductDetails.aspx?productId={0}" />
+            <asp:ButtonField DataTextField="Name" HeaderText="<%$ Resources:, productName %>" commandname="ViewProduct" meta:resourcekey="BoundFieldResource1" DataNavigateUrlFields="ProductId" DataNavigateUrlFormatString="~/Pages/Product/ProductDetail.aspx?productId={0}" />
             <asp:BoundField DataField="Prize" HeaderText="<%$ Resources:, productPrize %>" meta:resourcekey="BoundFieldResource2"/>
             <asp:BoundField DataField="NumberOfUnits" HeaderText="<%$ Resources:, numberOfUnits %>" meta:resourcekey="BoundFieldResource3"/>
             <asp:BoundField DataField="ProductId" HeaderText="<%$ Resources:, productId %>" Visible="true"  meta:resourcekey="BoundFieldResource4" />

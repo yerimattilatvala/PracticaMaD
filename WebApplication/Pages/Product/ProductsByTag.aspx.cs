@@ -127,7 +127,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                 }
                 else
                 {
-                    url = String.Format("~/Pages/Product/ProductDetails.aspx?productId={0}", productId);
+                    url = String.Format("~/Pages/Product/ProductDetail.aspx?productId={0}", productId);
                 }
                 Response.Redirect(Response.ApplyAppPathModifier(url));
             }

@@ -156,6 +156,7 @@
       <HintPath>..\packages\Rolosoft.Practices.EnterpriseLibrary.1.0.7\lib\net45\Rolosoft.Practices.EnterpriseLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Spatial, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
       <Private>True</Private>
@@ -194,7 +195,7 @@
     <Content Include="Pages\Product\BookDetails.aspx" />
     <Content Include="Pages\Product\CDDetails.aspx" />
     <Content Include="Pages\Product\MovieDetails.aspx" />
-    <Content Include="Pages\Product\ProductDetails.aspx" />
+    <Content Include="Pages\Product\ProductDetail.aspx" />
     <Content Include="Pages\Product\ProductsByTag.aspx" />
     <Content Include="Pages\Product\ProductsResult.aspx" />
     <Content Include="Pages\ShoppingCart\ShoppingCart.aspx" />
@@ -233,6 +234,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HTTP\Cache\CacheApplication.cs" />
     <Compile Include="HTTP\Session\SessionManager.cs" />
     <Compile Include="HTTP\Session\SpecificCulturePage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -313,12 +315,12 @@
     <Compile Include="Pages\Product\MovieDetails.aspx.designer.cs">
       <DependentUpon>MovieDetails.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Product\ProductDetails.aspx.cs">
-      <DependentUpon>ProductDetails.aspx</DependentUpon>
+    <Compile Include="Pages\Product\ProductDetail.aspx.cs">
+      <DependentUpon>ProductDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Product\ProductDetails.aspx.designer.cs">
-      <DependentUpon>ProductDetails.aspx</DependentUpon>
+    <Compile Include="Pages\Product\ProductDetail.aspx.designer.cs">
+      <DependentUpon>ProductDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Product\ProductMasterPage.master.cs">
       <DependentUpon>ProductMasterPage.master</DependentUpon>
