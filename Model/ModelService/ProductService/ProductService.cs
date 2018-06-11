@@ -173,7 +173,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
             {
                 Product p = ProductDao.Find(order.OrderLines.ElementAt(i).productId);
                 string categoryName = CategoryDao.Find(p.categoryId).name;
-                ProductDetails productDetails = new ProductDetails(p.name, p.categoryId,categoryName, p.registerDate, order.OrderLines.ElementAt(i).unitPrize, p.productId, order.OrderLines.ElementAt(i).numberOfUnits);
+                ProductDetails productDetails = new ProductDetails(p.name, p.categoryId,categoryName, p.registerDate, order.OrderLines.ElementAt(i).unitPrize, p.productId, order.OrderLines.ElementAt(i).numberOfUnits,order.OrderLines.ElementAt(i).forGift);
                 productsDetails.Add(productDetails);
             }
 

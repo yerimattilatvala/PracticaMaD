@@ -53,6 +53,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService
                 OrderLine orderLine = new OrderLine();
                 orderLine.orderId = orderId;
                 orderLine.productId = productId;
+                orderLine.forGift = productList.ElementAt(i).forGift;
                 orderLine.numberOfUnits = numberOfUnits;
                 orderLine.unitPrize = product.prize;
                 OrderLineDao.Create(orderLine);

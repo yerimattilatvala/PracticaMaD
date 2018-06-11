@@ -207,4 +207,7 @@
   <data name="txtPrizeResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="ForGift" xml:space="preserve">
+    <value>Wrapped for gift</value>
+  </data>
 </root>

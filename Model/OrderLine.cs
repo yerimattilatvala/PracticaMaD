@@ -19,6 +19,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public long productId { get; set; }
         public int numberOfUnits { get; set; }
         public double unitPrize { get; set; }
+        public bool forGift { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }

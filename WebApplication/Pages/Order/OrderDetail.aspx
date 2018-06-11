@@ -32,6 +32,7 @@
             <asp:BoundField DataField="Prize" HeaderText="<%$ Resources:, Prize %>" Visible="true" meta:resourcekey="BoundFieldResource2"  />
             <asp:BoundField DataField="NumberOfUnits"  HeaderText="<%$ Resources:, NumberOfUnits %>" meta:resourcekey="BoundFieldResource3"/>
             <asp:BoundField DataField="ProductId" Visible="true"  HeaderText="<%$ Resources:, ProductId %>" meta:resourcekey="BoundFieldResource4"/>
+            <asp:CheckBoxField DataField="ForGift" Visible="true" HeaderText="<%$ Resources:, ForGift %>" />
             </Columns>
         </asp:GridView>
         <br />

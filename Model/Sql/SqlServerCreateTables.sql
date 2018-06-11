@@ -138,6 +138,7 @@ CREATE TABLE OrderLine
 	productId bigint NOT NULL,
 	numberOfUnits int NOT NULL, 
 	unitPrize float NOT NULL,
+	forGift bit NOT NULL,
 
 	CONSTRAINT [PK_OrderLine] PRIMARY KEY (numberId),
 	CONSTRAINT [FK_OrderLineorderId] FOREIGN KEY (orderId)

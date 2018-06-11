@@ -65,6 +65,7 @@
           <Property Name="productId" Type="bigint" Nullable="false" />
           <Property Name="numberOfUnits" Type="int" Nullable="false" />
           <Property Name="unitPrize" Type="float" Nullable="false" />
+          <Property Name="forGift" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -364,6 +365,7 @@
           <Property Name="productId" Type="Int64" Nullable="false" />
           <Property Name="numberOfUnits" Type="Int32" Nullable="false" />
           <Property Name="unitPrize" Type="Double" Nullable="false" />
+          <Property Name="forGift" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.FK_OrderLineorderId" FromRole="OrderLine" ToRole="Orders" />
           <NavigationProperty Name="Product" Relationship="Self.FK_OrderLineproductId" FromRole="OrderLine" ToRole="Product" />
         </EntityType>
@@ -497,7 +499,7 @@
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="madDatabaseEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="madDatabaseEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cards" EntityType="Self.Card" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="OrderLines" EntityType="Self.OrderLine" />
@@ -539,7 +541,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="madDatabaseModelStoreContainer" CdmEntityContainer="madDatabaseEntities">
+        <EntityContainerMapping StorageEntityContainer="madDatabaseModelStoreContainer" CdmEntityContainer="madDatabaseEntities1">
           <EntitySetMapping Name="Cards">
             <EntityTypeMapping TypeName="madDatabaseModel.Card">
               <MappingFragment StoreEntitySet="Card">
@@ -569,6 +571,7 @@
                 <ScalarProperty Name="productId" ColumnName="productId" />
                 <ScalarProperty Name="numberOfUnits" ColumnName="numberOfUnits" />
                 <ScalarProperty Name="unitPrize" ColumnName="unitPrize" />
+                <ScalarProperty Name="forGift" ColumnName="forGift" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -60,6 +60,7 @@
     <Property Name="productId" Type="bigint" Nullable="false" />
     <Property Name="numberOfUnits" Type="int" Nullable="false" />
     <Property Name="unitPrize" Type="float" Nullable="false" />
+    <Property Name="forGift" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Orders">
     <Key>
