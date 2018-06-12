@@ -39,8 +39,6 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
             SessionManager.AddToShoppingCart(productId, cant);
             string message = GetLocalResourceObject("message.Text").ToString();
             Response.Write("<script language=javascript>alert('" + message + "'); location.href='/Pages/MainPage.aspx';</script>");
-            //Response.Redirect(Request.RawUrl.ToString());
-
         }
 
         protected void listaCantidades_SelectedIndexChanged(object sender, EventArgs e)
@@ -83,7 +81,10 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
             if (SessionManager.IsUserAuthenticated(Context))
             {
                 if (txtTag.Text.ToString().Equals(""))
+                {
                     lblTagError.Visible = true;
+                    lblTagError.Text = GetLocalResourceObject("lblTagError.Text").ToString();
+                }
                 else
                 {
                     Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));

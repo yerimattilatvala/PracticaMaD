@@ -147,18 +147,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService
                 throw new InstanceNotFoundException(userProfileId,"Usuario no encontrado");
             }
             List<Card> userCards = user.Cards.ToList();
-
-            for(int i = 0; i< userCards.Count; i++)
-            {
-                if (userCards.ElementAt(i).defaultCard)
+            if (userCards != null) {
+                for (int i = 0; i < userCards.Count; i++)
                 {
-                    string cardNumber = userCards.ElementAt(i).cardNumber;
-                    string cardType = userCards.ElementAt(i).cardType;
-                    int cv = userCards.ElementAt(i).verificationCode;
-                    bool defaultC = userCards.ElementAt(i).defaultCard;
-                    long cardId = userCards.ElementAt(i).idCard;
-                    DateTime date = userCards.ElementAt(i).expirationDate;
-                    defaultCard = new CardDetails(cardNumber,cv,date,cardType,cardId,defaultC);
+                    if (userCards.ElementAt(i).defaultCard)
+                    {
+                        string cardNumber = userCards.ElementAt(i).cardNumber;
+                        string cardType = userCards.ElementAt(i).cardType;
+                        int cv = userCards.ElementAt(i).verificationCode;
+                        bool defaultC = userCards.ElementAt(i).defaultCard;
+                        long cardId = userCards.ElementAt(i).idCard;
+                        DateTime date = userCards.ElementAt(i).expirationDate;
+                        defaultCard = new CardDetails(cardNumber, cv, date, cardType, cardId, defaultC);
+                    }
                 }
             }
             return defaultCard;

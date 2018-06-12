@@ -21,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order
     public partial class ManageOrder : SpecificCulturePage
     {
         ObjectDataSource pbpDataSource = new ObjectDataSource();
-        static Boolean paymentMethod = false;
+        static Boolean paymentMethod;
         static long cardId;
         static string cardType;
         static string cardNumber;
@@ -30,6 +30,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order
         {
             if (!Page.IsPostBack)
             {
+                paymentMethod = false;
                 lblError.Visible = false;
                 ChangeDefault();
                 gvProductsToPay.DataSource = SessionManager.shoppingCart;
@@ -121,6 +122,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order
             gvProductsToPay.DataSource = SessionManager.shoppingCart;
             gvProductsToPay.DataBind();
             txtPrizeTotal.Text = SessionManager.GetTotalPrize().ToString();
+            Response.Redirect(Request.RawUrl.ToString());
         }
 
         protected void cbForGift_CheckedChanged(object sender, EventArgs e)

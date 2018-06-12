@@ -90,8 +90,6 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                 }
             } else if (inCache)
             {
-                lblCache.Visible = true;
-                lblCache.Text = "CACHE : " + CacheApplication.cache.GetCount().ToString();
                 gvProductsResult.AllowPaging = true;
                 gvProductsResult.PageSize = Settings.Default.AmazonMarket_defaultCount;
                 gvProductsResult.DataSource = CacheApplication.GetCacheItem(key);
