@@ -425,58 +425,118 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\Authentication.aspx.resx" />
+    <Content Include="Pages\User\App_LocalResources\en-default\Authentication.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\Register.aspx.resx" />
+    <Content Include="Pages\User\App_LocalResources\en-default\Register.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\UpdateUserProfile.aspx.resx" />
+    <Content Include="Pages\User\App_LocalResources\en-default\UpdateUserProfile.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Errors\App_LocalResources\InternalError.aspx.resx" />
+    <Content Include="Pages\Errors\App_LocalResources\en-default\InternalError.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\ChangePassword.aspx.resx" />
+    <Content Include="Pages\User\App_LocalResources\en-default\ChangePassword.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Product\App_LocalResources\ProductsResult.aspx.resx" />
+    <Content Include="Pages\Product\App_LocalResources\en-default\ProductsResult.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\ShoppingCart\App_LocalResources\ShoppingCart.aspx.resx" />
+    <Content Include="Pages\ShoppingCart\App_LocalResources\en-default\ShoppingCart.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Card\App_LocalResources\AddCard.aspx.resx" />
+    <Content Include="Pages\Card\App_LocalResources\en-default\AddCard.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Card\App_LocalResources\SeeMyCards.aspx.resx" />
+    <Content Include="Pages\Card\App_LocalResources\en-default\SeeMyCards.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Order\App_LocalResources\ManageOrder.aspx.resx" />
+    <Content Include="Pages\Order\App_LocalResources\en-default\ManageOrder.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Order\App_LocalResources\SeeMyOrders.aspx.resx" />
+    <Content Include="Pages\Order\App_LocalResources\en-default\SeeMyOrders.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Order\App_LocalResources\OrderDetail.aspx.resx" />
+    <Content Include="Pages\Order\App_LocalResources\en-default\OrderDetail.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Product\App_LocalResources\MovieDetails.aspx.resx" />
+    <Content Include="Pages\Product\App_LocalResources\en-default\MovieDetails.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Product\App_LocalResources\ProductMasterPage.master.resx" />
+    <Content Include="Pages\Product\App_LocalResources\en-default\ProductMasterPage.master.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Product\App_LocalResources\BookDetails.aspx.resx" />
+    <Content Include="Pages\Product\App_LocalResources\en-default\BookDetails.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Product\App_LocalResources\CDDetails.aspx.resx" />
+    <Content Include="Pages\Product\App_LocalResources\en-default\CDDetails.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\MyAccount.aspx.resx" />
+    <Content Include="Pages\User\App_LocalResources\en-default\MyAccount.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Product\App_LocalResources\ProductsByTag.aspx.resx" />
+    <Content Include="Pages\Product\App_LocalResources\en-default\ProductsByTag.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Card\App_LocalResources\es\AddCard.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Card\App_LocalResources\es\SeeMyCards.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\es\Authentication.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\es\MainPage.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Order\App_LocalResources\es\ManageOrder.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Order\App_LocalResources\es\OrderDetail.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Order\App_LocalResources\es\SeeMyOrders.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Errors\App_LocalResources\es\InternalError.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\es\BookDetails.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\es\CDDetails.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\es\MovieDetails.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\es\ProductMasterPage.master.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\es\ProductsByTag.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\es\ProductsResult.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\es\PracticaMaD.Master.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\ShoppingCart\App_LocalResources\es\ShoppingCart.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\es\ChangePassword.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\es\MyAccount.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\es\Register.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\es\UpdateUserProfile.aspx.es.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

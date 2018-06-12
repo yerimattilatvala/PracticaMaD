@@ -49,5 +49,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService
 
         [Transactional]
         List<ProductDetails> GetOrderLineProductsByOrderId(long orderId);
+
     }
 }

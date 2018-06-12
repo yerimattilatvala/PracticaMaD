@@ -12,6 +12,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
 
         UserProfile FindByLoginName(String loginName);
 
-
+        UserProfile FindByEmail(String email);
     }
 }

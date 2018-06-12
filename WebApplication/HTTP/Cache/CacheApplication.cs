@@ -48,5 +48,26 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Cache
             }
         }
 
+        public static void DeleteItemByProductId(long productId)
+        {
+            List<String> keysToErase = new List<string>();
+            foreach(string key in keys)
+            {
+                List<ProductDetails> products = GetCacheItem(key);
+                foreach(ProductDetails p in products)
+                {
+                    if (p.productId == productId)
+                    {
+                        keysToErase.Add(key);
+                        break;
+                    }
+                }
+            }
+            foreach(string key in keysToErase)
+            {
+                keys.Remove(key);
+                cache.Remove(key);
+            }
+        }
     }
 }

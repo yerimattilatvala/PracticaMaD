@@ -1,6 +1,7 @@
 ﻿using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService;
+using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.Properties;
 using System;
@@ -22,6 +23,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
         {
             if (!Page.IsPostBack)
             {
+                lblAutenticated.Visible = false;
                 IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
                 ITagService tagService = (ITagService)iocManager.Resolve<ITagService>();
                 long tagId = Convert.ToInt32(Request.Params.Get("tagId"));
@@ -132,6 +134,22 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                     url = String.Format("~/Pages/Product/ProductDetail.aspx?productId={0}", productId);
                 }
                 Response.Redirect(Response.ApplyAppPathModifier(url));
+            }
+        }
+
+        protected void btnDeleteTag_Click(object sender, EventArgs e)
+        {
+            long tagId = Convert.ToInt32(Request.Params.Get("tagId"));
+            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+            ITagDao tagDao = (ITagDao)iocManager.Resolve<ITagDao>();
+            if (SessionManager.IsUserAuthenticated(Context))
+            { 
+                tagDao.Remove(tagId);
+                Response.Redirect(Response.ApplyAppPathModifier("~/Pages/MainPage.aspx"));
+            }
+            else
+            {
+                lblAutenticated.Visible = true;
             }
         }
     }

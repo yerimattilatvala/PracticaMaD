@@ -7,12 +7,15 @@ using System.Web.UI.WebControls;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.View.ApplicationObjects;
+using Es.Udc.DotNet.PracticaMaD.Model.ModelService.Exceptions;
+
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.User
 {
     public partial class UpdateUserProfile : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblEmailError.Visible = false;
             if (!IsPostBack)
             {
                 UserProfileDetails userProfileDetails =
@@ -48,11 +51,18 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.User
                         txtEmail.Text, comboLanguage.SelectedValue,
                         comboCountry.SelectedValue,Int32.Parse(txtPostalAddress.Text));
 
-                SessionManager.UpdateUserProfileDetails(Context,
-                    userProfileDetails);
+                try
+                {
+                    SessionManager.UpdateUserProfileDetails(Context,
+                        userProfileDetails);
 
-                Response.Redirect(
-                    Response.ApplyAppPathModifier("~/Pages/MainPage.aspx"));
+                    Response.Redirect(
+                        Response.ApplyAppPathModifier("~/Pages/MainPage.aspx"));
+                }
+                catch (DuplicateEmailException)
+                {
+                    lblEmailError.Visible = true;
+                }
             }
         }
 

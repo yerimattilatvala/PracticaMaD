@@ -490,7 +490,7 @@
     <value>Add a new payment method</value>
   </data>
   <data name="lblError.Text" xml:space="preserve">
-    <value />
+    <value>Excess units error</value>
   </data>
   <data name="message.Text" xml:space="preserve">
     <value>Successful order.</value>

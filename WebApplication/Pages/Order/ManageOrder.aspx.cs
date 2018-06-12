@@ -4,6 +4,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.ModelService.CardService;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.ModelService.OrderService;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Cache;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.Properties;
 using System;
@@ -34,6 +35,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order
                 gvProductsToPay.DataSource = SessionManager.shoppingCart;
                 gvProductsToPay.DataBind();
                 LoadGrid();
+                txtPostalAddress.Text = SessionManager.FindUserProfileDetails(Context).PostalAddress.ToString();
                 txtPrizeTotal.Text = SessionManager.GetTotalPrize().ToString();
             }
         }
@@ -87,19 +89,26 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order
             try
             {
                 orderService.GenerateOrder(usrId, cardId, postalAddress, products);
+                CleanCache();
                 SessionManager.shoppingCart.Clear();
                 paymentMethod = false;
-                //Page.ClientScript.RegisterStartupScript(this.GetType(),"Script","<script>alert('This is a alert.');</script>");
-                //Response.Redirect(Response.ApplyAppPathModifier("~/Pages/MainPage.aspx"));
                 string message = GetLocalResourceObject("message.Text").ToString();
                 Response.Write("<script language=javascript>alert('"+message+"'); location.href='/Pages/MainPage.aspx';</script>");
             }
             catch (InsuficientNumberOfUnitsException w)
             {
                 lblError.Visible = true;
-                lblError.Text = w.Message.ToString();
+                lblError.Text = GetLocalResourceObject("lblError.Text").ToString() +" "+ w.Message.ToString();
             }
             
+        }
+
+        private void CleanCache()
+        {
+            foreach(ProductDetails p in SessionManager.shoppingCart)
+            {
+                CacheApplication.DeleteItemByProductId(p.productId);
+            }
         }
 
         protected void listaCantidades_SelectedIndexChanged(object sender, EventArgs e)

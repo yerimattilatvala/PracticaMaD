@@ -1,4 +1,5 @@
-﻿using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
+using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            InitializeCloudTags();
             if (!SessionManager.IsUserAuthenticated(Context))
             {
                 if (lblDash1 != null)
@@ -56,6 +58,54 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication
                     lnkCart.Text = GetLocalResourceObject("lnkCart.Text").ToString() + "(" + SessionManager.GetNumberOfItemsShoppingCart() + ")";
                 }
             }
+        }
+
+        private void InitializeCloudTags()
+        {
+            tagPanel.Controls.Clear();
+            List<TagDetails> tagDetails = SessionManager.TagService.GetAllTags();
+            foreach (TagDetails tag in tagDetails)
+            {
+                HyperLink tagLink = new HyperLink();
+                if (IsPopular(tag) == 1)
+                {
+                    tagLink.Font.Size = 16;
+                }
+                else if (IsPopular(tag) == 2)
+                {
+                    tagLink.Font.Size = 10;
+                }
+                else
+                    tagLink.Font.Size = 6;
+                tagLink.Text = tag.name + " ";
+                string url = String.Format("/Pages/Product/ProductsByTag.aspx?tagId={0}", tag.tagId);
+                tagLink.NavigateUrl = url;
+                tagPanel.Controls.Add(tagLink);
+            }
+        }
+        private int IsPopular(TagDetails tagD)
+        {
+            int pos = -1;
+
+            List<TagDetails> tagDetails = SessionManager.TagService.GetMostPopularTags(8);
+            int count = 0;
+
+            foreach (TagDetails tag in tagDetails)
+            {
+                if (tag.tagId == tagD.tagId && count < 3)
+                {
+                    pos = 1;
+                    break;
+                }
+                else if (tag.tagId == tagD.tagId && count > 2)
+                {
+                    pos = 2;
+                    break;
+                }
+                count++;
+            }
+
+            return pos;
         }
     }
 }

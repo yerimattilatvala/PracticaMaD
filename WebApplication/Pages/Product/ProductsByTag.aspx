@@ -8,6 +8,15 @@
             </span>
         </div>
         <br />
+        <div class="button">
+            <asp:Button ID="btnDeleteTag" runat="server" OnClick="btnDeleteTag_Click" meta:resourcekey="btnDeleteTag"/>
+        </div>
+        <div class="button">
+            <span>
+                <asp:Label ID="lblAutenticated" Font-Bold="true" ForeColor="Red" runat="server" meta:resourcekey="lblAutenticated" />
+            </span>
+        </div>
+        <br />
         <asp:GridView ID="gvProductsTag"  CssClass="productsResult"
         AutoGenerateColumns="False"
         OnPageIndexChanging="gvProductsTag_PageIndexChanging"

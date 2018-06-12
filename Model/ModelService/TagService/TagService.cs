@@ -84,29 +84,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService
         [Transactional]
         public long AddNewTag(TagDetails newTag)
         {
-            long tagId = -1;
-            List<Tag> allTags = TagDao.GetAllElements();
-
-            for(int i = 0; i < allTags.Count; i++)
-
+            Tag tag = null;
+            try
             {
-                if (allTags.ElementAt(i).name.ToLower().Equals(newTag.name.ToLower()))
-                {
-                    tagId = allTags.ElementAt(i).tagId;
-                    break;
-                }
-            }
-
-            if (tagId < 0)
+                Tag t = TagDao.GetTagByName(newTag.name);
+                throw new DuplicateInstanceException(newTag.name,
+                    typeof(Tag).FullName);
+            } catch(InstanceNotFoundException)
             {
-                Tag tag = new Tag();
+                tag = new Tag();
                 tag.name = newTag.name;
                 tag.timesUsed = 0;
                 TagDao.Create(tag);
-                tagId = tag.tagId;
             }
 
-            return tagId;
+            return tag.tagId;
         }
 
         public TagDetails FinTagById(long tagId)
@@ -123,6 +115,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService
             }
 
             return tagDetail;
+        }
+
+        public void UntagProduct(long productId, long tagId)
+        {
+            Product product = null;
+            try
+            {
+                product = ProductDao.Find(productId);
+            }
+            catch (InstanceNotFoundException)
+            {
+                throw new InstanceNotFoundException(productId, "Producto no encontrado");
+            }
+            for(int i = 0; i< product.Tags.Count;i++)
+            {
+                if (product.Tags.ElementAt(i).tagId == tagId)
+                {
+                    product.Tags.Remove(TagDao.Find(tagId));
+                    ProductDao.Update(product);
+                }
+            }
         }
     }
 }

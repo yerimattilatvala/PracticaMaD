@@ -35,5 +35,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.TagService
 
         [Transactional]
         TagDetails FinTagById(long tagId);
+
+        [Transactional]
+        void UntagProduct(long productId, long tagId);
     }
 }

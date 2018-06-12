@@ -8,7 +8,7 @@ using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.User
 {
-    public partial class Logout : System.Web.UI.Page
+    public partial class Logout : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

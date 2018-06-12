@@ -47,6 +47,16 @@
             <div id="content">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder_BodyContent" runat="server" />
             </div>
+        <!-- Tags content. -->
+        <div id="contentTag">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder_Tags" runat="server" />
+            <div class="button">
+                <asp:Label ID="lblCoudTags" Font-Bold="true" ForeColor="Turquoise" Font-Size="Medium" runat="server" meta:resourcekey="lblCoudTags"></asp:Label>
+                <br />
+                <asp:panel runat="server" id="tagPanel" backcolor="WhiteSmoke">
+             </asp:panel>
+            </div> 
+        </div>
         <!-- Footer. -->
             <div id="footer">
                 <asp:Localize ID="lclFooter" runat="server" meta:resourcekey="lclFooter" />

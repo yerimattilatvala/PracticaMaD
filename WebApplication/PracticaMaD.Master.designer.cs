@@ -121,6 +121,33 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder_BodyContent;
         
         /// <summary>
+        /// Control ContentPlaceHolder_Tags.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder_Tags;
+        
+        /// <summary>
+        /// Control lblCoudTags.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCoudTags;
+        
+        /// <summary>
+        /// Control tagPanel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel tagPanel;
+        
+        /// <summary>
         /// Control lclFooter.
         /// </summary>
         /// <remarks>

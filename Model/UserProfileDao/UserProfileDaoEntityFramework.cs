@@ -13,22 +13,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
     public class UserProfileDaoEntityFramework :
         GenericDaoEntityFramework<UserProfile, Int64>, IUserProfileDao
     {
-        public UserProfile FindByLoginName(string loginName)
+        public UserProfile FindByEmail(string email)
         {
             UserProfile userProfile = null;
 
-            #region Option 1: Using Linq.
+            #region Option 2: Using eSQL over dbSet
 
-            DbSet<UserProfile> userProfiles = Context.Set<UserProfile>();
+            string sqlQuery = "Select * FROM UserProfile where email=@email";
+            DbParameter emailNameParameter =
+                new System.Data.SqlClient.SqlParameter("email", email);
 
-            //var result =
-            //    (from u in userProfiles
-            //     where u.loginName == loginName
-            //     select u);
-
-            //userProfile = result.FirstOrDefault();
+            userProfile = Context.Database.SqlQuery<UserProfile>(sqlQuery, emailNameParameter).FirstOrDefault<UserProfile>();
 
             #endregion
+
+            if (userProfile == null)
+                throw new InstanceNotFoundException(email,
+                    typeof(UserProfile).FullName);
+
+            return userProfile;
+        }
+
+        public UserProfile FindByLoginName(string loginName)
+        {
+            UserProfile userProfile = null;
 
             #region Option 2: Using eSQL over dbSet
 
@@ -37,30 +45,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
                 new System.Data.SqlClient.SqlParameter("loginName", loginName);
 
             userProfile = Context.Database.SqlQuery<UserProfile>(sqlQuery, loginNameParameter).FirstOrDefault<UserProfile>();
-
-            #endregion
-
-            #region Option 3: Using Entity SQL and Object Services provided by old ObjectContext.
-
-            //String sqlQuery =
-            //    "SELECT VALUE u FROM MiniPortalEntities.UserProfiles AS u " +
-            //    "WHERE u.loginName=@loginName";
-
-            //ObjectParameter param = new ObjectParameter("loginName", loginName);
-
-            //ObjectQuery<UserProfile> query =
-            //  ((System.Data.Entity.Infrastructure.IObjectContextAdapter)Context).ObjectContext.CreateQuery<UserProfile>(sqlQuery, param);
-
-            //var result = query.Execute(MergeOption.AppendOnly);
-
-            //try
-            //{
-            //    userProfile = result.First<UserProfile>();
-            //}
-            //catch (Exception)
-            //{
-            //    userProfile = null;
-            //}
 
             #endregion
 

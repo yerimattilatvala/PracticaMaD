@@ -7,6 +7,15 @@
     </div>
          <div class="field">
               <span class="label">
+                <asp:Localize ID="lclUntag" runat="server" meta:resourcekey="lclUntag" />
+              </span>
+             <span class="entry">
+                  <asp:DropDownList ID="untagList" AutoPostBack="true" OnSelectedIndexChanged="untagList_SelectedIndexChanged" runat="server">
+                    </asp:DropDownList>
+            </span>
+         </div>
+         <div class="field">
+              <span class="label">
                 <asp:Localize ID="lclTag" runat="server" meta:resourcekey="lclTag" />
               </span>
              <span class="entry">
@@ -28,7 +37,12 @@
             </span>
          </div>
          <br />
-
+         <div class="button">
+             <span>
+                 <asp:Label ID="lblAuntenticated" runat="server" Font-Bold="true" ForeColor="Red" meta:resourcekey="lblAuntenticated" Visible="false"></asp:Label>
+             </span>
+         </div>
+         <br />
          <div class="field">
         <span class="label">
             <asp:Localize ID="lclCategory" runat="server" meta:resourcekey="lclNumberOfElements" />

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="ManageOrder.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Order.ManageOrder" meta:resourcekey="PageResource1" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation" runat="server">
-       -
+       
     <asp:Localize ID="lclMenuExplanation" runat="server" meta:resourcekey="lclMenuExplanation" />
 
 </asp:Content>

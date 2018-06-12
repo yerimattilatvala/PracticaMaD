@@ -10,5 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
     public interface ITagDao : IGenericDao<Tag, Int64>
     {
         List<Tag> GetMostPopularTags(int n);
+
+        Tag GetTagByName(string tagName);
     }
 }

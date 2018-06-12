@@ -117,44 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="addToCart" xml:space="preserve">
-    <value>Add to cart</value>
-  </data>
-  <data name="BoundFieldResource1.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource1.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource2.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource2.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource3.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource3.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource4.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource4.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ButtonFieldResource1.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ButtonFieldResource1.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ButtonFieldResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="CommandFieldResource1.AccessibleHeaderText" xml:space="preserve">
-    <value />
+  <data name="CardNumber" xml:space="preserve">
+    <value>Tarjeta</value>
   </data>
   <data name="CommandFieldResource1.CancelText" xml:space="preserve">
     <value>Cancelar</value>
@@ -165,14 +129,8 @@
   <data name="CommandFieldResource1.EditText" xml:space="preserve">
     <value>Editar</value>
   </data>
-  <data name="CommandFieldResource1.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="CommandFieldResource1.HeaderText" xml:space="preserve">
-    <value />
-  </data>
   <data name="CommandFieldResource1.InsertText" xml:space="preserve">
-    <value>Insertar</value>
+    <value>Insertar referencia</value>
   </data>
   <data name="CommandFieldResource1.NewText" xml:space="preserve">
     <value>Nuevo</value>
@@ -180,37 +138,22 @@
   <data name="CommandFieldResource1.UpdateText" xml:space="preserve">
     <value>Actualizar</value>
   </data>
-  <data name="gvProductsTagResource1.Caption" xml:space="preserve">
-    <value />
+  <data name="NumberOfProducts" xml:space="preserve">
+    <value>Número de productos</value>
   </data>
-  <data name="gvProductsTagResource1.EmptyDataText" xml:space="preserve">
-    <value />
+  <data name="OrderDate" xml:space="preserve">
+    <value>Fecha del pedido</value>
   </data>
-  <data name="gvProductsTagResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lclTagNameResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numberOfUnits" xml:space="preserve">
-    <value>Units</value>
+  <data name="OrderId" xml:space="preserve">
+    <value>Id. de pedido</value>
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>Amazon Market</value>
   </data>
-  <data name="productCategory" xml:space="preserve">
-    <value>Category</value>
+  <data name="PostalAddress" xml:space="preserve">
+    <value>Dirección postal</value>
   </data>
-  <data name="productId" xml:space="preserve">
-    <value>ProductId</value>
-  </data>
-  <data name="productName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="productPrize" xml:space="preserve">
-    <value>Prize</value>
-  </data>
-  <data name="lblNoUnits.Text" xml:space="preserve">
-    <value>There are no units for this product</value>
+  <data name="viewOrderDetails" xml:space="preserve">
+    <value>Detalles del pedido</value>
   </data>
 </root>

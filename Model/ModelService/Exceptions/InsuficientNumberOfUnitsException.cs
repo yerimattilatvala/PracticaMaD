@@ -9,7 +9,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.Exceptions
     public class InsuficientNumberOfUnitsException : Exception
     {
         public InsuficientNumberOfUnitsException(String name, int numberOfUnitsRemaining)
-            : base("Number of units exceded exception => Product = " + name + " || Number of units remaining = " + numberOfUnitsRemaining)
+            : base(name + " " + numberOfUnitsRemaining)
         {
         }
     }

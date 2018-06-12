@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
 {
-    public partial class BookDetails : System.Web.UI.Page
+    public partial class BookDetails : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

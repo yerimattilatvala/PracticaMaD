@@ -183,4 +183,7 @@
   <data name="lnkMyAccount.Text" xml:space="preserve">
     <value>My account</value>
   </data>
+  <data name="lblCoudTags.Text" xml:space="preserve">
+    <value>Tag cloud</value>
+  </data>
 </root>

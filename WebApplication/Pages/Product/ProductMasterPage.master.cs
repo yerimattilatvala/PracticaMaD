@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using System.Drawing;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
 {
@@ -25,6 +26,7 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
                     lblNoUnits.Visible = true;
                 }
                 LoadTags();
+                LoadUntag();
                 listaCantidades.SelectedValue = "1";
                 lblTagError.Visible = false;
             }
@@ -35,7 +37,9 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
             Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));
             Int32 cant = Convert.ToInt32(listaCantidades.SelectedValue);
             SessionManager.AddToShoppingCart(productId, cant);
-            Response.Redirect(Request.RawUrl.ToString());
+            string message = GetLocalResourceObject("message.Text").ToString();
+            Response.Write("<script language=javascript>alert('" + message + "'); location.href='/Pages/MainPage.aspx';</script>");
+            //Response.Redirect(Request.RawUrl.ToString());
 
         }
 
@@ -58,29 +62,51 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
 
         protected void tagList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));
-            Int32 tagId  = Convert.ToInt32(tagList.SelectedValue);
-            if (tagId != -1)
+            if (SessionManager.IsUserAuthenticated(Context))
             {
-                SessionManager.TagService.TagProduct(productId, tagId);
-                InitializeProductTags();
+                Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));
+                Int32 tagId = Convert.ToInt32(tagList.SelectedValue);
+                if (tagId != -1)
+                {
+                    SessionManager.TagService.TagProduct(productId, tagId);
+                    Response.Redirect(Request.RawUrl.ToString());
+                }
+            }
+            else
+            {
+                lblAuntenticated.Visible = true;
             }
         }
 
         protected void btnCreateTag_Click(object sender, EventArgs e)
         {
-            if (txtTag.Text.ToString().Equals(""))
-                lblTagError.Visible = true;
+            if (SessionManager.IsUserAuthenticated(Context))
+            {
+                if (txtTag.Text.ToString().Equals(""))
+                    lblTagError.Visible = true;
+                else
+                {
+                    Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));
+                    TagDetails newTag = new TagDetails(txtTag.Text);
+                    try
+                    {
+                        lblTagError.Visible = false;
+                        long tagId = SessionManager.TagService.AddNewTag(newTag);
+                        SessionManager.TagService.TagProduct(productId, tagId);
+                        InitializeProductTags();
+                        txtTag.Text = null;
+                        Response.Redirect(Request.RawUrl.ToString());
+                    }
+                    catch (DuplicateInstanceException)
+                    {
+                        lblTagError.Visible = true;
+                        lblTagError.Text = GetLocalResourceObject("TagExists").ToString();
+                    }
+                } 
+            }
             else
             {
-                lblTagError.Visible = false;
-                Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));
-                TagDetails newTag = new TagDetails(txtTag.Text);
-                long tagId = SessionManager.TagService.AddNewTag(newTag);
-                SessionManager.TagService.TagProduct(productId,tagId);
-                InitializeProductTags();
-                txtTag.Text = null;
-                LoadTags();
+                lblAuntenticated.Visible = true;
             }
         }
 
@@ -135,6 +161,40 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
             }
 
             return pos;
+        }
+
+        private void LoadUntag()
+        {
+            Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));
+            List<TagDetails> tags = SessionManager.TagService.GetTagsByProduct(productId);
+            TagDetails tag1 = new TagDetails(-1, "Select a tag", 0);
+            tags.Add(tag1);
+            untagList.DataSource = tags;
+            untagList.DataTextField = "name";
+            untagList.DataValueField = "tagId";
+            untagList.DataBind();
+            untagList.SelectedValue = "-1";
+        }
+
+        protected void untagList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (SessionManager.IsUserAuthenticated(Context))
+            {
+                try
+                {
+                    Int32 productId = Convert.ToInt32(Request.Params.Get("productId"));
+                    long tagId = Convert.ToInt32(untagList.SelectedValue);
+                    SessionManager.TagService.UntagProduct(productId, tagId);
+                    Response.Redirect(Request.RawUrl.ToString());
+                }
+                catch (InstanceNotFoundException)
+                {
+
+                }
+            }else
+            {
+                lblAuntenticated.Visible = true;
+            }
         }
     }
 }

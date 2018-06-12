@@ -9,7 +9,7 @@ using Es.Udc.DotNet.PracticaMaD.Model;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.Product
 {
-    public partial class MovieDetails : System.Web.UI.Page
+    public partial class MovieDetails : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

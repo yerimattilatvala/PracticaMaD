@@ -21,37 +21,43 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.UserService
             try
             {
                 UserProfileDao.FindByLoginName(loginName);
-
                 throw new DuplicateInstanceException(loginName,
                     typeof(UserProfile).FullName);
 
             }
             catch (InstanceNotFoundException)
             {
-                String encryptedPassword = PasswordEncrypter.Crypt(clearPassword);
-
-                UserProfile userProfile = new UserProfile();
-
-                userProfile.loginName = loginName;
-                userProfile.enPassword = encryptedPassword;
-                userProfile.firstName = userProfileDetails.FirstName;
-                userProfile.lastName = userProfileDetails.Lastname;
-                userProfile.email = userProfileDetails.Email;
-                userProfile.language = userProfileDetails.Language;
-                userProfile.country = userProfileDetails.Country;
-                userProfile.postalAddress = userProfileDetails.PostalAddress;
                 try
                 {
-                    UserProfileDao.Create(userProfile);
-                } catch (SqlException)
-                {
-                    throw new SqlException("");
+                    UserProfileDao.FindByEmail(userProfileDetails.Email);
+                    throw new DuplicateEmailException(userProfileDetails.Email);
                 }
+                catch (InstanceNotFoundException)
+                {
+                    String encryptedPassword = PasswordEncrypter.Crypt(clearPassword);
 
-                return userProfile.usrId;
+                    UserProfile userProfile = new UserProfile();
 
+                    userProfile.loginName = loginName;
+                    userProfile.enPassword = encryptedPassword;
+                    userProfile.firstName = userProfileDetails.FirstName;
+                    userProfile.lastName = userProfileDetails.Lastname;
+                    userProfile.email = userProfileDetails.Email;
+                    userProfile.language = userProfileDetails.Language;
+                    userProfile.country = userProfileDetails.Country;
+                    userProfile.postalAddress = userProfileDetails.PostalAddress;
+                    try
+                    {
+                        UserProfileDao.Create(userProfile);
+                    }
+                    catch (SqlException)
+                    {
+                        throw new SqlException("");
+                    }
+
+                    return userProfile.usrId;
+                }
             }
-
         }
 
         [Transactional]
@@ -102,15 +108,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ModelService.UserService
         public void UpdateUserProfileDetails(long userProfileId,
             UserProfileDetails userProfileDetails)
         {
-            UserProfile userProfile =
-                UserProfileDao.Find(userProfileId);
-
-            userProfile.firstName = userProfileDetails.FirstName;
-            userProfile.lastName = userProfileDetails.Lastname;
-            userProfile.email = userProfileDetails.Email;
-            userProfile.language = userProfileDetails.Language;
-            userProfile.country = userProfileDetails.Country;
-            UserProfileDao.Update(userProfile);
+            long usrIdByEmail = -1;
+            try
+            {
+                usrIdByEmail = UserProfileDao.FindByEmail(userProfileDetails.Email).usrId;
+                if (userProfileId != usrIdByEmail)
+                    throw new DuplicateEmailException(userProfileDetails.Email);
+                UserProfile userProfile =
+                    UserProfileDao.Find(userProfileId);
+                userProfile.firstName = userProfileDetails.FirstName;
+                userProfile.lastName = userProfileDetails.Lastname;
+                userProfile.email = userProfileDetails.Email;
+                userProfile.language = userProfileDetails.Language;
+                userProfile.country = userProfileDetails.Country;
+                UserProfileDao.Update(userProfile);
+            }
+            catch (InstanceNotFoundException)
+            {
+                UserProfile userProfile =
+                    UserProfileDao.Find(userProfileId);
+                userProfile.firstName = userProfileDetails.FirstName;
+                userProfile.lastName = userProfileDetails.Lastname;
+                userProfile.email = userProfileDetails.Email;
+                userProfile.language = userProfileDetails.Language;
+                userProfile.country = userProfileDetails.Country;
+                UserProfileDao.Update(userProfile);
+            }
         }
 
         [Transactional]

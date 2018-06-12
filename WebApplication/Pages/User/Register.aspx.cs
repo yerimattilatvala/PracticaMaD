@@ -10,6 +10,7 @@ using Es.Udc.DotNet.ModelUtil.Log;
 using Es.Udc.DotNet.PracticaMaD.WebApplication.HTTP.View.ApplicationObjects;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.ModelService.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.User
 {
@@ -126,13 +127,13 @@ namespace Es.Udc.DotNet.PracticaMaD.WebApplication.Pages.User
                         ApplyAppPathModifier("~/Pages/MainPage.aspx"));
 
                 }
+                catch (DuplicateEmailException)
+                {
+                    lblEmailError.Visible = true;
+                }
                 catch (DuplicateInstanceException)
                 {
                     lblLoginError.Visible = true;
-                }
-                catch (System.Data.SqlClient.SqlException)
-                {
-                    lblEmailError.Visible = true;
                 }
 
             }

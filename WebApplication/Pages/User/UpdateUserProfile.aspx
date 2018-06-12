@@ -3,9 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation"
     runat="server">
-    - <asp:Localize ID="lclMenuExplanation" runat="server" meta:resourcekey="lclMenuExplanation" />
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_MenuLinks" runat="server">
+    <asp:Localize ID="lclMenuExplanation" runat="server" meta:resourcekey="lclMenuExplanation" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent"
     runat="server">
@@ -32,7 +30,10 @@
                     <asp:RequiredFieldValidator ID="rfvEmail" runat="server"
                         ControlToValidate="txtEmail" Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>" meta:resourcekey="rfvEmailResource1"/>
                     <asp:RegularExpressionValidator ID="revEmail" runat="server"
-                        ControlToValidate="txtEmail" Display="Dynamic" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" meta:resourcekey="revEmail"></asp:RegularExpressionValidator></span>
+                        ControlToValidate="txtEmail" Display="Dynamic" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" meta:resourcekey="revEmail"></asp:RegularExpressionValidator>
+                     <asp:Label ID="lblEmailError" runat="server" ForeColor="Red" Style="position: relative"
+                            Visible="False" meta:resourcekey="lblEmailError"></asp:Label>
+                                                                                                                    </span>
             </div>
 
             <div class="field">
