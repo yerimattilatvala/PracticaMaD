@@ -207,6 +207,7 @@
     <Content Include="Pages\User\UpdateUserProfile.aspx" />
     <Content Include="PracticaMaD.Master" />
     <Content Include="Pages\Product\ProductMasterPage.master" />
+    <Content Include="Memoria\Memoria.pdf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
